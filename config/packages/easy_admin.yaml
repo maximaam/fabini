@@ -1,0 +1,13 @@
+easy_admin:
+    site_name: 'FABINI Admin'
+    entities:
+        Leather:
+            class: App\Entity\Leather
+            form:
+                fields:
+                - articleId
+                - articleName
+                - price
+                - title
+                - description
+                - { property: 'imageFile', type: 'vich_image', type_options: { required: true } }
