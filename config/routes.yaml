@@ -10,7 +10,7 @@ root:
         path: /de
         permanent: true
 
-index:
+app:
     path: /{_locale}
     defaults:
         _controller: 'App\Controller\IndexController::index'

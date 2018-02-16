@@ -1,0 +1,12 @@
+label:
+    more: Mehr
+    welcome:
+        title: Willkomen bei FABINI!
+        desc: bla bla bla
+    top-products: Top Produkte
+    details: Details anzeigen
+
+nav:
+    main:
+        label: Über uns
+        route: about_us_de

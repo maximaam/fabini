@@ -3,9 +3,30 @@
 {% block body %}
     <div class="jumbotron">
         <div class="container">
-            <h1 class="display-3">{{ 'welcome.title'|trans }}</h1>
-            <p>{{ 'welcome.desc'|trans }}</p>
-            <p><a class="btn btn-primary btn-lg" href="#" role="button">Learn more »</a></p>
+            <h1 class="display-4">{{ 'label.welcome.title'|trans }}</h1>
+            <p>{{ 'label.welcome.desc'|trans }}</p>
+            <p><a class="btn btn-primary btn-lg" href="{{ path('about-us_' ~ app.request.locale) }}" role="button">{{ 'label.more'|trans }} »</a></p>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="row">
+            <h2>{{ 'label.top-products'|trans }}</h2>
+        </div>
+        <div class="row">
+
+            {% for item in leather %}
+                <div class="col-md-4">
+                    <div class="single-item">
+                        <h3>{{ item.title }}</h3>
+                        <img src="{{ asset('images/uploads/' ~ item.image) }}" class="img-fluid mx-auto">
+                        <p>{{ 'label.price'|trans }}: {{ item.price }} €</p>
+                        <a href="#" class="btn btn-primary">{{ 'label.details'|trans }}</a>
+                    </div>
+
+                </div>
+            {% endfor %}
+
         </div>
     </div>
 {% endblock %}

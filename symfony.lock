@@ -89,6 +89,12 @@
     "jms/metadata": {
         "version": "1.6.0"
     },
+    "knplabs/knp-menu": {
+        "version": "2.3.0"
+    },
+    "knplabs/knp-menu-bundle": {
+        "version": "v2.2.1"
+    },
     "monolog/monolog": {
         "version": "1.23.0"
     },
