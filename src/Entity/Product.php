@@ -5,16 +5,14 @@ namespace App\Entity;
 use Doctrine\ORM\Mapping as ORM;
 use Doctrine\ORM\Mapping\Index;
 use Symfony\Component\Validator\Constraints as Assert;
-use Symfony\Component\HttpFoundation\File\File;
-use Vich\UploaderBundle\Mapping\Annotation as Vich;
+use Doctrine\Common\Collections\ArrayCollection;
 
 /**
- * @ORM\Table(name="leather", indexes={@Index(name="idx_article_id", columns={"article_id"})})
- * @ORM\Entity(repositoryClass="App\Repository\LeatherRepository")
+ * @ORM\Table(name="product", indexes={@Index(name="idx_article_id", columns={"article_id"})})
+ * @ORM\Entity(repositoryClass="App\Repository\ProductRepository")
  *
- * @Vich\Uploadable
  */
-class Leather
+class Product
 {
     /**
      * @ORM\Id
@@ -54,25 +52,6 @@ class Leather
     private $articleName;
 
     /**
-     * It only stores the name of the image associated with the product.
-     *
-     * @ORM\Column(type="string", length=255)
-     *
-     * @var string
-     */
-    private $image;
-
-    /**
-     * This unmapped property stores the binary contents of the image file
-     * associated with the product.
-     *
-     * @Vich\UploadableField(mapping="leather_images", fileNameProperty="image")
-     *
-     * @var File
-     */
-    private $imageFile;
-
-    /**
      * @var string
      *
      * @Assert\NotBlank()
@@ -96,13 +75,26 @@ class Leather
      */
     private $price;
 
+    /**
+     * @var ArrayCollection
+     *
+     * @ORM\ManyToMany(targetEntity="Image", cascade={"persist"})
+     * @ORM\JoinTable(name="product_images",
+     *     joinColumns={@ORM\JoinColumn(name="product_id", referencedColumnName="id")},
+     *      inverseJoinColumns={@ORM\JoinColumn(name="image_id", referencedColumnName="id", unique=true)}
+     * )
+     *
+     */
+    private $images;
+
 
     /**
-     * Leather constructor
+     * Product constructor
      */
     public function __construct()
     {
         $this->createdAt = new \DateTime();
+        $this->images = new ArrayCollection();
     }
 
     /**
@@ -171,44 +163,12 @@ class Leather
 
     /**
      * @param string $articleName
-     * @return Leather
+     * @return Product
      */
     public function setArticleName(string $articleName): self
     {
         $this->articleName = $articleName;
         return $this;
-    }
-
-    /**
-     * @param File $image
-     */
-    public function setImageFile(File $image = null)
-    {
-        $this->imageFile = $image;
-    }
-
-    /**
-     * @return File
-     */
-    public function getImageFile()
-    {
-        return $this->imageFile;
-    }
-
-    /**
-     * @param string $image
-     */
-    public function setImage($image)
-    {
-        $this->image = $image;
-    }
-
-    /**
-     * @return string
-     */
-    public function getImage()
-    {
-        return $this->image;
     }
 
     /**
@@ -253,12 +213,28 @@ class Leather
 
     /**
      * @param float $price
-     * @return Leather
+     * @return Product
      */
     public function setPrice(float $price): self
     {
         $this->price = $price;
         return $this;
+    }
+
+    /**
+     * Get images
+     *
+     *
+     * @return ArrayCollection
+     */
+    public function getImages()
+    {
+        return $this->images;
+    }
+
+    public function setImages()
+    {
+        //return $this->images;
     }
 
 

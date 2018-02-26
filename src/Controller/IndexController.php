@@ -2,7 +2,7 @@
 
 namespace App\Controller;
 
-use App\Entity\Leather;
+use App\Entity\Product;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Response;
@@ -14,7 +14,7 @@ class IndexController extends Controller
      */
     public function index()
     {
-        $leather = $this->getDoctrine()->getRepository(Leather::class)->findBy([], [], 3);
+        $leather = $this->getDoctrine()->getRepository(Product::class)->findBy([], [], 3);
 
 
         return $this->render('app/index.html.twig', [

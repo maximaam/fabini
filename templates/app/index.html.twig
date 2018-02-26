@@ -4,15 +4,13 @@
     <div class="jumbotron">
         <div class="container">
             <h1 class="display-4">{{ 'label.welcome.title'|trans }}</h1>
+            <h2>{{ 'label.welcome.sub-title'|trans }}</h2>
             <p>{{ 'label.welcome.desc'|trans }}</p>
             <p><a class="btn btn-primary btn-lg" href="{{ path('about-us_' ~ app.request.locale) }}" role="button">{{ 'label.more'|trans }} »</a></p>
         </div>
     </div>
 
     <div class="container">
-        <div class="row">
-            <h2>{{ 'label.top-products'|trans }}</h2>
-        </div>
         <div class="row">
 
             {% for item in leather %}

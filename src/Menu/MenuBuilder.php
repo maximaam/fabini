@@ -65,11 +65,6 @@ class MenuBuilder
             ]);
         }
 
-        //dump($menu);
-
-        //die;
-
-
         return $menu;
     }
 
