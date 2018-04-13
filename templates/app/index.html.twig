@@ -17,7 +17,8 @@
                 <div class="col-md-4">
                     <div class="single-item">
                         <h3>{{ item.title }}</h3>
-                        <img src="{{ asset('images/uploads/' ~ item.image) }}" class="img-fluid mx-auto">
+
+                        <p>{{ item.description }}</p>
                         <p>{{ 'label.price'|trans }}: {{ item.price }} €</p>
                         <a href="#" class="btn btn-primary">{{ 'label.details'|trans }}</a>
                     </div>

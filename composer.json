@@ -4,9 +4,11 @@
     "require": {
         "php": "^7.0.8",
         "ext-iconv": "*",
-        "javiereguiluz/easyadmin-bundle": "^1.17",
+        "easycorp/easyadmin-bundle": "^1.17",
         "knplabs/knp-menu-bundle": "^2.2",
         "sensio/framework-extra-bundle": "^5.1",
+        "sonata-project/admin-bundle": "^3.34",
+        "sonata-project/doctrine-orm-admin-bundle": "^3.5",
         "symfony/asset": "^3.4",
         "symfony/console": "^3.4",
         "symfony/debug-pack": "*",

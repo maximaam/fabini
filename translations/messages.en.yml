@@ -1,14 +1,13 @@
 label:
-    more: Mehr
+    more: More
     welcome:
-        title: Willkommen bei FABINI
+        title: Welcome to FABINI
         sub-title: Leder aus Leidenschafft!
         desc: bla bla bla
     top-products: Top Produkte
     details: Details anzeigen
-    price: Preis
 
 nav:
     main:
-        label: Über uns
-        route: about_us_de
+        label: About us
+        route: about_us_en

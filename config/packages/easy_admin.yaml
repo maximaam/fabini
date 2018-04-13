@@ -1,15 +1,10 @@
 easy_admin:
     site_name: 'FABINI Admin'
     entities:
-        Product:
-            class: App\Entity\Product
+        Mimo:
+            class: App\Entity\Mimo
             form:
                 fields:
-                - articleId
-                - articleName
-                - price
                 - title
-                - description
                 #- { property: 'imageFile', type: 'vich_image', type_options: { required: true } }
-                - { property: 'images', type: 'collection' , type_options: { entry_type: 'App\Form\ImageType' } }
-
+                - { property: 'images', type: 'collection' , type_options: { entry_type: 'App\Form\ImageType', by_reference: false } }

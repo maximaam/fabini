@@ -5,10 +5,10 @@ namespace App\Entity;
 use Doctrine\ORM\Mapping as ORM;
 use Doctrine\ORM\Mapping\Index;
 use Symfony\Component\Validator\Constraints as Assert;
-use Doctrine\Common\Collections\ArrayCollection;
+
 
 /**
- * @ORM\Table(name="product", indexes={@Index(name="idx_article_id", columns={"article_id"})})
+ * @ORM\Table(indexes={@Index(name="idx_product_name", columns={"product_name"})})
  * @ORM\Entity(repositoryClass="App\Repository\ProductRepository")
  *
  */
@@ -39,17 +39,17 @@ class Product
      * @var string
      *
      * @Assert\NotBlank()
-     * @ORM\Column(name="article_id", type="string", length=255)
+     * @ORM\Column(length=128)
      */
-    private $articleId;
+    private $productNumber;
 
     /**
      * @var string
      *
      * @Assert\NotBlank()
-     * @ORM\Column(name="article_name", type="string", length=255, unique=true)
+     * @ORM\Column(length=128)
      */
-    private $articleName;
+    private $productName;
 
     /**
      * @var string
@@ -71,22 +71,15 @@ class Product
      * @var float
      *
      * @Assert\NotBlank()
-     * @ORM\Column(name="price", type="float")
+     * @ORM\Column(type="decimal", scale=2)
      */
     private $price;
 
     /**
-     * @var ArrayCollection
-     *
-     * @ORM\ManyToMany(targetEntity="Image", cascade={"persist"})
-     * @ORM\JoinTable(name="product_images",
-     *     joinColumns={@ORM\JoinColumn(name="product_id", referencedColumnName="id")},
-     *      inverseJoinColumns={@ORM\JoinColumn(name="image_id", referencedColumnName="id", unique=true)}
-     * )
-     *
+     * @ORM\ManyToOne(targetEntity="Category", inversedBy="products")
+     * @ORM\JoinColumn(nullable=false)
      */
-    private $images;
-
+    private $category;
 
     /**
      * Product constructor
@@ -94,13 +87,12 @@ class Product
     public function __construct()
     {
         $this->createdAt = new \DateTime();
-        $this->images = new ArrayCollection();
     }
 
     /**
-     * @return mixed
+     * @return integer
      */
-    public function getId()
+    public function getId(): int
     {
         return $this->id;
     }
@@ -115,10 +107,12 @@ class Product
 
     /**
      * @param \DateTimeInterface $createdAt
+     * @return $this
      */
-    public function setCreatedAt(\DateTimeInterface $createdAt)
+    public function setCreatedAt(\DateTimeInterface $createdAt): self
     {
         $this->createdAt = $createdAt;
+        return $this;
     }
 
     /**
@@ -131,43 +125,47 @@ class Product
 
     /**
      * @param \DateTimeInterface $updatedAt
+     * @return $this
      */
-    public function setUpdatedAt(\DateTimeInterface $updatedAt)
+    public function setUpdatedAt(\DateTimeInterface $updatedAt): self
     {
         $this->updatedAt = $updatedAt;
+        return $this;
     }
 
     /**
      * @return string
      */
-    public function getArticleId(): ?string
+    public function getProductNumber(): ?string
     {
-        return $this->articleId;
+        return $this->productNumber;
     }
 
     /**
-     * @param string $articleId
+     * @param string $product
+     * @return $this
      */
-    public function setArticleId(string $articleId)
+    public function setProductNumber(string $product): self
     {
-        $this->articleId = $articleId;
+        $this->productNumber = $product;
+        return $this;
     }
 
     /**
      * @return string
      */
-    public function getArticleName(): ?string
+    public function getProductName(): ?string
     {
-        return $this->articleName;
+        return $this->productName;
     }
 
     /**
-     * @param string $articleName
-     * @return Product
+     * @param string $product
+     * @return $this
      */
-    public function setArticleName(string $articleName): self
+    public function setProductName(string $product): self
     {
-        $this->articleName = $articleName;
+        $this->productName = $product;
         return $this;
     }
 
@@ -181,10 +179,12 @@ class Product
 
     /**
      * @param string $title
+     * @return $this
      */
-    public function setTitle(string $title)
+    public function setTitle(string $title): self
     {
         $this->title = $title;
+        return $this;
     }
 
     /**
@@ -213,7 +213,7 @@ class Product
 
     /**
      * @param float $price
-     * @return Product
+     * @return $this
      */
     public function setPrice(float $price): self
     {
@@ -222,22 +222,21 @@ class Product
     }
 
     /**
-     * Get images
-     *
-     *
-     * @return ArrayCollection
+     * @return Category
      */
-    public function getImages()
+    public function getCategory(): ?Category
     {
-        return $this->images;
+        return $this->category;
     }
 
-    public function setImages()
+    /**
+     * @param Category $category
+     * @return $this
+     */
+    public function setCategory(Category $category): self
     {
-        //return $this->images;
+        $this->category = $category;
+        return $this;
     }
-
-
-
 
 }

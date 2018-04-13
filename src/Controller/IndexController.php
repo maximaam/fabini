@@ -2,7 +2,9 @@
 
 namespace App\Controller;
 
+use App\Entity\Category;
 use App\Entity\Product;
+use App\Repository\CategoryRepository;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Response;
@@ -15,7 +17,6 @@ class IndexController extends Controller
     public function index()
     {
         $leather = $this->getDoctrine()->getRepository(Product::class)->findBy([], [], 3);
-
 
         return $this->render('app/index.html.twig', [
             'leather' => $leather
@@ -50,29 +51,20 @@ class IndexController extends Controller
     }
 
     /**
-     * @Route("/{_locale}/lederboersen", name="leather-wallets_de")
-     * @Route("/{_locale}/leather-wallets", name="leather-wallets_en")
+     * @Route("/{_locale}/{id}/{alias}", name="home_category")
+     *
+     * @param Category $category
+     * @return Response
      */
-    public function leatherWallets()
+    public function category(Category $category)
     {
-        return $this->render('app/leather-wallets.html.twig');
+        $products = $this->getDoctrine()
+            ->getRepository(Product::class)
+            ->fetchByCategories(CategoryRepository::getRelatedCategories($category));
+
+        return $this->render('app/products.html.twig', [
+            'products' => $products
+        ]);
     }
 
-    /**
-     * @Route("/{_locale}/ledertaschen", name="leather-bags_de")
-     * @Route("/{_locale}/leather-bags", name="leather-bags_en")
-     */
-    public function leatherBags()
-    {
-        return $this->render('app/leather-bags.html.twig');
-    }
-
-    /**
-     * @Route("/{_locale}/Lederhandschuhe", name="leather-gloves_de")
-     * @Route("/{_locale}/leather-gloves", name="leather-gloves_en")
-     */
-    public function leatherGloves()
-    {
-        return $this->render('app/leather-gloves.html.twig');
-    }
 }

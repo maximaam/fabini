@@ -8,8 +8,11 @@
 
 namespace App\Menu;
 
+use App\Entity\Category;
 use Knp\Menu\FactoryInterface;
 use Symfony\Component\HttpFoundation\RequestStack;
+use Doctrine\ORM\EntityManager;
+use Symfony\Component\Translation\TranslatorInterface;
 
 class MenuBuilder
 {
@@ -22,15 +25,32 @@ class MenuBuilder
     private $request;
 
     /**
+     * @var TranslatorInterface
+     */
+    private $translator;
+    /**
+     * @var EntityManager
+     */
+    private $em;
+
+    /**
      * MenuBuilder constructor.
      *
      * @param FactoryInterface $factory
      * @param RequestStack $request
+     * @param TranslatorInterface $translator
+     * @param EntityManager $em
      */
-    public function __construct(FactoryInterface $factory, RequestStack $request)
+    public function __construct(
+        FactoryInterface $factory,
+        RequestStack $request,
+        TranslatorInterface $translator,
+        EntityManager $em)
     {
         $this->factory = $factory;
         $this->request = $request;
+        $this->translator = $translator;
+        $this->em = $em;
     }
 
     /**
@@ -42,21 +62,29 @@ class MenuBuilder
         $menu = $this->factory->createItem('root');
         $menu->setChildrenAttribute('class', 'navbar-nav mr-auto');
 
+        $categories = $this->em
+            ->getRepository(Category::class)
+            ->fetchParents()
+            ->setMaxResults(5)
+            ->getQuery()
+            ->getResult();
+
         $locale = $this->request->getCurrentRequest()->getLocale();
 
-        $items = [
-            'de' => [
-                ['label' => 'LEDERBÖRSEN', 'route' => 'leather-wallets_de'],
-                ['label' => 'LEDERTASCHEN', 'route' => 'leather-bags_de'],
-                ['label' => 'LEDERHANDSCHUHE', 'route' => 'leather-gloves_de'],
-            ],
-            'en' => [
-                ['label' => 'LEDERBÖRSEN', 'route' => 'leather-wallets_de'],
-                ['label' => 'LEDERTASCHEN', 'route' => 'leather-bags_de'],
-                ['label' => 'LEDERHANDSCHUHE', 'route' => 'leather-gloves_de'],
-            ]
-        ];
+        /** @var Category $category */
+        foreach ($categories as $category) {
+            $menu->addChild($category->getName($locale), [
+                'route' => 'home_category',
+                'attributes' => ['class' => 'nav-item'],
+                'linkAttributes' => ['class' => 'nav-link'],
+                'routeParameters' => [
+                    'id'    => $category->getId(),
+                    'alias' => $category->getAlias($locale)
+                ]
+            ]);
+        }
 
+        /*
         foreach ($items[$locale] as $key => $val) {
             $menu->addChild($val['label'], [
                 'route' => $val['route'],
@@ -64,6 +92,7 @@ class MenuBuilder
                 'linkAttributes' => ['class' => 'nav-link']
             ]);
         }
+        */
 
         return $menu;
     }

@@ -16,7 +16,11 @@ footer.main-footer {
 
 .navbar {
     background: #2d5066;
-    border-bottom: 2px #e6dcb5 dotted;
+    border-bottom: 2px #bd8a48 dotted;
+}
+
+.navbar-nav .nav-item {
+    margin-right: 5px;
 }
 
 .navbar-nav a.nav-link {
@@ -29,7 +33,7 @@ footer.main-footer {
     padding: .75rem 1.5rem;
 }
 .navbar-nav a.nav-link:hover,
-.navbar-nav a.nav-link.active{
+.nav-item.current a.nav-link {
     background: #4d7e99;
     opacity: .8;
 }
@@ -71,12 +75,14 @@ a.lang img {
     background: url("../images/bg-multi.jpg");
     color: #fff;
     min-height: 300px;
-    border-bottom: 2px #e6dcb5 dotted;
+    border-bottom: 2px #bd8a48 dotted;
     background-size: cover;
     margin: -3.5rem -2rem 2rem -2rem; /* Padding main */
 }
 .jumbotron h1 {
-    text-shadow: 1px 1px 2px #fff;
+    /*text-shadow: 1px 1px 2px #fff;*/
+    letter-spacing: 3px;
+    text-transform: uppercase;
 }
 
 .btn-primary {
