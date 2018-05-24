@@ -23,15 +23,23 @@ use Sonata\AdminBundle\Form\FormMapper,
 
 use Doctrine\ORM\EntityManager;
 
+#use Sonata\CoreBundle\Form\Type\CollectionType;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType,
     Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\Form\Extension\Core\Type\{
-    UrlType, FileType, ChoiceType, EmailType, TextareaType, FormType
+    HiddenType, UrlType, FileType, ChoiceType, EmailType, TextareaType, FormType, CollectionType
 };
+
+use Sonata\CoreBundle\Form\Type\CollectionType as SonataCollectionType;
 
 use App\Entity\{
     Product, Category
 };
+
+use Symfony\Component\Form\CallbackTransformer;
+use App\Form\ImagesType;
+use Symfony\Component\Form\FormEvent;
+use Symfony\Component\Form\FormEvents;
 
 /**
  * Class LeatherAdmin
@@ -46,6 +54,10 @@ class ProductAdmin extends AbstractAdmin
      */
     protected function configureFormFields(FormMapper $formMapper)
     {
+        /** @var Product $product */
+        $product = $this->getSubject();
+
+
         $formMapper
             ->add('category', EntityType::class, [
                 'placeholder'   => 'Select a category...',
@@ -56,13 +68,58 @@ class ProductAdmin extends AbstractAdmin
                     return $category->fetchChildren();
                 },
             ])
-            ->add('productName')
             ->add('productNumber')
+            ->add('productName', null, [
+                'required'  => false
+            ])
             ->add('title')
             ->add('description')
             ->add('price')
+            ->add('images', HiddenType::class, [
+                'attr' => [
+                    'class' => 'images-names-container',
+                    'data-pk' => $product->getId() ?: 0,
+                ]
+            ])
+
+
+            ->add('imagesList', FileType::class, [
+                //'entry_type'    => ImagesType::class,
+                //'allow_add'     => true,
+                //'allow_delete'  => true,
+                'label' => 'Upload new images',
+                'required'      => $product->getId() === null,
+                'mapped'        => false,
+                'attr'  => [
+                    'class' => 'js_upload-image'
+                ]
+                //'help'          => $product->getId() ? '<img src="/images/products/">' : '',
+                //'attr'  => [
+                    //'data-images'   => $this->getImages($product)
+                //]
+            ])
         ;
+
     }
+
+
+    /**
+     * @param Product $product
+     * @return string
+     */
+
+    /*
+    private function getImages(Product $product)
+    {
+        $ret = '';
+        foreach ($product->getImages() as $image) {
+            $ret .= $image->getImage() . '-';
+        }
+        return trim($ret, '-');
+    }
+    */
+
+
 
     /**
      * @param ErrorElement $errorElement
@@ -98,9 +155,12 @@ class ProductAdmin extends AbstractAdmin
                 'format' => parent::GLOBAL_DATE_FORMAT,
                 'label' => 'Created'
             ])
-            ->add('category.nameWithSubCat')
+            ->add('category.nameWithSubCat', null, [
+                'label' => 'Category'
+            ])
             ->add('title')
-            ->add('description')
+            //->add('title')
+            //->add('description')
             ->add('price')
 
             ->add('_action', null, [

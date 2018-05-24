@@ -17,8 +17,11 @@
                 <div class="col-md-4">
                     <div class="single-item">
                         <h3>{{ item.title }}</h3>
+                        {% set imgSeparator = constant('App\\Entity\\Product::IMG_SEPARATOR') %}
+                        {% for image in item.images|trim(imgSeparator)|split(imgSeparator) %}
+                            <img src="{{ asset('/images/products/' ~ image ) }}">
+                        {% endfor %}
 
-                        <p>{{ item.description }}</p>
                         <p>{{ 'label.price'|trans }}: {{ item.price }} €</p>
                         <a href="#" class="btn btn-primary">{{ 'label.details'|trans }}</a>
                     </div>

@@ -2,9 +2,8 @@
     "type": "project",
     "license": "proprietary",
     "require": {
-        "php": "^7.0.8",
+        "php": "^7.1",
         "ext-iconv": "*",
-        "easycorp/easyadmin-bundle": "^1.17",
         "knplabs/knp-menu-bundle": "^2.2",
         "sensio/framework-extra-bundle": "^5.1",
         "sonata-project/admin-bundle": "^3.34",
@@ -28,8 +27,7 @@
         "symfony/web-link": "^3.4",
         "symfony/webpack-encore-pack": "*",
         "symfony/yaml": "^3.4",
-        "twbs/bootstrap": "4.0.0-alpha.6",
-        "vich/uploader-bundle": "^1.8"
+        "twbs/bootstrap": "4.0.0-alpha.6"
     },
     "require-dev": {
         "symfony/browser-kit": "^3.4",

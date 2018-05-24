@@ -3,20 +3,30 @@
 {% block body %}
     <div class="container">
         <div class="row">
-
-            {% for product in products %}
-                <div class="col-md-4">
-                    <div class="single-item">
-                        <h3>{{ product.title }}</h3>
-
-                        <p>{{ product.description }}</p>
-                        <p>{{ 'label.price'|trans }}: {{ product.price }} €</p>
-                        <a href="#" class="btn btn-primary">{{ 'label.details'|trans }}</a>
-                    </div>
-
+            {% if products|length == 0 %}
+                <div class="alert alert-info">
+                    {{ 'msg.no_products_in_category'|trans }}
                 </div>
-            {% endfor %}
+            {% else %}
 
+
+                {% for product in products %}
+                    <div class="col-md-4">
+                        <div class="single-item">
+                            <h3>{{ product.title }}</h3>
+
+
+                            {% for imageFile in product.images %}
+                                <img src="{{ asset('/images/products/' ~ imageFile.image ) }}">
+                            {% endfor %}
+
+                            <p>{{ 'label.price'|trans }}: {{ product.price }} €</p>
+                            <a href="#" class="btn btn-primary">{{ 'label.details'|trans }}</a>
+                        </div>
+
+                    </div>
+                {% endfor %}
+            {% endif %}
         </div>
     </div>
 {% endblock %}

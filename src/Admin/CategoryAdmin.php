@@ -90,7 +90,7 @@ class CategoryAdmin extends AbstractAdmin
 
             ->add('_action', null, [
                 'actions' => [
-                    'show'      => [],
+                    //'show'      => [],
                     'edit'      => [],
                     'delete'    => [],
                 ]

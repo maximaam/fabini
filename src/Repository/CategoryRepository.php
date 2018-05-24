@@ -84,4 +84,19 @@ class CategoryRepository extends ServiceEntityRepository
 
         return $categories;
     }
+
+
+    /**
+     * Get children IDs
+     *
+     * @param Category $category
+     * @return array
+     */
+    public static function getChildren(Category $category): array
+    {
+        /** @var Category $cat */
+        return array_map(function ($cat) {
+            return $cat->getId();
+        }, iterator_to_array($category->getChildren()));
+    }
 }

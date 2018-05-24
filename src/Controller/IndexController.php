@@ -51,7 +51,7 @@ class IndexController extends Controller
     }
 
     /**
-     * @Route("/{_locale}/{id}/{alias}", name="home_category")
+     * @Route("/{_locale}/category/{id}/{alias}", name="home_category")
      *
      * @param Category $category
      * @return Response
@@ -60,7 +60,7 @@ class IndexController extends Controller
     {
         $products = $this->getDoctrine()
             ->getRepository(Product::class)
-            ->fetchByCategories(CategoryRepository::getRelatedCategories($category));
+            ->fetchByCategories(CategoryRepository::getChildren($category));
 
         return $this->render('app/products.html.twig', [
             'products' => $products

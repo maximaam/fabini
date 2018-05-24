@@ -2,3 +2,35 @@ body {
     background: #e6dcb5;
     font-family: Arial, Helvetica, sans-serif;
 }
+
+.uploaded-images-container {
+    overflow: hidden;
+    margin-bottom: 20px;
+    background: #eee;
+}
+.uploaded-images-container h3 {
+    background: #ddd;
+    padding: 5px 20px;
+}
+.uploaded-images-elem {
+    position: relative;
+    float: left;
+    width: 150px;
+    text-align: center;
+    margin-right: 10px;
+    padding: 5px;
+}
+.uploaded-images-elem:hover img {
+    opacity: .5;
+}
+.uploaded-images-elem button {
+    position: absolute;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    background: red;
+    color: white;
+    border: 1px solid #fff;
+    right: 0;
+    top: 0;
+}

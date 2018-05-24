@@ -6,14 +6,20 @@ use Doctrine\ORM\Mapping as ORM;
 use Doctrine\ORM\Mapping\Index;
 use Symfony\Component\Validator\Constraints as Assert;
 
-
 /**
  * @ORM\Table(indexes={@Index(name="idx_product_name", columns={"product_name"})})
  * @ORM\Entity(repositoryClass="App\Repository\ProductRepository")
+ * @ORM\HasLifecycleCallbacks
  *
  */
 class Product
 {
+    /**
+     * Images stored as string, separated with -
+     */
+    const IMG_SEPARATOR = '-';
+
+
     /**
      * @ORM\Id
      * @ORM\GeneratedValue
@@ -81,6 +87,15 @@ class Product
      */
     private $category;
 
+
+    /**
+     * @var string
+     *
+     * @Assert\NotBlank()
+     * @ORM\Column(type="text")
+     */
+    private $images;
+
     /**
      * Product constructor
      */
@@ -90,9 +105,19 @@ class Product
     }
 
     /**
+     * Pre update callback
+     *
+     * @ORM\PreUpdate
+     */
+    public function preUpdate()
+    {
+        $this->setUpdatedAt(new \DateTime());
+    }
+
+    /**
      * @return integer
      */
-    public function getId(): int
+    public function getId(): ?int
     {
         return $this->id;
     }
@@ -238,5 +263,28 @@ class Product
         $this->category = $category;
         return $this;
     }
+
+    /**
+     * @return string
+     */
+    public function getImages(): ?string
+    {
+        return $this->images;
+    }
+
+    /**
+     * @param string $images
+     * @return $this
+     */
+    public function setImages(string $images): self
+    {
+        $this->images = $images;
+        return $this;
+    }
+
+
+
+
+
 
 }

@@ -244,19 +244,21 @@ class Category
     }
 
     /**
-     * @return mixed
+     * @return Collection
      */
-    public function getChildren()
+    public function getChildren(): Collection
     {
         return $this->children;
     }
 
     /**
-     * @param mixed $children
+     * @param Collection $children
+     * @return Category
      */
-    public function setChildren($children = null): void
+    public function setChildren(Collection $children = null): self
     {
         $this->children = $children;
+        return $this;
     }
 
     /**
@@ -317,15 +319,14 @@ class Category
     /**
      * @return string
      */
-    public function nameWithSubCat()
+    public function getNameWithSubCat()
     {
         /** @var Category $parent */
         if (null !== $parent = $this->getParent()) {
-            return $parent->getNameDe() . ' -> ' . $this->getNameDe() .
-                ' | ' . $parent->getNameEn() . ' -> ' . $this->getNameEn();
+            return $parent->getNameDe() . ' -> ' . $this->getNameDe();
         }
 
-        return $this->getNameDe() . ' | '. $this->getNameEn();
+        return $this->getNameDe();
     }
 
     /**

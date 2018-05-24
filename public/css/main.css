@@ -1,6 +1,7 @@
 body {
-    background: #e6dcb5;
+    background: #e9ebee;
     font-family: Arial, Helvetica, sans-serif;
+    color: #333;
 }
 
 main {
@@ -11,12 +12,16 @@ main {
 
 footer.main-footer {
     background: #2d5066;
-    border-top: 2px #e6dcb5 dotted;
+    border-top: 2px #fff dotted;
 }
 
 .navbar {
     background: #2d5066;
-    border-bottom: 2px #bd8a48 dotted;
+    border-bottom: 2px #fff dotted;
+}
+
+.navbar-brand img {
+    border-radius: .3rem;
 }
 
 .navbar-nav .nav-item {
@@ -31,16 +36,16 @@ footer.main-footer {
     -o-transition: all .2s ease-in-out;
     transition: all .2s ease-in-out;
     padding: .75rem 1.5rem;
+    background: rgba(77,126,153,.2);
 }
 .navbar-nav a.nav-link:hover,
 .nav-item.current a.nav-link {
-    background: #4d7e99;
-    opacity: .8;
+    background: rgba(77,126,153,.8);
 }
 .navbar .user-cart a {
     margin-left: 10px;
     position: relative;
-    background: #bd8a48;
+    background: #fff;
     padding: 2px 5px;
     border-radius: 4px;
     width: 50px;
@@ -55,7 +60,7 @@ footer.main-footer {
     top: -10px;
     left: -15px;
     font-size: 14px;
-    background: #ad544b;
+    background: red;
     width: 22px;
     height: 22px;
     border-radius: 50%;
@@ -75,7 +80,7 @@ a.lang img {
     background: url("../images/bg-multi.jpg");
     color: #fff;
     min-height: 300px;
-    border-bottom: 2px #bd8a48 dotted;
+    border-bottom: 2px #fff dotted;
     background-size: cover;
     margin: -3.5rem -2rem 2rem -2rem; /* Padding main */
 }

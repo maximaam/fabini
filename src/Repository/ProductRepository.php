@@ -23,8 +23,12 @@ class ProductRepository extends ServiceEntityRepository
     {
         $qb = $this ->createQueryBuilder('p')
             ->leftJoin('p.category', 'c');
+            //->leftJoin('p.images', 'i');
 
-        $qb->where($qb->expr()->in('c.id', $categories));
+        //$qb->where($qb->expr()->in('c.id', $categories));
+
+        $qb->where('c.id IN(:categories)')
+            ->setParameter('categories', $categories);
 
         return $qb->getQuery()->getResult();
     }
