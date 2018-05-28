@@ -22,6 +22,7 @@
     <body>
         <header class="main-header">
             <nav class="navbar navbar-toggleable-md navbar-inverse fixed-top">
+                <div class="container">
 
                 <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
@@ -46,17 +47,11 @@
                             <i class="fa fa-user"></i>
                         </a>
 
-                        {% set lang = 'de' %}
-                        {% if app.request.locale == 'de' %}
-                            {% set lang = 'en' %}
-                        {% endif %}
-
-                        <a href="/{{ lang }}" title="{{ lang|upper }}" class="lang">
-                            <img src="{{ asset('images/'~lang~'.png') }}" alt="{{ lang|upper }}">
-                        </a>
+                        <ul class="languages">
+                            <li><a href="/de" class="{{ app.request.locale == 'de' ? 'current' }}">Deutsch</a></li>
+                            <li><a href="/en" class="{{ app.request.locale == 'en' ? 'current' }}">English</a></li>
+                        </ul>
                     </div>
-
-
 
 
                     <!--
@@ -66,7 +61,7 @@
                     </form>
                     -->
                 </div>
-
+                </div>
 
             </nav>
 
@@ -97,9 +92,14 @@
         </footer>
 
 
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+        <!--
         <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+        -->
         <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+
+        <script src="{{ asset('js/app.js') }}"></script>
         {% block javascripts %}{% endblock %}
 
 

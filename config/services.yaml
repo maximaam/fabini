@@ -35,6 +35,7 @@ services:
         arguments: ["@knp_menu.factory", "@request_stack", "@translator", "@doctrine.orm.entity_manager"]
         tags:
             - { name: knp_menu.menu_builder, method: createMainMenu, alias: main }
+            - { name: knp_menu.menu_builder, method: createSubCategoryMenu, alias: subCategory }
             - { name: knp_menu.menu_builder, method: createFooterMenu, alias: footer }
 
 
@@ -45,7 +46,7 @@ services:
         public: true
 
     App\Admin\ProductAdmin:
-        arguments: [~, App\Entity\Product, ~]
+        arguments: [~, App\Entity\Product, App\Controller\AdminController]
         tags:
             - { name: sonata.admin, manager_type: orm, label: 'Products' }
         public: true
@@ -56,9 +57,9 @@ services:
         arguments:
             $targetDirectory: '%product_images%'
 
-    #App\EventListener\ImageUploadListener:
-        #tags:
-            #- { name: doctrine.event_listener, event: prePersist }
-            #- { name: doctrine.event_listener, event: preUpdate }
+    App\EventListener\ImageUploadListener:
+        tags:
+            - { name: doctrine.event_listener, event: prePersist }
+            - { name: doctrine.event_listener, event: preUpdate }
             #- { name: doctrine.event_listener, event: postLoad }
 

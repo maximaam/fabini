@@ -61,17 +61,33 @@ class Product
      * @var string
      *
      * @Assert\NotBlank()
-     * @ORM\Column(name="title", type="string", length=255)
+     * @ORM\Column(type="string", length=255)
      */
-    private $title;
+    private $titleDe;
 
     /**
      * @var string
      *
      * @Assert\NotBlank()
-     * @ORM\Column(name="description", type="text")
+     * @ORM\Column(type="string", length=255)
      */
-    private $description;
+    private $titleEn;
+
+    /**
+     * @var string
+     *
+     * @Assert\NotBlank()
+     * @ORM\Column(type="text")
+     */
+    private $descriptionDe;
+
+    /**
+     * @var string
+     *
+     * @Assert\NotBlank()
+     * @ORM\Column(type="text")
+     */
+    private $descriptionEn;
 
     /**
      * @var float
@@ -82,11 +98,17 @@ class Product
     private $price;
 
     /**
+     * @var boolean
+     *
+     * @ORM\Column(type="boolean")
+     */
+    private $topItem;
+
+    /**
      * @ORM\ManyToOne(targetEntity="Category", inversedBy="products")
      * @ORM\JoinColumn(nullable=false)
      */
     private $category;
-
 
     /**
      * @var string
@@ -197,35 +219,94 @@ class Product
     /**
      * @return string
      */
-    public function getTitle(): ?string
+    public function getTitleDe(): ?string
     {
-        return $this->title;
+        return $this->titleDe;
     }
 
     /**
-     * @param string $title
+     * @param string $titleDe
      * @return $this
      */
-    public function setTitle(string $title): self
+    public function setTitleDe(string $titleDe): self
     {
-        $this->title = $title;
+        $this->titleDe = $titleDe;
         return $this;
     }
 
     /**
      * @return string
      */
-    public function getDescription(): ?string
+    public function getTitleEn(): ?string
     {
-        return $this->description;
+        return $this->titleEn;
     }
 
     /**
-     * @param string $description
+     * @param string $titleEn
+     * @return $this
+     *
      */
-    public function setDescription(string $description)
+    public function setTitleEn(string $titleEn): self
     {
-        $this->description = $description;
+        $this->titleEn = $titleEn;
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function getDescriptionDe(): ?string
+    {
+        return $this->descriptionDe;
+    }
+
+    /**
+     * @param string $descriptionDe
+     * @return $this
+     */
+    public function setDescriptionDe(string $descriptionDe): self
+    {
+        $this->descriptionDe = $descriptionDe;
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function getDescriptionEn(): ?string
+    {
+        return $this->descriptionEn;
+    }
+
+    /**
+     * @param string $descriptionEn
+     * @return $this
+     */
+    public function setDescriptionEn(string $descriptionEn): self
+    {
+        $this->descriptionEn = $descriptionEn;
+        return $this;
+    }
+
+    /**
+     * @param $locale
+     * @return null|string
+     */
+    public function getTitle($locale): ?string
+    {
+        $key = __FUNCTION__.ucfirst($locale);
+        return $this->$key();
+    }
+
+    /**
+     * @param $locale
+     * @return null|string
+     */
+    public function getDescription($locale): ?string
+    {
+        $key = __FUNCTION__.ucfirst($locale);
+        return $this->$key();
     }
 
     /**
@@ -282,9 +363,24 @@ class Product
         return $this;
     }
 
+    /**
+     * @return bool
+     */
+    public function isTopItem(): ?bool
+    {
+        return $this->topItem;
+    }
 
-
-
+    /**
+     * @param bool $topItem
+     * @return $this
+     *
+     */
+    public function setTopItem(bool $topItem): self
+    {
+        $this->topItem = $topItem;
+        return $this;
+    }
 
 
 }

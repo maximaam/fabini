@@ -6,11 +6,15 @@ body {
 .uploaded-images-container {
     overflow: hidden;
     margin-bottom: 20px;
-    background: #eee;
+    background: #4d7e99;
+    border-radius: 5px;
+    padding-bottom: 10px;
 }
 .uploaded-images-container h3 {
-    background: #ddd;
+    background: #2d5066;
     padding: 5px 20px;
+    width: 90%;
+    color: #fff;
 }
 .uploaded-images-elem {
     position: relative;
@@ -29,8 +33,24 @@ body {
     height: 30px;
     border-radius: 50%;
     background: red;
-    color: white;
+    color: #fff;
     border: 1px solid #fff;
     right: 0;
     top: 0;
+}
+
+div[id$="_imagesList"] {
+    background: #eee;
+    padding: 10px;
+    overflow: hidden;
+}
+div[id$="_imagesList"] label {
+    font-size: 20px;
+}
+div[id$="_imagesList"] input {
+    background: #fff;
+    padding: 10px 10px 30px 10px;
+    margin-bottom: 20px;
+    width: 100%;
+    color: #333;
 }

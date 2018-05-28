@@ -2,37 +2,29 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="89fcd935-f76a-4b39-bb58-b8b84b2e561a" name="Default" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/dictionaries/mimosa.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Controller/AjaxController.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/EventListener/ImageUploadListener.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Service/FileUploader.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/fabini.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/fabini.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/php.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/php.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/js/app.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Controller/AdminController.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/templates/app/partials/item.html.twig" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/templates/app/product.html.twig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dictionaries/mimosa.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dictionaries/mimosa.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/composer.json" beforeDir="false" afterPath="$PROJECT_DIR$/composer.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/composer.lock" beforeDir="false" afterPath="$PROJECT_DIR$/composer.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/config/bundles.php" beforeDir="false" afterPath="$PROJECT_DIR$/config/bundles.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/config/packages/easy_admin.yaml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/config/packages/vich_uploader.yaml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/config/routes/easy_admin.yaml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/config/services.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/config/services.yaml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/public/css/admin.css" beforeDir="false" afterPath="$PROJECT_DIR$/public/css/admin.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/public/css/main.css" beforeDir="false" afterPath="$PROJECT_DIR$/public/css/main.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/public/js/admin.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/js/admin.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Admin/AbstractAdmin.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Admin/AbstractAdmin.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Admin/CategoryAdmin.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Admin/CategoryAdmin.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Admin/ProductAdmin.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Admin/ProductAdmin.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Controller/AdminController.php" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Controller/IndexController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/IndexController.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Entity/Category.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Entity/Category.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Entity/Product.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Entity/Product.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Migrations/Version20180413164938.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Migrations/Version20180413165522.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Form/ImagesType.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Menu/MenuBuilder.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Menu/MenuBuilder.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Repository/CategoryRepository.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Repository/CategoryRepository.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Repository/ProductRepository.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Repository/ProductRepository.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/symfony.lock" beforeDir="false" afterPath="$PROJECT_DIR$/symfony.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Repository/ImageRepository.php" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/templates/app/index.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/app/index.html.twig" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/templates/app/products.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/app/products.html.twig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/base.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/base.html.twig" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -63,8 +55,8 @@
       <file leaf-file-name="main.css" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/public/css/main.css">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="72">
-              <caret line="4" column="1" selection-start-line="4" selection-start-column="1" selection-end-line="4" selection-end-column="1" />
+            <state relative-caret-position="136">
+              <caret line="74" column="21" selection-start-line="74" selection-start-column="21" selection-end-line="74" selection-end-column="21" />
             </state>
           </provider>
         </entry>
@@ -72,81 +64,55 @@
       <file leaf-file-name="IndexController.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/Controller/IndexController.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="378">
-              <caret line="60" column="8" selection-start-line="60" selection-start-column="8" selection-end-line="62" selection-end-column="76" />
+            <state relative-caret-position="493">
+              <caret line="86" column="59" selection-start-line="86" selection-start-column="59" selection-end-line="86" selection-end-column="59" />
               <folding>
                 <element signature="e#34#58#0#PHP" expanded="true" />
-                <element signature="e#335#378#0#PHP" expanded="true" />
-                <element signature="e#383#610#0#PHP" expanded="true" />
-                <element signature="e#616#741#0#PHP" expanded="true" />
-                <element signature="e#746#839#0#PHP" expanded="true" />
-                <element signature="e#845#968#0#PHP" expanded="true" />
-                <element signature="e#973#1065#0#PHP" expanded="true" />
-                <element signature="e#1071#1192#0#PHP" expanded="true" />
-                <element signature="e#1197#1289#0#PHP" expanded="true" />
-                <element signature="e#1295#1442#0#PHP" expanded="true" />
+                <element signature="e#1341#1573#0#PHP" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Product.php" pinned="false" current-in-tab="false">
+      <file leaf-file-name="Product.php" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/Entity/Product.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="342">
-              <caret line="19" column="23" selection-start-line="19" selection-start-column="10" selection-end-line="19" selection-end-column="23" />
+            <state relative-caret-position="331">
+              <caret line="102" column="18" selection-start-line="102" selection-start-column="18" selection-end-line="102" selection-end-column="18" />
               <folding>
-                <element signature="e#31#63#0#PHP" expanded="true" />
-                <element signature="e#304#494#0#PHP" expanded="true" />
                 <element signature="e#362#422#0#PHP" expanded="true" />
-                <element signature="e#427#515#0#PHP" expanded="true" />
-                <element signature="e#626#730#0#PHP" expanded="true" />
-                <element signature="e#909#1003#0#PHP" expanded="true" />
-                <element signature="e#1037#1131#0#PHP" expanded="true" />
-                <element signature="e#1312#1427#0#PHP" expanded="true" />
-                <element signature="e#1459#1565#0#PHP" expanded="true" />
-                <element signature="e#1768#1888#0#PHP" expanded="true" />
-                <element signature="e#1588#1683#0#PHP" expanded="true" />
-                <element signature="e#1917#1955#0#PHP" expanded="true" />
-                <element signature="e#1960#2092#0#PHP" expanded="true" />
-                <element signature="e#2098#2165#0#PHP" expanded="true" />
-                <element signature="e#2170#2255#0#PHP" expanded="true" />
-                <element signature="e#2261#2295#0#PHP" expanded="true" />
-                <element signature="e#2300#2367#0#PHP" expanded="true" />
-                <element signature="e#2373#2418#0#PHP" expanded="true" />
-                <element signature="e#2423#2518#0#PHP" expanded="true" />
-                <element signature="e#2524#2600#0#PHP" expanded="true" />
-                <element signature="e#2605#2743#0#PHP" expanded="true" />
-                <element signature="e#2749#2794#0#PHP" expanded="true" />
-                <element signature="e#2799#2895#0#PHP" expanded="true" />
-                <element signature="e#2901#2977#0#PHP" expanded="true" />
-                <element signature="e#2982#3120#0#PHP" expanded="true" />
-                <element signature="e#3126#3159#0#PHP" expanded="true" />
-                <element signature="e#3164#3256#0#PHP" expanded="true" />
-                <element signature="e#3262#3324#0#PHP" expanded="true" />
-                <element signature="e#3329#3459#0#PHP" expanded="true" />
-                <element signature="e#3465#3498#0#PHP" expanded="true" />
-                <element signature="e#3503#3591#0#PHP" expanded="true" />
-                <element signature="e#3597#3659#0#PHP" expanded="true" />
-                <element signature="e#3664#3790#0#PHP" expanded="true" />
-                <element signature="e#3796#3829#0#PHP" expanded="true" />
-                <element signature="e#3834#3910#0#PHP" expanded="true" />
-                <element signature="e#3916#3976#0#PHP" expanded="true" />
-                <element signature="e#3981#4091#0#PHP" expanded="true" />
-                <element signature="e#4097#4130#0#PHP" expanded="true" />
-                <element signature="e#4229#4274#0#PHP" expanded="true" />
-                <element signature="e#4391#4423#0#PHP" expanded="true" />
-                <element signature="e#4428#4503#0#PHP" expanded="true" />
-                <element signature="e#4509#4568#0#PHP" expanded="true" />
-                <element signature="e#4573#4682#0#PHP" expanded="true" />
-                <element signature="e#5533#5568#0#PHP" expanded="true" />
-                <element signature="e#5573#5657#0#PHP" expanded="true" />
-                <element signature="e#5663#5728#0#PHP" expanded="true" />
-                <element signature="e#5733#5857#0#PHP" expanded="true" />
-                <element signature="e#4764#4797#0#PHP" expanded="true" />
-                <element signature="e#4900#4986#0#PHP" expanded="true" />
-                <element signature="e#4992#5053#0#PHP" expanded="true" />
-                <element signature="e#5058#5172#0#PHP" expanded="true" />
+                <element signature="e#1108#1231#0#PHP" expanded="true" />
+                <element signature="e#1261#1384#0#PHP" expanded="true" />
+                <element signature="e#1257#1372#0#PHP" expanded="true" />
+                <element signature="e#1533#1648#0#PHP" expanded="true" />
+                <element signature="e#1404#1510#0#PHP" expanded="true" />
+                <element signature="e#1851#1936#0#PHP" expanded="true" />
+                <element signature="e#3876#3909#0#PHP" expanded="true" />
+                <element signature="e#3914#3993#0#PHP" expanded="true" />
+                <element signature="e#3999#4040#0#PHP" expanded="true" />
+                <element signature="e#4045#4141#0#PHP" expanded="true" />
+                <element signature="e#4147#4180#0#PHP" expanded="true" />
+                <element signature="e#4185#4264#0#PHP" expanded="true" />
+                <element signature="e#4292#4341#0#PHP" expanded="true" />
+                <element signature="e#4316#4412#0#PHP" expanded="true" />
+                <element signature="e#4418#4451#0#PHP" expanded="true" />
+                <element signature="e#4456#4547#0#PHP" expanded="true" />
+                <element signature="e#4553#4600#0#PHP" expanded="true" />
+                <element signature="e#4605#4725#0#PHP" expanded="true" />
+                <element signature="e#4731#4764#0#PHP" expanded="true" />
+                <element signature="e#4769#4860#0#PHP" expanded="true" />
+                <element signature="e#4866#4913#0#PHP" expanded="true" />
+                <element signature="e#4918#5038#0#PHP" expanded="true" />
+                <element signature="e#5278#5338#0#PHP" expanded="true" />
+                <element signature="e#5343#5473#0#PHP" expanded="true" />
+                <element signature="e#5465#5525#0#PHP" expanded="true" />
+                <element signature="e#5530#5666#0#PHP" expanded="true" />
+                <element signature="e#4984#5045#0#PHP" expanded="true" />
+                <element signature="e#5050#5164#0#PHP" expanded="true" />
+                <element signature="e#6664#6695#0#PHP" expanded="true" />
+                <element signature="e#6700#6776#0#PHP" expanded="true" />
+                <element signature="e#6783#6851#0#PHP" expanded="true" />
+                <element signature="e#6826#6920#0#PHP" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -155,22 +121,14 @@
       <file leaf-file-name="ProductAdmin.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/Admin/ProductAdmin.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="346">
-              <caret line="89" column="47" selection-start-line="89" selection-start-column="47" selection-end-line="89" selection-end-column="47" />
+            <state relative-caret-position="313">
+              <caret line="103" column="43" selection-start-line="103" selection-start-column="43" selection-end-line="103" selection-end-column="43" />
               <folding>
                 <element signature="e#111#156#0#PHP" expanded="true" />
-                <element signature="e#1101#1152#0#PHP" expanded="true" />
-                <element signature="e#1200#1277#0#PHP" expanded="true" />
-                <element signature="e#1741#1855#2#PHP" expanded="true" />
-                <element signature="e#3591#3655#0#PHP" expanded="true" />
-                <element signature="e#3898#3972#0#PHP" expanded="true" />
-                <element signature="e#3977#4050#0#PHP" expanded="true" />
-                <element signature="e#4056#4134#0#PHP" expanded="true" />
-                <element signature="e#4139#4287#0#PHP" expanded="true" />
-                <element signature="e#4293#4365#0#PHP" expanded="true" />
-                <element signature="e#4370#5101#0#PHP" expanded="true" />
-                <element signature="e#5107#5155#0#PHP" expanded="true" />
-                <element signature="e#5160#5493#0#PHP" expanded="true" />
+                <element signature="e#3802#3875#0#PHP" expanded="true" />
+                <element signature="e#3964#4112#0#PHP" expanded="true" />
+                <element signature="e#4195#4926#0#PHP" expanded="true" />
+                <element signature="e#4985#5318#0#PHP" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -179,8 +137,8 @@
       <file leaf-file-name="services.yaml" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/config/services.yaml">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1098">
-              <caret line="61" column="13" selection-start-line="61" selection-start-column="13" selection-end-line="61" selection-end-column="13" />
+            <state relative-caret-position="666">
+              <caret line="37" column="74" selection-start-line="37" selection-start-column="53" selection-end-line="37" selection-end-column="74" />
             </state>
           </provider>
         </entry>
@@ -188,34 +146,21 @@
       <file leaf-file-name="admin.css" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/public/css/admin.css">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="90">
-              <caret line="5" selection-start-line="5" selection-end-line="5" selection-end-column="26" />
+            <state relative-caret-position="144">
+              <caret line="8" column="23" selection-start-line="8" selection-start-column="23" selection-end-line="8" selection-end-column="23" />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="admin.js" pinned="false" current-in-tab="true">
+      <file leaf-file-name="admin.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/public/js/admin.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="342">
-              <caret line="97" column="10" selection-start-line="97" selection-start-column="10" selection-end-line="97" selection-end-column="10" />
+            <state relative-caret-position="223">
+              <caret line="162" selection-start-line="162" selection-end-line="175" selection-end-column="3" />
               <folding>
-                <element signature="e#292#329#0" expanded="true" />
-                <element signature="e#366#395#0" expanded="true" />
-                <element signature="e#435#1372#0" expanded="true" />
-                <element signature="e#510#1368#0" expanded="true" />
-                <element signature="e#961#1261#0" expanded="true" />
-                <element signature="e#1302#1349#0" expanded="true" />
-                <element signature="e#1375#1404#0" expanded="true" />
-                <element signature="e#2079#2670#0" expanded="true" />
-                <element signature="e#2405#2607#0" expanded="true" />
-                <element signature="e#2575#2605#0" expanded="true" />
-                <element signature="e#3143#3643#0" expanded="true" />
-                <element signature="e#3238#3295#0" expanded="true" />
-                <element signature="e#3608#3906#0" expanded="true" />
-                <element signature="e#3942#4101#0" expanded="true" />
-                <element signature="e#4136#4470#0" expanded="true" />
-                <element signature="e#4179#4444#0" expanded="true" />
+                <element signature="e#4107#4185#0" expanded="true" />
+                <element signature="e#5057#5391#0" expanded="true" />
+                <element signature="e#5100#5365#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -224,105 +169,8 @@
       <file leaf-file-name="products.html.twig" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/templates/app/products.html.twig">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="270">
-              <caret line="15" column="56" selection-start-line="15" selection-start-column="56" selection-end-line="15" selection-end-column="56" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="ImageUploadListener.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/EventListener/ImageUploadListener.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-284">
-              <caret line="9" selection-start-line="9" selection-end-line="9" />
-              <folding>
-                <element signature="e#119#174#0#PHP" expanded="true" />
-                <element signature="e#394#494#0#PHP" expanded="true" />
-                <element signature="e#500#550#0#PHP" expanded="true" />
-                <element signature="e#555#662#0#PHP" expanded="true" />
-                <element signature="e#668#718#0#PHP" expanded="true" />
-                <element signature="e#723#949#0#PHP" expanded="true" />
-                <element signature="e#955#1005#0#PHP" expanded="true" />
-                <element signature="e#1689#1722#0#PHP" expanded="true" />
-                <element signature="e#1727#2782#0#PHP" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="FileUploader.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/Service/FileUploader.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="198">
-              <caret line="16" column="6" selection-start-line="16" selection-start-column="6" selection-end-line="16" selection-end-column="6" />
-              <folding>
-                <element signature="e#169#222#0#PHP" expanded="true" />
-                <element signature="e#279#387#0#PHP" expanded="true" />
-                <element signature="e#393#459#0#PHP" expanded="true" />
-                <element signature="e#464#670#0#PHP" expanded="true" />
-                <element signature="e#676#708#0#PHP" expanded="true" />
-                <element signature="e#713#800#0#PHP" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="ImagesType.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/Form/ImagesType.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="378">
-              <caret line="21" column="16" selection-start-line="21" selection-start-column="16" selection-end-line="23" selection-end-column="17" />
-              <folding>
-                <element signature="e#29#69#0#PHP" expanded="true" />
-                <element signature="e#297#381#0#PHP" expanded="true" />
-                <element signature="e#727#941#0#PHP" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="AbstractAdmin.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/Admin/AbstractAdmin.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="540">
-              <caret line="61" column="5" selection-start-line="61" selection-start-column="5" selection-end-line="61" selection-end-column="5" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="File.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/vendor/symfony/http-foundation/File/File.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="558">
-              <caret line="101" selection-start-line="101" selection-end-line="101" />
-              <folding>
-                <element signature="e#3049#3678#0#PHP" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="composer.json" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/composer.json">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="270">
-              <caret line="15" column="31" selection-start-line="15" selection-start-column="31" selection-end-line="15" selection-end-column="31" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="AjaxController.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/Controller/AjaxController.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="372">
-              <caret line="69" column="13" selection-start-line="69" selection-start-column="13" selection-end-line="69" selection-end-column="13" />
-              <folding>
-                <element signature="e#115#174#0#PHP" expanded="true" />
-                <element signature="e#282#340#0#PHP" expanded="true" />
-                <element signature="e#567#731#0#PHP" expanded="true" />
-                <element signature="e#752#1046#0#PHP" expanded="true" />
-                <element signature="e#939#1109#0#PHP" expanded="true" />
-              </folding>
+            <state relative-caret-position="133">
+              <caret line="15" column="55" selection-start-line="15" selection-start-column="55" selection-end-line="15" selection-end-column="55" />
             </state>
           </provider>
         </entry>
@@ -331,7 +179,131 @@
         <entry file="file://$PROJECT_DIR$/templates/app/index.html.twig">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="288">
-              <caret line="19" column="96" selection-start-line="19" selection-start-column="96" selection-end-line="19" selection-end-column="96" />
+              <caret line="16" column="76" selection-start-line="16" selection-start-column="76" selection-end-line="16" selection-end-column="76" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="AdminController.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/Controller/AdminController.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="504">
+              <caret line="41" column="34" selection-start-line="41" selection-start-column="34" selection-end-line="41" selection-end-column="34" />
+              <folding>
+                <element signature="e#115#188#0#PHP" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="CategoryRepository.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/Repository/CategoryRepository.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="378">
+              <caret line="44" column="5" selection-start-line="44" selection-start-column="5" selection-end-line="44" selection-end-column="5" />
+              <folding>
+                <element signature="e#430#638#0#PHP" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="item.html.twig" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/templates/app/partials/item.html.twig">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="180">
+              <caret line="10" column="8" selection-start-line="10" selection-start-column="8" selection-end-line="12" selection-end-column="115" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="AbstractAdmin.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/Admin/AbstractAdmin.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="450">
+              <caret line="43" column="97" selection-start-line="43" selection-start-column="97" selection-end-line="43" selection-end-column="97" />
+              <folding>
+                <element signature="e#1426#1612#0#PHP" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="MenuBuilder.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/Menu/MenuBuilder.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-299">
+              <caret line="74" column="38" selection-start-line="74" selection-start-column="38" selection-end-line="74" selection-end-column="38" />
+              <folding>
+                <element signature="e#109#133#0#PHP" expanded="true" />
+                <element signature="e#2247#3475#0#PHP" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="base.html.twig" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/templates/base.html.twig">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="324">
+              <caret line="50" column="53" selection-start-line="50" selection-start-column="53" selection-end-line="50" selection-end-column="53" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Category.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/Entity/Category.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="475">
+              <caret line="365" column="8" selection-start-line="365" selection-start-column="8" selection-end-line="366" selection-end-column="29" />
+              <folding>
+                <element signature="e#272#525#0#PHP" expanded="true" />
+                <element signature="e#4819#4878#0#PHP" expanded="true" />
+                <element signature="e#4883#5007#0#PHP" expanded="true" />
+                <element signature="e#5013#5046#0#PHP" expanded="true" />
+                <element signature="e#5051#5143#0#PHP" expanded="true" />
+                <element signature="e#6596#6650#0#PHP" expanded="true" />
+                <element signature="e#6782#6836#0#PHP" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="CategoryAdmin.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/Admin/CategoryAdmin.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="493">
+              <caret line="54" column="57" selection-start-line="54" selection-start-column="57" selection-end-line="54" selection-end-column="57" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="ProductRepository.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/Repository/ProductRepository.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="270">
+              <caret line="22" column="5" selection-start-line="22" selection-start-column="5" selection-end-line="22" selection-end-column="5" />
+              <folding>
+                <element signature="e#265#389#0#PHP" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="product.html.twig" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/templates/app/product.html.twig">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="306">
+              <caret line="39" column="152" selection-start-line="39" selection-start-column="152" selection-end-line="39" selection-end-column="152" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="app.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/public/js/app.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state>
+              <caret column="30" selection-start-column="30" selection-end-column="30" />
             </state>
           </provider>
         </entry>
@@ -353,6 +325,8 @@
       <find>createNewF</find>
       <find>name</find>
       <find>names_input</find>
+      <find>sonata.add_element</find>
+      <find>lang</find>
     </findStrings>
     <dirStrings>
       <dir>$PROJECT_DIR$</dir>
@@ -364,10 +338,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/.env" />
-        <option value="$PROJECT_DIR$/translations/messages.en.xlf" />
-        <option value="$PROJECT_DIR$/config/packages/routing.yaml" />
-        <option value="$PROJECT_DIR$/translations/messages.de.xlf" />
         <option value="$PROJECT_DIR$/templates/app/about-us.html.twig" />
         <option value="$PROJECT_DIR$/config/packages/framework.yaml" />
         <option value="$PROJECT_DIR$/src/Entity/ProductImage.php" />
@@ -376,45 +346,49 @@
         <option value="$PROJECT_DIR$/src/Repository/ImageRepository.php" />
         <option value="$PROJECT_DIR$/src/Repository/LeatherRepository.php" />
         <option value="$PROJECT_DIR$/src/Form/ImageType.php" />
-        <option value="$PROJECT_DIR$/src/Controller/AdminController.php" />
         <option value="$PROJECT_DIR$/vendor/easycorp/easyadmin-bundle/src/Controller/AdminController.php" />
         <option value="$PROJECT_DIR$/src/Entity/Mimo.php" />
         <option value="$PROJECT_DIR$/config/routes/easy_admin.yaml" />
         <option value="$PROJECT_DIR$/src/Admin/LeatherAdmin.php" />
         <option value="$PROJECT_DIR$/public/css/sonata.css" />
         <option value="$PROJECT_DIR$/src/Entity/Leather.php" />
-        <option value="$PROJECT_DIR$/src/Admin/AbstractAdmin.php" />
         <option value="$PROJECT_DIR$/src/Utils/StringHelper.php" />
         <option value="$PROJECT_DIR$/translations/messages.en.yml" />
         <option value="$PROJECT_DIR$/translations/messages.de.yml" />
-        <option value="$PROJECT_DIR$/src/Menu/MenuBuilder.php" />
-        <option value="$PROJECT_DIR$/src/Admin/CategoryAdmin.php" />
         <option value="$PROJECT_DIR$/config/packages/easy_admin.yaml" />
-        <option value="$PROJECT_DIR$/public/css/main.css" />
         <option value="$PROJECT_DIR$/src/Repository/ProductRepository.php" />
-        <option value="$PROJECT_DIR$/src/Repository/CategoryRepository.php" />
-        <option value="$PROJECT_DIR$/templates/app/products.html.twig" />
-        <option value="$PROJECT_DIR$/src/Entity/Category.php" />
         <option value="$PROJECT_DIR$/config/packages/doctrine.yaml" />
         <option value="$PROJECT_DIR$/config/packages/sonata_admin.yaml" />
-        <option value="$PROJECT_DIR$/src/Controller/IndexController.php" />
         <option value="$PROJECT_DIR$/config/bundles.php" />
         <option value="$PROJECT_DIR$/src/Entity/Images.php" />
         <option value="$PROJECT_DIR$/config/packages/oneup_uploader.yaml" />
         <option value="$PROJECT_DIR$/config/routes.yaml" />
-        <option value="$PROJECT_DIR$/templates/base.html.twig" />
         <option value="$PROJECT_DIR$/src/Entity/Image.php" />
         <option value="$PROJECT_DIR$/composer.json" />
         <option value="$PROJECT_DIR$/src/Service/FileUploader.php" />
-        <option value="$PROJECT_DIR$/src/EventListener/ImageUploadListener.php" />
-        <option value="$PROJECT_DIR$/config/services.yaml" />
         <option value="$PROJECT_DIR$/src/Form/ImagesType.php" />
-        <option value="$PROJECT_DIR$/src/Entity/Product.php" />
         <option value="$PROJECT_DIR$/src/Controller/AjaxController.php" />
-        <option value="$PROJECT_DIR$/templates/app/index.html.twig" />
-        <option value="$PROJECT_DIR$/src/Admin/ProductAdmin.php" />
         <option value="$PROJECT_DIR$/public/css/admin.css" />
+        <option value="$PROJECT_DIR$/src/EventListener/ImageUploadListener.php" />
+        <option value="$PROJECT_DIR$/vendor/sonata-project/admin-bundle/src/Controller/CRUDController.php" />
+        <option value="$PROJECT_DIR$/src/Controller/AdminController.php" />
         <option value="$PROJECT_DIR$/public/js/admin.js" />
+        <option value="$PROJECT_DIR$/config/services.yaml" />
+        <option value="$PROJECT_DIR$/templates/app/index.html.twig" />
+        <option value="$PROJECT_DIR$/src/Admin/CategoryAdmin.php" />
+        <option value="$PROJECT_DIR$/src/Entity/Category.php" />
+        <option value="$PROJECT_DIR$/src/Repository/CategoryRepository.php" />
+        <option value="$PROJECT_DIR$/src/Admin/AbstractAdmin.php" />
+        <option value="$PROJECT_DIR$/src/Admin/ProductAdmin.php" />
+        <option value="$PROJECT_DIR$/src/Menu/MenuBuilder.php" />
+        <option value="$PROJECT_DIR$/src/Controller/IndexController.php" />
+        <option value="$PROJECT_DIR$/templates/app/partials/item.html.twig" />
+        <option value="$PROJECT_DIR$/public/js/app.js" />
+        <option value="$PROJECT_DIR$/templates/app/product.html.twig" />
+        <option value="$PROJECT_DIR$/templates/app/products.html.twig" />
+        <option value="$PROJECT_DIR$/templates/base.html.twig" />
+        <option value="$PROJECT_DIR$/public/css/main.css" />
+        <option value="$PROJECT_DIR$/src/Entity/Product.php" />
       </list>
     </option>
   </component>
@@ -558,10 +532,10 @@
     </include_path>
   </component>
   <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="1919" />
-    <option name="y" value="-11" />
-    <option name="width" value="1922" />
-    <option name="height" value="1092" />
+    <option name="x" value="1920" />
+    <option name="y" value="-4" />
+    <option name="width" value="1920" />
+    <option name="height" value="1084" />
   </component>
   <component name="ProjectInspectionProfilesVisibleTreeState">
     <entry key="Project Default">
@@ -601,7 +575,7 @@
               <item name="fabini" type="b2602c69:ProjectViewProjectNode" />
               <item name="fabini" type="462c0819:PsiDirectoryNode" />
               <item name="public" type="462c0819:PsiDirectoryNode" />
-              <item name="images" type="462c0819:PsiDirectoryNode" />
+              <item name="js" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="fabini" type="b2602c69:ProjectViewProjectNode" />
@@ -630,7 +604,13 @@
               <item name="fabini" type="b2602c69:ProjectViewProjectNode" />
               <item name="fabini" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="Form" type="462c0819:PsiDirectoryNode" />
+              <item name="Menu" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="fabini" type="b2602c69:ProjectViewProjectNode" />
+              <item name="fabini" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="Repository" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="fabini" type="b2602c69:ProjectViewProjectNode" />
@@ -642,6 +622,13 @@
               <item name="fabini" type="462c0819:PsiDirectoryNode" />
               <item name="templates" type="462c0819:PsiDirectoryNode" />
               <item name="app" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="fabini" type="b2602c69:ProjectViewProjectNode" />
+              <item name="fabini" type="462c0819:PsiDirectoryNode" />
+              <item name="templates" type="462c0819:PsiDirectoryNode" />
+              <item name="app" type="462c0819:PsiDirectoryNode" />
+              <item name="partials" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
@@ -662,11 +649,11 @@
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
-      <recent name="$PROJECT_DIR$/translations" />
       <recent name="$PROJECT_DIR$/templates/app" />
+      <recent name="$PROJECT_DIR$/src/Controller" />
+      <recent name="$PROJECT_DIR$/translations" />
       <recent name="$PROJECT_DIR$/src" />
       <recent name="$PROJECT_DIR$/src/Admin" />
-      <recent name="$PROJECT_DIR$/public/css" />
     </key>
   </component>
   <component name="RunDashboard">
@@ -717,12 +704,13 @@
       <workItem from="1525788013765" duration="15702000" />
       <workItem from="1527073495835" duration="559000" />
       <workItem from="1527074064298" duration="21000" />
-      <workItem from="1527074123443" duration="34344000" />
+      <workItem from="1527074123443" duration="58439000" />
+      <workItem from="1527501147514" duration="13496000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="212958000" />
+    <option name="totallyTimeSpent" value="250549000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="1920" y="-4" width="1920" height="1084" extended-state="6" />
@@ -730,19 +718,18 @@
     <layout>
       <window_info anchor="bottom" id="TODO" order="6" />
       <window_info anchor="right" id="SvgViewer" order="3" />
-      <window_info anchor="bottom" id="Messages" order="7" />
-      <window_info anchor="bottom" id="Event Log" order="7" sideWeight="0.510732" side_tool="true" weight="0.32795697" />
-      <window_info anchor="bottom" id="Database Changes" order="8" show_stripe_button="false" />
+      <window_info anchor="bottom" id="Event Log" order="8" sideWeight="0.510732" side_tool="true" weight="0.32795697" />
+      <window_info anchor="bottom" id="Database Changes" order="11" show_stripe_button="false" />
       <window_info anchor="bottom" id="Run" order="2" />
-      <window_info anchor="bottom" id="Version Control" order="7" visible="true" weight="0.3286638" />
+      <window_info anchor="bottom" id="Version Control" order="10" weight="0.3286638" />
       <window_info id="npm" order="2" side_tool="true" />
-      <window_info anchor="bottom" id="Terminal" order="7" sideWeight="0.48926803" weight="0.2952586" />
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.25506938" />
+      <window_info active="true" anchor="bottom" id="Terminal" order="9" sideWeight="0.48926803" visible="true" weight="0.2952586" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.25506938" />
       <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
       <window_info anchor="right" id="Database" order="4" weight="0.3296643" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
-      <window_info id="Favorites" order="2" side_tool="true" />
+      <window_info id="Favorites" order="3" side_tool="true" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
@@ -750,6 +737,7 @@
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Find" order="1" />
+      <window_info anchor="bottom" id="Messages" order="12" />
     </layout>
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -774,77 +762,11 @@
     </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/config/packages/sonata_core.yaml">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/public/uploads/media/default/0001/01/thumb_2_default_small.jpeg" />
-    <entry file="file://$PROJECT_DIR$/public/uploads/media/default/0001/01/thumb_2_default_big.jpeg" />
-    <entry file="file://$PROJECT_DIR$/public/uploads/media/default/0001/01/thumb_2_admin.jpeg" />
-    <entry file="file://$PROJECT_DIR$/public/index.php">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/public/uploads/media/default/0001/01/thumb_4_admin.jpg" />
-    <entry file="file://$PROJECT_DIR$/public/uploads/media/default/0001/01/thumb_4_default_big.jpg" />
-    <entry file="file://$PROJECT_DIR$/public/uploads/media/default/0001/01/thumb_4_reference.jpg" />
-    <entry file="file://$PROJECT_DIR$/public/uploads/media/default/0001/01/920ef2bad0eb6b57cf43f4956b4b5f82176ec519.jpeg" />
-    <entry file="file://$PROJECT_DIR$/public/uploads/media/default/0001/01/thumb_5_admin.jpeg" />
-    <entry file="file://$PROJECT_DIR$/config/packages/sonata_admin.yaml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="360">
-          <caret line="20" selection-start-line="20" selection-end-line="20" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/config/bundles.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="306">
-          <caret line="17" column="73" selection-start-line="17" selection-start-column="73" selection-end-line="17" selection-end-column="73" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/templates/app/products.html.twig">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="270">
-          <caret line="15" column="56" selection-start-line="15" selection-start-column="56" selection-end-line="15" selection-end-column="56" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Repository/CategoryRepository.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="450">
-          <caret line="87" selection-start-line="87" selection-end-line="87" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/composer.lock">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Entity/Category.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="516">
-          <caret line="283" column="7" selection-start-line="283" selection-start-column="7" selection-end-line="283" selection-end-column="7" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Repository/ProductRepository.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="360">
-          <caret line="30" column="54" selection-start-line="30" selection-start-column="54" selection-end-line="30" selection-end-column="54" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/config/packages/vich_uploader.yaml" />
     <entry file="file://$PROJECT_DIR$/config/packages/doctrine_migrations.yaml">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
     <entry file="file://$PROJECT_DIR$/config/packages/oneup_uploader.yaml" />
-    <entry file="file://$PROJECT_DIR$/templates/base.html.twig">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="288">
-          <caret line="16" column="114" lean-forward="true" selection-start-line="16" selection-start-column="114" selection-end-line="16" selection-end-column="114" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/config/packages/doctrine.yaml">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="342">
@@ -860,13 +782,6 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/Entity/Images.php" />
-    <entry file="file://$PROJECT_DIR$/public/css/main.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="72">
-          <caret line="4" column="1" selection-start-line="4" selection-start-column="1" selection-end-line="4" selection-end-column="1" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/public/images/8a72fb5f79f420d0e4d52381216bd5fde084d9d9.jpeg" />
     <entry file="file://$PROJECT_DIR$/composer.json">
       <provider selected="true" editor-type-id="text-editor">
@@ -875,67 +790,16 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/Entity/Image.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-1004">
-          <caret line="57" column="25" selection-start-line="57" selection-start-column="25" selection-end-line="57" selection-end-column="25" />
-          <folding>
-            <element signature="e#30#62#0#PHP" expanded="true" />
-            <element signature="e#120#221#0#PHP" expanded="true" />
-            <element signature="e#240#328#0#PHP" expanded="true" />
-            <element signature="e#351#447#0#PHP" expanded="true" />
-            <element signature="e#472#568#0#PHP" expanded="true" />
-            <element signature="e#593#679#0#PHP" expanded="true" />
-            <element signature="e#704#740#0#PHP" expanded="true" />
-            <element signature="e#766#931#0#PHP" expanded="true" />
-            <element signature="e#959#991#0#PHP" expanded="true" />
-            <element signature="e#1063#1096#0#PHP" expanded="true" />
-            <element signature="e#1101#1174#0#PHP" expanded="true" />
-            <element signature="e#1180#1218#0#PHP" expanded="true" />
-            <element signature="e#1223#1307#0#PHP" expanded="true" />
-            <element signature="e#1313#1346#0#PHP" expanded="true" />
-            <element signature="e#1351#1424#0#PHP" expanded="true" />
-            <element signature="e#1430#1468#0#PHP" expanded="true" />
-            <element signature="e#1473#1557#0#PHP" expanded="true" />
-            <element signature="e#1563#1593#0#PHP" expanded="true" />
-            <element signature="e#1598#1668#0#PHP" expanded="true" />
-            <element signature="e#1674#1709#0#PHP" expanded="true" />
-            <element signature="e#1714#1795#0#PHP" expanded="true" />
-            <element signature="e#1801#1840#0#PHP" expanded="true" />
-            <element signature="e#1845#1927#0#PHP" expanded="true" />
-            <element signature="e#1933#1978#0#PHP" expanded="true" />
-            <element signature="e#1983#2077#0#PHP" expanded="true" />
-            <element signature="e#2083#2115#0#PHP" expanded="true" />
-            <element signature="e#2120#2191#0#PHP" expanded="true" />
-            <element signature="e#2197#2237#0#PHP" expanded="true" />
-            <element signature="e#2242#2331#0#PHP" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Entity/Image.php" />
     <entry file="file://$PROJECT_DIR$/public/bundles/sonatacore/vendor/jquery/src/ajax.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="2934">
           <caret line="766" column="61" lean-forward="true" selection-start-line="766" selection-start-column="61" selection-end-line="766" selection-end-column="61" />
-          <folding>
-            <element signature="e#20863#21142#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/Admin/AbstractAdmin.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="540">
-          <caret line="61" column="5" selection-start-line="61" selection-start-column="5" selection-end-line="61" selection-end-column="5" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/public/images/products/eb58c6fb7a9074520b7ed17f326ecc47.jpeg">
-      <provider selected="true" editor-type-id="images" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/public/images/products/4c5fec82563400c001a8b82623bc6e6e.png">
-      <provider selected="true" editor-type-id="images" />
-    </entry>
+    <entry file="file://$PROJECT_DIR$/public/images/products/eb58c6fb7a9074520b7ed17f326ecc47.jpeg" />
+    <entry file="file://$PROJECT_DIR$/public/images/products/4c5fec82563400c001a8b82623bc6e6e.png" />
     <entry file="file://$PROJECT_DIR$/vendor/symfony/form/FormConfigBuilderInterface.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="229">
@@ -947,11 +811,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-5">
           <caret line="32" column="7" selection-start-line="32" selection-start-column="7" selection-end-line="32" selection-end-column="7" />
-          <folding>
-            <element signature="e#500#704#0#PHP" expanded="true" />
-            <element signature="e#860#2237#0#PHP" expanded="true" />
-            <element signature="e#2242#2675#0#PHP" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -959,27 +818,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="558">
           <caret line="101" selection-start-line="101" selection-end-line="101" />
-          <folding>
-            <element signature="e#3049#3678#0#PHP" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/EventListener/ImageUploadListener.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-284">
-          <caret line="9" selection-start-line="9" selection-end-line="9" />
-          <folding>
-            <element signature="e#119#174#0#PHP" expanded="true" />
-            <element signature="e#394#494#0#PHP" expanded="true" />
-            <element signature="e#500#550#0#PHP" expanded="true" />
-            <element signature="e#555#662#0#PHP" expanded="true" />
-            <element signature="e#668#718#0#PHP" expanded="true" />
-            <element signature="e#723#949#0#PHP" expanded="true" />
-            <element signature="e#955#1005#0#PHP" expanded="true" />
-            <element signature="e#1689#1722#0#PHP" expanded="true" />
-            <element signature="e#1727#2782#0#PHP" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -987,13 +825,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="90">
           <caret line="25" column="20" selection-start-line="25" selection-start-column="20" selection-end-line="25" selection-end-column="20" />
-          <folding>
-            <element signature="e#688#868#0#PHP" expanded="true" />
-            <element signature="e#874#1296#0#PHP" expanded="true" />
-            <element signature="e#1301#1401#0#PHP" expanded="true" />
-            <element signature="e#1407#1838#0#PHP" expanded="true" />
-            <element signature="e#1843#1957#0#PHP" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1001,29 +832,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="324">
           <caret line="33" column="20" selection-start-line="33" selection-start-column="10" selection-end-line="33" selection-end-column="20" />
-          <folding>
-            <element signature="e#687#1034#0#PHP" expanded="true" />
-            <element signature="e#1747#2108#0#PHP" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Controller/IndexController.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="378">
-          <caret line="60" column="8" selection-start-line="60" selection-start-column="8" selection-end-line="62" selection-end-column="76" />
-          <folding>
-            <element signature="e#34#58#0#PHP" expanded="true" />
-            <element signature="e#335#378#0#PHP" expanded="true" />
-            <element signature="e#383#610#0#PHP" expanded="true" />
-            <element signature="e#616#741#0#PHP" expanded="true" />
-            <element signature="e#746#839#0#PHP" expanded="true" />
-            <element signature="e#845#968#0#PHP" expanded="true" />
-            <element signature="e#973#1065#0#PHP" expanded="true" />
-            <element signature="e#1071#1192#0#PHP" expanded="true" />
-            <element signature="e#1197#1289#0#PHP" expanded="true" />
-            <element signature="e#1295#1442#0#PHP" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1044,21 +852,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/Service/FileUploader.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="198">
-          <caret line="16" column="6" selection-start-line="16" selection-start-column="6" selection-end-line="16" selection-end-column="6" />
-          <folding>
-            <element signature="e#169#222#0#PHP" expanded="true" />
-            <element signature="e#279#387#0#PHP" expanded="true" />
-            <element signature="e#393#459#0#PHP" expanded="true" />
-            <element signature="e#464#670#0#PHP" expanded="true" />
-            <element signature="e#676#708#0#PHP" expanded="true" />
-            <element signature="e#713#800#0#PHP" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/Controller/AjaxController.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="372">
@@ -1073,145 +866,282 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/Form/ImagesType.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="378">
-          <caret line="21" column="16" selection-start-line="21" selection-start-column="16" selection-end-line="23" selection-end-column="17" />
-          <folding>
-            <element signature="e#29#69#0#PHP" expanded="true" />
-            <element signature="e#297#381#0#PHP" expanded="true" />
-            <element signature="e#727#941#0#PHP" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Entity/Product.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="342">
-          <caret line="19" column="23" selection-start-line="19" selection-start-column="10" selection-end-line="19" selection-end-column="23" />
-          <folding>
-            <element signature="e#31#63#0#PHP" expanded="true" />
-            <element signature="e#304#494#0#PHP" expanded="true" />
-            <element signature="e#362#422#0#PHP" expanded="true" />
-            <element signature="e#427#515#0#PHP" expanded="true" />
-            <element signature="e#626#730#0#PHP" expanded="true" />
-            <element signature="e#909#1003#0#PHP" expanded="true" />
-            <element signature="e#1037#1131#0#PHP" expanded="true" />
-            <element signature="e#1312#1427#0#PHP" expanded="true" />
-            <element signature="e#1459#1565#0#PHP" expanded="true" />
-            <element signature="e#1768#1888#0#PHP" expanded="true" />
-            <element signature="e#1588#1683#0#PHP" expanded="true" />
-            <element signature="e#1917#1955#0#PHP" expanded="true" />
-            <element signature="e#1960#2092#0#PHP" expanded="true" />
-            <element signature="e#2098#2165#0#PHP" expanded="true" />
-            <element signature="e#2170#2255#0#PHP" expanded="true" />
-            <element signature="e#2261#2295#0#PHP" expanded="true" />
-            <element signature="e#2300#2367#0#PHP" expanded="true" />
-            <element signature="e#2373#2418#0#PHP" expanded="true" />
-            <element signature="e#2423#2518#0#PHP" expanded="true" />
-            <element signature="e#2524#2600#0#PHP" expanded="true" />
-            <element signature="e#2605#2743#0#PHP" expanded="true" />
-            <element signature="e#2749#2794#0#PHP" expanded="true" />
-            <element signature="e#2799#2895#0#PHP" expanded="true" />
-            <element signature="e#2901#2977#0#PHP" expanded="true" />
-            <element signature="e#2982#3120#0#PHP" expanded="true" />
-            <element signature="e#3126#3159#0#PHP" expanded="true" />
-            <element signature="e#3164#3256#0#PHP" expanded="true" />
-            <element signature="e#3262#3324#0#PHP" expanded="true" />
-            <element signature="e#3329#3459#0#PHP" expanded="true" />
-            <element signature="e#3465#3498#0#PHP" expanded="true" />
-            <element signature="e#3503#3591#0#PHP" expanded="true" />
-            <element signature="e#3597#3659#0#PHP" expanded="true" />
-            <element signature="e#3664#3790#0#PHP" expanded="true" />
-            <element signature="e#3796#3829#0#PHP" expanded="true" />
-            <element signature="e#3834#3910#0#PHP" expanded="true" />
-            <element signature="e#3916#3976#0#PHP" expanded="true" />
-            <element signature="e#3981#4091#0#PHP" expanded="true" />
-            <element signature="e#4097#4130#0#PHP" expanded="true" />
-            <element signature="e#4229#4274#0#PHP" expanded="true" />
-            <element signature="e#4391#4423#0#PHP" expanded="true" />
-            <element signature="e#4428#4503#0#PHP" expanded="true" />
-            <element signature="e#4509#4568#0#PHP" expanded="true" />
-            <element signature="e#4573#4682#0#PHP" expanded="true" />
-            <element signature="e#5533#5568#0#PHP" expanded="true" />
-            <element signature="e#5573#5657#0#PHP" expanded="true" />
-            <element signature="e#5663#5728#0#PHP" expanded="true" />
-            <element signature="e#5733#5857#0#PHP" expanded="true" />
-            <element signature="e#4764#4797#0#PHP" expanded="true" />
-            <element signature="e#4900#4986#0#PHP" expanded="true" />
-            <element signature="e#4992#5053#0#PHP" expanded="true" />
-            <element signature="e#5058#5172#0#PHP" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/public/images/loading.gif">
       <provider selected="true" editor-type-id="images" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/templates/app/index.html.twig">
+    <entry file="file://$PROJECT_DIR$/src/Form/ImagesType.php" />
+    <entry file="file://$PROJECT_DIR$/src/Service/FileUploader.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="288">
-          <caret line="19" column="96" selection-start-line="19" selection-start-column="96" selection-end-line="19" selection-end-column="96" />
+        <state relative-caret-position="234">
+          <caret line="18" column="29" selection-start-line="18" selection-start-column="29" selection-end-line="18" selection-end-column="29" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/vendor/sonata-project/doctrine-orm-admin-bundle/src/Resources/views/CRUD/edit_orm_one_association_script.html.twig">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="524">
+          <caret line="67" column="71" selection-start-line="67" selection-start-column="71" selection-end-line="67" selection-end-column="71" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/public/css/admin.css">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="90">
-          <caret line="5" selection-start-line="5" selection-end-line="5" selection-end-column="26" />
+        <state relative-caret-position="144">
+          <caret line="8" column="23" selection-start-line="8" selection-start-column="23" selection-end-line="8" selection-end-column="23" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/vendor/symfony/framework-bundle/Controller/ControllerTrait.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="36">
+          <caret line="2" column="2" lean-forward="true" selection-start-line="2" selection-start-column="2" selection-end-line="2" selection-end-column="2" />
+          <folding>
+            <element signature="e#7#236#0#PHP" expanded="true" />
+            <element signature="e#292#340#0#PHP" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/vendor/symfony/dependency-injection/ContainerAwareInterface.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="126">
+          <caret line="18" column="10" selection-start-line="18" selection-start-column="10" selection-end-line="18" selection-end-column="10" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/vendor/symfony/http-foundation/Request.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="200">
+          <caret line="1346" column="20" selection-start-line="1346" selection-start-column="20" selection-end-line="1346" selection-end-column="20" />
+          <folding>
+            <element signature="e#44060#44658#0#PHP" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/vendor/sonata-project/admin-bundle/src/Controller/CRUDController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="380">
+          <caret line="1095" column="37" selection-start-line="1095" selection-start-column="37" selection-end-line="1095" selection-end-column="37" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Controller/AdminController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="504">
+          <caret line="41" column="34" selection-start-line="41" selection-start-column="34" selection-end-line="41" selection-end-column="34" />
+          <folding>
+            <element signature="e#115#188#0#PHP" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/config/services.yaml">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1098">
-          <caret line="61" column="13" selection-start-line="61" selection-start-column="13" selection-end-line="61" selection-end-column="13" />
+        <state relative-caret-position="666">
+          <caret line="37" column="74" selection-start-line="37" selection-start-column="53" selection-end-line="37" selection-end-column="74" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/EventListener/ImageUploadListener.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="130">
+          <caret line="32" column="10" selection-start-line="32" selection-start-column="10" selection-end-line="32" selection-end-column="10" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Repository/ImageRepository.php" />
+    <entry file="file://$PROJECT_DIR$/src/Repository/CategoryRepository.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="378">
+          <caret line="44" column="5" selection-start-line="44" selection-start-column="5" selection-end-line="44" selection-end-column="5" />
+          <folding>
+            <element signature="e#430#638#0#PHP" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public/images/products/3f54119c7259526075377d30ebae6415.jpeg">
+      <provider selected="true" editor-type-id="images" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Repository/ProductRepository.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="270">
+          <caret line="22" column="5" selection-start-line="22" selection-start-column="5" selection-end-line="22" selection-end-column="5" />
+          <folding>
+            <element signature="e#265#389#0#PHP" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Entity/Category.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="475">
+          <caret line="365" column="8" selection-start-line="365" selection-start-column="8" selection-end-line="366" selection-end-column="29" />
+          <folding>
+            <element signature="e#272#525#0#PHP" expanded="true" />
+            <element signature="e#4819#4878#0#PHP" expanded="true" />
+            <element signature="e#4883#5007#0#PHP" expanded="true" />
+            <element signature="e#5013#5046#0#PHP" expanded="true" />
+            <element signature="e#5051#5143#0#PHP" expanded="true" />
+            <element signature="e#6596#6650#0#PHP" expanded="true" />
+            <element signature="e#6782#6836#0#PHP" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Admin/AbstractAdmin.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="450">
+          <caret line="43" column="97" selection-start-line="43" selection-start-column="97" selection-end-line="43" selection-end-column="97" />
+          <folding>
+            <element signature="e#1426#1612#0#PHP" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/Admin/ProductAdmin.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="346">
-          <caret line="89" column="47" selection-start-line="89" selection-start-column="47" selection-end-line="89" selection-end-column="47" />
+        <state relative-caret-position="313">
+          <caret line="103" column="43" selection-start-line="103" selection-start-column="43" selection-end-line="103" selection-end-column="43" />
           <folding>
             <element signature="e#111#156#0#PHP" expanded="true" />
-            <element signature="e#1101#1152#0#PHP" expanded="true" />
-            <element signature="e#1200#1277#0#PHP" expanded="true" />
-            <element signature="e#1741#1855#2#PHP" expanded="true" />
-            <element signature="e#3591#3655#0#PHP" expanded="true" />
-            <element signature="e#3898#3972#0#PHP" expanded="true" />
-            <element signature="e#3977#4050#0#PHP" expanded="true" />
-            <element signature="e#4056#4134#0#PHP" expanded="true" />
-            <element signature="e#4139#4287#0#PHP" expanded="true" />
-            <element signature="e#4293#4365#0#PHP" expanded="true" />
-            <element signature="e#4370#5101#0#PHP" expanded="true" />
-            <element signature="e#5107#5155#0#PHP" expanded="true" />
-            <element signature="e#5160#5493#0#PHP" expanded="true" />
+            <element signature="e#3802#3875#0#PHP" expanded="true" />
+            <element signature="e#3964#4112#0#PHP" expanded="true" />
+            <element signature="e#4195#4926#0#PHP" expanded="true" />
+            <element signature="e#4985#5318#0#PHP" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Admin/CategoryAdmin.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="493">
+          <caret line="54" column="57" selection-start-line="54" selection-start-column="57" selection-end-line="54" selection-end-column="57" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Menu/MenuBuilder.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-299">
+          <caret line="74" column="38" selection-start-line="74" selection-start-column="38" selection-end-line="74" selection-end-column="38" />
+          <folding>
+            <element signature="e#109#133#0#PHP" expanded="true" />
+            <element signature="e#2247#3475#0#PHP" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Controller/IndexController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="493">
+          <caret line="86" column="59" selection-start-line="86" selection-start-column="59" selection-end-line="86" selection-end-column="59" />
+          <folding>
+            <element signature="e#34#58#0#PHP" expanded="true" />
+            <element signature="e#1341#1573#0#PHP" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/app/partials/item.html.twig">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="180">
+          <caret line="10" column="8" selection-start-line="10" selection-start-column="8" selection-end-line="12" selection-end-column="115" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/public/js/admin.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="342">
-          <caret line="97" column="10" selection-start-line="97" selection-start-column="10" selection-end-line="97" selection-end-column="10" />
+        <state relative-caret-position="223">
+          <caret line="162" selection-start-line="162" selection-end-line="175" selection-end-column="3" />
           <folding>
-            <element signature="e#292#329#0" expanded="true" />
-            <element signature="e#366#395#0" expanded="true" />
-            <element signature="e#435#1372#0" expanded="true" />
-            <element signature="e#510#1368#0" expanded="true" />
-            <element signature="e#961#1261#0" expanded="true" />
-            <element signature="e#1302#1349#0" expanded="true" />
-            <element signature="e#1375#1404#0" expanded="true" />
-            <element signature="e#2079#2670#0" expanded="true" />
-            <element signature="e#2405#2607#0" expanded="true" />
-            <element signature="e#2575#2605#0" expanded="true" />
-            <element signature="e#3143#3643#0" expanded="true" />
-            <element signature="e#3238#3295#0" expanded="true" />
-            <element signature="e#3608#3906#0" expanded="true" />
-            <element signature="e#3942#4101#0" expanded="true" />
-            <element signature="e#4136#4470#0" expanded="true" />
-            <element signature="e#4179#4444#0" expanded="true" />
+            <element signature="e#4107#4185#0" expanded="true" />
+            <element signature="e#5057#5391#0" expanded="true" />
+            <element signature="e#5100#5365#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public/js/app.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <caret column="30" selection-start-column="30" selection-end-column="30" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/app/index.html.twig">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="288">
+          <caret line="16" column="76" selection-start-line="16" selection-start-column="76" selection-end-line="16" selection-end-column="76" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/app/products.html.twig">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="133">
+          <caret line="15" column="55" selection-start-line="15" selection-start-column="55" selection-end-line="15" selection-end-column="55" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/app/product.html.twig">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="306">
+          <caret line="39" column="152" selection-start-line="39" selection-start-column="152" selection-end-line="39" selection-end-column="152" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/base.html.twig">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="324">
+          <caret line="50" column="53" selection-start-line="50" selection-start-column="53" selection-end-line="50" selection-end-column="53" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public/css/main.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="136">
+          <caret line="74" column="21" selection-start-line="74" selection-start-column="21" selection-end-line="74" selection-end-column="21" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Entity/Product.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="331">
+          <caret line="102" column="18" selection-start-line="102" selection-start-column="18" selection-end-line="102" selection-end-column="18" />
+          <folding>
+            <element signature="e#362#422#0#PHP" expanded="true" />
+            <element signature="e#1108#1231#0#PHP" expanded="true" />
+            <element signature="e#1261#1384#0#PHP" expanded="true" />
+            <element signature="e#1257#1372#0#PHP" expanded="true" />
+            <element signature="e#1533#1648#0#PHP" expanded="true" />
+            <element signature="e#1404#1510#0#PHP" expanded="true" />
+            <element signature="e#1851#1936#0#PHP" expanded="true" />
+            <element signature="e#3876#3909#0#PHP" expanded="true" />
+            <element signature="e#3914#3993#0#PHP" expanded="true" />
+            <element signature="e#3999#4040#0#PHP" expanded="true" />
+            <element signature="e#4045#4141#0#PHP" expanded="true" />
+            <element signature="e#4147#4180#0#PHP" expanded="true" />
+            <element signature="e#4185#4264#0#PHP" expanded="true" />
+            <element signature="e#4292#4341#0#PHP" expanded="true" />
+            <element signature="e#4316#4412#0#PHP" expanded="true" />
+            <element signature="e#4418#4451#0#PHP" expanded="true" />
+            <element signature="e#4456#4547#0#PHP" expanded="true" />
+            <element signature="e#4553#4600#0#PHP" expanded="true" />
+            <element signature="e#4605#4725#0#PHP" expanded="true" />
+            <element signature="e#4731#4764#0#PHP" expanded="true" />
+            <element signature="e#4769#4860#0#PHP" expanded="true" />
+            <element signature="e#4866#4913#0#PHP" expanded="true" />
+            <element signature="e#4918#5038#0#PHP" expanded="true" />
+            <element signature="e#5278#5338#0#PHP" expanded="true" />
+            <element signature="e#5343#5473#0#PHP" expanded="true" />
+            <element signature="e#5465#5525#0#PHP" expanded="true" />
+            <element signature="e#5530#5666#0#PHP" expanded="true" />
+            <element signature="e#4984#5045#0#PHP" expanded="true" />
+            <element signature="e#5050#5164#0#PHP" expanded="true" />
+            <element signature="e#6664#6695#0#PHP" expanded="true" />
+            <element signature="e#6700#6776#0#PHP" expanded="true" />
+            <element signature="e#6783#6851#0#PHP" expanded="true" />
+            <element signature="e#6826#6920#0#PHP" expanded="true" />
           </folding>
         </state>
       </provider>

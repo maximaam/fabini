@@ -48,6 +48,12 @@ class CategoryAdmin extends AbstractAdmin
             ->add('nameEn', null, [
                 'label' => 'Category name english'
             ])
+            ->add('descriptionDe', null, [
+                'label' => 'Category description german'
+            ])
+            ->add('descriptionEn', null, [
+                'label' => 'Category description english'
+            ])
         ;
     }
 

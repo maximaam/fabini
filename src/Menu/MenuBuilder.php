@@ -9,6 +9,7 @@
 namespace App\Menu;
 
 use App\Entity\Category;
+use App\Repository\CategoryRepository;
 use Knp\Menu\FactoryInterface;
 use Symfony\Component\HttpFoundation\RequestStack;
 use Doctrine\ORM\EntityManager;
@@ -74,7 +75,7 @@ class MenuBuilder
         /** @var Category $category */
         foreach ($categories as $category) {
             $menu->addChild($category->getName($locale), [
-                'route' => 'home_category',
+                'route' => 'categories',
                 'attributes' => ['class' => 'nav-item'],
                 'linkAttributes' => ['class' => 'nav-link'],
                 'routeParameters' => [
@@ -84,15 +85,44 @@ class MenuBuilder
             ]);
         }
 
-        /*
-        foreach ($items[$locale] as $key => $val) {
-            $menu->addChild($val['label'], [
-                'route' => $val['route'],
-                'attributes' => ['class' => 'nav-item'],
-                'linkAttributes' => ['class' => 'nav-link']
+        return $menu;
+    }
+
+    /**
+     * @param array $options
+     * @return \Knp\Menu\ItemInterface
+     */
+    public function createSubCategoryMenu(array $options)
+    {
+        $locale = $this->request->getCurrentRequest()->getLocale();
+
+        $menu = $this->factory->createItem('root');
+        $menu->setChildrenAttribute('class', 'navbar-subcategory');
+
+        /** @var Category $currentCategory */
+        $currentCategory = $this->em
+            ->getRepository(Category::class)
+            ->find($this->request->getCurrentRequest()->get('id'));
+
+        $subCategories = $this->em
+            ->getRepository(Category::class)
+            ->fetchChildren($currentCategory)
+            ->getQuery()
+            ->getResult();
+
+        /** @var Category $category */
+        foreach ($subCategories as $category) {
+            $menu->addChild($category->getName($locale), [
+                'route' => 'categories',
+                'attributes' => ['class' => ''],
+                'linkAttributes' => ['class' => ''],
+                'routeParameters' => [
+                    'id'    => $currentCategory->getId(),
+                    'alias' => $currentCategory->getAlias($locale),
+                    'subCatAlias' => $category->getAlias($locale),
+                ]
             ]);
         }
-        */
 
         return $menu;
     }

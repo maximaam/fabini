@@ -72,8 +72,10 @@ class ProductAdmin extends AbstractAdmin
             ->add('productName', null, [
                 'required'  => false
             ])
-            ->add('title')
-            ->add('description')
+            ->add('titleDe')
+            ->add('titleEn')
+            ->add('descriptionDe')
+            ->add('descriptionEn')
             ->add('price')
             ->add('images', HiddenType::class, [
                 'attr' => [
@@ -82,6 +84,13 @@ class ProductAdmin extends AbstractAdmin
                 ]
             ])
 
+            //Images uploaded but not persisted - delete on unload
+            ->add('imagesTmp', HiddenType::class, [
+                'mapped'        => false,
+                'attr' => [
+                    'class' => 'images-tmp-names-container',
+                ]
+            ])
 
             ->add('imagesList', FileType::class, [
                 //'entry_type'    => ImagesType::class,
@@ -91,12 +100,14 @@ class ProductAdmin extends AbstractAdmin
                 'required'      => $product->getId() === null,
                 'mapped'        => false,
                 'attr'  => [
-                    'class' => 'js_upload-image'
-                ]
+                    'class' => 'js_upload-image',
+                    'accept'    => 'image/*'
+                    //'style' => 'display: none',
+                ],
+                'label_attr' => [
+                    //'class' => 'btn btn-default'
+                ],
                 //'help'          => $product->getId() ? '<img src="/images/products/">' : '',
-                //'attr'  => [
-                    //'data-images'   => $this->getImages($product)
-                //]
             ])
         ;
 
@@ -137,7 +148,7 @@ class ProductAdmin extends AbstractAdmin
     protected function configureDatagridFilters(DatagridMapper $datagridMapper)
     {
         $datagridMapper
-            ->add('title')
+            ->add('titleDe')
         ;
     }
 
@@ -158,7 +169,8 @@ class ProductAdmin extends AbstractAdmin
             ->add('category.nameWithSubCat', null, [
                 'label' => 'Category'
             ])
-            ->add('title')
+            ->add('titleDe')
+            ->add('titleen')
             //->add('title')
             //->add('description')
             ->add('price')
@@ -183,8 +195,8 @@ class ProductAdmin extends AbstractAdmin
                 'format' => parent::GLOBAL_DATETIME_FORMAT,
             ])
 
-            ->add('title')
-            ->add('description', null, [
+            ->add('titleDe')
+            ->add('descriptionDe', null, [
                 'safe' => true
             ])
         ;

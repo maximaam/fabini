@@ -8,6 +8,7 @@ use App\Repository\CategoryRepository;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\HttpFoundation\Request;
 
 class IndexController extends Controller
 {
@@ -51,20 +52,44 @@ class IndexController extends Controller
     }
 
     /**
-     * @Route("/{_locale}/category/{id}/{alias}", name="home_category")
+     * @Route("/{_locale}/category/{id}/{alias}/{subCatAlias}/{itemId}",
+     *     name="categories",
+     *     defaults={"subCatAlias" = null, "itemId" = null}
+     *     )
      *
-     * @param Category $category
+     * @param Request $request
      * @return Response
      */
-    public function category(Category $category)
+    public function category(Request $request)
     {
-        $products = $this->getDoctrine()
-            ->getRepository(Product::class)
-            ->fetchByCategories(CategoryRepository::getChildren($category));
+        $catRepo = $this->getDoctrine()->getRepository(Category::class);
+        $productRepo = $this->getDoctrine()->getRepository(Product::class);
 
-        return $this->render('app/products.html.twig', [
-            'products' => $products
-        ]);
+        if (null === $itemId = $request->get('itemId')) {
+            if (null === $subCatAlias = $request->get('subCatAlias')) { //Main categories
+
+                /** @var Category $category */
+                $category = $catRepo->find($request->get('id'));
+                $catIds = CategoryRepository::getChildrenIds($category);
+                $products = $productRepo->fetchByCategories($catIds);
+            } else {
+                $alias = 'alias' . ucfirst($request->getLocale());
+                $category = $catRepo->findOneBy([$alias => $subCatAlias]);
+                $products = $productRepo->findBy(['category' => $category]);
+            }
+
+            return $this->render('app/products.html.twig', [
+                'category'  => $category,
+                'products'  => $products
+            ]);
+        } else {
+
+            return $this->render('app/product.html.twig', [
+                'product'  => $productRepo->find($itemId)
+            ]);
+        }
+
+
     }
 
 }

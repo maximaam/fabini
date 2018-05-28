@@ -1,0 +1,19 @@
+{% set itemUrl = path('categories', {
+    id: product.category.parent.id,
+    alias: product.category.parent.alias(app.request.locale),
+    subCatAlias: product.category.alias(app.request.locale),
+    itemId: product.id
+}) %}
+
+<div class="col-6 col-lg-4">
+    <div class="single-item">
+        <h2>{{ product.title(app.request.locale) }}</h2>
+        {% set imgSeparator = constant('App\\Entity\\Product::IMG_SEPARATOR') %}
+
+        <img src="{{ asset('/images/products/' ~ product.images|trim(imgSeparator)|split(imgSeparator)|first ) }}">
+
+        <p>{{ 'label.price'|trans }}: {{ product.price }} €</p>
+        <a href="{{ itemUrl }}" class="btn btn-primary">{{ 'label.details'|trans }}</a>
+    </div>
+
+</div>

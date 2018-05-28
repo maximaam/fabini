@@ -75,6 +75,22 @@ class Category
     private $aliasEn;
 
     /**
+     * @var string
+     *
+     * @Assert\NotBlank()
+     * @ORM\Column(name="description_de", type="text")
+     */
+    private $descriptionDe;
+
+    /**
+     * @var string
+     *
+     * @Assert\NotBlank()
+     * @ORM\Column(name="description_en", type="text")
+     */
+    private $descriptionEn;
+
+    /**
      * @var category
      *
      * @ORM\OneToMany(targetEntity="Category", mappedBy="parent")
@@ -244,6 +260,42 @@ class Category
     }
 
     /**
+     * @param string $name
+     * @return $this
+     */
+    public function setDescriptionDe(string $name): self
+    {
+        $this->descriptionDe = $name;
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function getDescriptionDe(): ?string
+    {
+        return $this->descriptionDe;
+    }
+
+    /**
+     * @param string $name
+     * @return $this
+     */
+    public function setDescriptionEn(string $name): self
+    {
+        $this->descriptionEn = $name;
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function getDescriptionEn(): ?string
+    {
+        return $this->descriptionEn;
+    }
+
+    /**
      * @return Collection
      */
     public function getChildren(): Collection
@@ -310,6 +362,16 @@ class Category
      * @return mixed
      */
     public function getAlias($locale)
+    {
+        $key = __FUNCTION__.ucfirst($locale);
+        return $this->$key();
+    }
+
+    /**
+     * @param $locale
+     * @return mixed
+     */
+    public function getDescription($locale)
     {
         $key = __FUNCTION__.ucfirst($locale);
         return $this->$key();

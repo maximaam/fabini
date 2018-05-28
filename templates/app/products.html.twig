@@ -3,30 +3,36 @@
 {% block body %}
     <div class="container">
         <div class="row">
-            {% if products|length == 0 %}
-                <div class="alert alert-info">
-                    {{ 'msg.no_products_in_category'|trans }}
-                </div>
-            {% else %}
-
-
-                {% for product in products %}
-                    <div class="col-md-4">
-                        <div class="single-item">
-                            <h3>{{ product.title }}</h3>
-
-
-                            {% for imageFile in product.images %}
-                                <img src="{{ asset('/images/products/' ~ imageFile.image ) }}">
-                            {% endfor %}
-
-                            <p>{{ 'label.price'|trans }}: {{ product.price }} €</p>
-                            <a href="#" class="btn btn-primary">{{ 'label.details'|trans }}</a>
-                        </div>
-
+                <div class="col-lg-3">
+                    {{ knp_menu_render('subCategory') }}
+                    <div>
+                        {{ category.description(app.request.locale) }}
                     </div>
-                {% endfor %}
-            {% endif %}
+                </div>
+
+                <div class="col-lg-9">
+
+                    {% if products|length == 0 %}
+                        <div class="alert alert-warning">
+                            {{ 'msg.no_products_in_category'|trans }}
+                        </div>
+                    {% else %}
+
+                    <div class="row">
+                        <div class="container">
+                            <h1>{{ category.name(app.request.locale) }}</h1>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        {% for product in products %}
+                            {% include 'app/partials/item.html.twig' with {product: product} %}
+                        {% endfor %}
+                    </div>
+
+                    {% endif %}
+                </div>
+
         </div>
     </div>
 {% endblock %}

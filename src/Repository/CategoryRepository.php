@@ -26,16 +26,24 @@ class CategoryRepository extends ServiceEntityRepository
     }
 
     /**
+     * @param Category|null $category
      * @return \Doctrine\ORM\QueryBuilder
      */
-    public function fetchChildren()
+    public function fetchChildren(Category $category = null)
     {
-        return $this->createQueryBuilder('c')
-            ->where('c.parent IS NOT NULL')
-            ->orderBy('c.id', 'ASC')
-            //->setMaxResults(5)
-            ;
+        $qb = $this->createQueryBuilder('c')
+            ->where('c.parent IS NOT NULL');
+
+        if (null !== $category) {
+            $qb->andWhere('c.parent = :parentId')
+                ->setParameter('parentId', $category->getId());
+        }
+
+        $qb->orderBy('c.id', 'ASC');
+
+        return $qb;
     }
+
 
     /**
      * @param Category $category
@@ -55,7 +63,8 @@ class CategoryRepository extends ServiceEntityRepository
      */
     private static function getAllChildren(Category $category)
     {
-        static $categories = array();
+        static $categories = [];
+
         $categories[] = $category->getId();
 
         if (!$category->getChildren()->isEmpty()) {
@@ -92,7 +101,7 @@ class CategoryRepository extends ServiceEntityRepository
      * @param Category $category
      * @return array
      */
-    public static function getChildren(Category $category): array
+    public static function getChildrenIds(Category $category): array
     {
         /** @var Category $cat */
         return array_map(function ($cat) {

@@ -8,6 +8,7 @@ const config = {
         'classes': {
             'file_input': 'js_upload-image',
             'names_input': 'images-names-container',
+            'tmp_names_input': 'images-tmp-names-container',
             'update_uploaded_images_container': 'uploaded-images-container',
             'delete': 'js_delete-image',
             'loading_img': 'loading-img',
@@ -34,6 +35,7 @@ appManager.imageUpload.upload = function($context) {
 
         formData.append('file', fileData);
         $fileElement.after(helpers.renderLoadingImg());
+        //$fileElement.after(this.files[0].name);
 
         $.ajax({
             url: config.images.upload_uri,
@@ -45,12 +47,16 @@ appManager.imageUpload.upload = function($context) {
             processData: false,
             success: function (filename) {
                 let $namesList = $('.' + config.images.classes.names_input),
-                    namesListVal = $namesList.val();
+                    $tmpNamesList = $('.' + config.images.classes.tmp_names_input),
+                    namesListVal = $namesList.val(),
+                    tmpNamesListVal = $tmpNamesList.val();
 
                 if (namesListVal === '') {
                     $namesList.val(filename + config.images.names_separator);
+                    $tmpNamesList.val(filename + config.images.names_separator);
                 } else {
                     $namesList.val(namesListVal + filename + config.images.names_separator);
+                    $tmpNamesList.val(tmpNamesListVal + filename + config.images.names_separator);
                 }
 
                 $('.' + config.images.classes.loading_img).remove();
@@ -121,6 +127,25 @@ appManager.imageUpload.delete = function($context) {
         return false;
     });
 };
+
+/**
+ * Delete images that were upload but not persisted
+ * @param $context
+ */
+appManager.imageUpload.deleteOrphans = function($context) {
+    $context.unload(function(){
+        let $tmpNamesList = $('.' + config.images.classes.tmp_names_input),
+            tmpNamesListVal = $tmpNamesList.val();
+
+        if (tmpNamesListVal.length > 0) {
+
+        }
+
+
+    })
+};
+
+
 
 let helpers = {
     renderImg: function (filename, pk) {
