@@ -1,6 +1,6 @@
-{% set itemUrl = path('categories', {
+{% set itemUrl = path('app_index_catalogue', {
     id: product.category.parent.id,
-    alias: product.category.parent.alias(app.request.locale),
+    catAlias: product.category.parent.alias(app.request.locale),
     subCatAlias: product.category.alias(app.request.locale),
     itemId: product.id
 }) %}

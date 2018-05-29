@@ -44,9 +44,15 @@
                             <i class="fa fa-shopping-cart"></i>
                         </a>
 
-                        <a href="/" title="123" class="logged">
-                            <i class="fa fa-user"></i>
-                        </a>
+                        {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
+                            <a href="{{ path('fos_user_profile_show') }}" title="{{ app.user.username }}" class="logged">
+                                <i class="fa fa-user-circle"></i>
+                            </a>
+                        {% else %}
+                            <a href="{{ path('fos_user_security_login') }}" title="{{ 'label.login'|trans }}">
+                                <i class="fa fa-user-circle"></i>
+                            </a>
+                        {% endif %}
 
                         <ul class="languages">
                             <li><a href="/de" class="{{ app.request.locale == 'de' ? 'current' }}">Deutsch</a></li>

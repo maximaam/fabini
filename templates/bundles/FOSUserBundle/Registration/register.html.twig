@@ -1,0 +1,98 @@
+{% extends "@FOSUser/layout.html.twig" %}
+
+{% trans_default_domain 'FOSUserBundle' %}
+
+{% block title %}
+    {{ 'security.login.submit'|trans }} - {{ parent() }}
+{% endblock %}
+
+{% block fos_user_content %}
+    <h1 class="text-center">{{ 'layout.register'|trans }}</h1>
+
+    {{ form_start(form, {'method': 'post', 'action': path('fos_user_registration_register'), 'attr': {'class': 'form-horizontal fos_user_registration_register'}}) }}
+
+    <div class="form-group">
+        {{ form_errors(form.name) }}
+        {{ form_label(form.name, 'user.name'|trans({}, 'messages')) }}
+        {{ form_widget(form.name) }}
+    </div>
+
+    {{ form_row(form.email) }}
+    {{ form_row(form.plainPassword.first) }}
+    {{ form_row(form.plainPassword.second) }}
+
+    <hr>
+
+    <div class="row register-address">
+        <div class="col-md-6">
+            <h3 class="text-center">{{ 'user.address_billing'|trans({}, 'messages') }}</h3>
+
+            <div class="form-group">
+                {{ form_errors(form.address) }}
+                {{ form_label(form.address, 'user.address_register'|trans({}, 'messages')) }}
+                {{ form_widget(form.address) }}
+            </div>
+
+            <div class="form-group">
+                {{ form_errors(form.zip) }}
+                {{ form_label(form.zip, 'user.zip'|trans({}, 'messages')) }}
+                {{ form_widget(form.zip) }}
+            </div>
+
+            <div class="form-group">
+                {{ form_errors(form.city) }}
+                {{ form_label(form.city, 'user.city'|trans({}, 'messages')) }}
+                {{ form_widget(form.city) }}
+            </div>
+
+            <div class="form-group">
+                {{ form_errors(form.country) }}
+                {{ form_label(form.country, 'user.country'|trans({}, 'messages')) }}
+                {{ form_widget(form.country) }}
+            </div>
+        </div>
+        <div class="col-md-6">
+            <h3 class="text-center">{{ 'user.address_shipping'|trans({}, 'messages') }}</h3>
+
+            <div class="form-group">
+                {{ form_errors(form.addressShipping) }}
+                {{ form_label(form.addressShipping, 'user.address_register'|trans({}, 'messages')) }}
+                {{ form_widget(form.addressShipping) }}
+            </div>
+
+            <div class="form-group">
+                {{ form_errors(form.zipShipping) }}
+                {{ form_label(form.zipShipping, 'user.zip'|trans({}, 'messages')) }}
+                {{ form_widget(form.zipShipping) }}
+            </div>
+
+            <div class="form-group">
+                {{ form_errors(form.cityShipping) }}
+                {{ form_label(form.cityShipping, 'user.city'|trans({}, 'messages')) }}
+                {{ form_widget(form.cityShipping) }}
+            </div>
+
+            <div class="form-group">
+                {{ form_errors(form.countryShipping) }}
+                {{ form_label(form.countryShipping, 'user.country'|trans({}, 'messages')) }}
+                {{ form_widget(form.countryShipping) }}
+            </div>
+
+        </div>
+    </div>
+
+    <div class="form-group">
+        <div class="pull-right">
+            <button type="submit" id="_submit" name="_submit" class="btn btn-primary">
+                <i class="glyphicon glyphicon-user"></i>
+                {{ 'registration.submit'|trans }}
+            </button>
+        </div>
+    </div>
+
+
+    {{ form_rest(form) }}
+
+    {{ form_end(form) }}
+
+{% endblock %}

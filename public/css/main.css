@@ -175,6 +175,10 @@ footer.main-footer {
     color: #fff;
 }
 
+.form-group {
+    overflow: hidden;
+}
+
 @media (min-width:1025px) { /* big landscape tablets, laptops, and desktops */
 
     /*

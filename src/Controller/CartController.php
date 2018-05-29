@@ -73,7 +73,7 @@ class CartController extends Controller
         $session = $this->get('session');
 
         if (!$session->has('cart') || empty($session->get('cart'))) {
-            return $this->render('cart/index.html.twig', [
+            return $this->render('app/cart/index.html.twig', [
                 'cart'  => []
             ]);
         }
@@ -84,7 +84,7 @@ class CartController extends Controller
         //$mobileDetector = $this->get('mobile_detect.mobile_detector');
         //$view = $mobileDetector->isMobile() ? '_mobile' : '';
 
-        return $this->render('cart/index.html.twig', [
+        return $this->render('app/cart/index.html.twig', [
             'cart'  => ProductHelper::computeCard($products, $cart, $request->getLocale())
         ]);
     }
@@ -103,13 +103,15 @@ class CartController extends Controller
         $products = $this->getProductsFromSession();
 
         if (empty($products)) {
-            return $this->redirectToRoute('app_home');
+            return $this->redirectToRoute('app_index_index');
         }
 
         $products = ProductHelper::computeCard($products, $this->get('session')->get('cart'), $request->getLocale());
 
+        dump($products); die;
+
         $params = [
-            'METHOD'	=> 'SetExpressCheckout',
+            'METHOD'    => 'SetExpressCheckout',
             'VERSION'	=> $this->container->getParameter('paypal.version'),
             'USER'		=> $this->container->getParameter('paypal.sandbox.username'),
             'PWD'		=> $this->container->getParameter('paypal.sandbox.password'),

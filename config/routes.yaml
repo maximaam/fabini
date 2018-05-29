@@ -16,3 +16,7 @@ app:
         _controller: 'App\Controller\IndexController::index'
     requirements:
         _locale: "%supported_languages%"
+
+fos_user:
+    prefix: /{_locale}
+    resource: "@FOSUserBundle/Resources/config/routing/all.xml"

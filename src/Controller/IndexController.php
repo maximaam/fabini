@@ -17,7 +17,7 @@ use Symfony\Component\HttpFoundation\Request;
 class IndexController extends Controller
 {
     /**
-     * @Route("/", name="app_home")
+     * @Route("/", name="app_index_index")
      */
     public function index()
     {
@@ -56,28 +56,33 @@ class IndexController extends Controller
     }
 
     /**
-     * @Route("/{_locale}/category/{id}/{alias}/{subCatAlias}/{itemId}",
-     *     name="categories",
+     * Get products for categories, sub-categories and items
+     *
+     * @Route("/{_locale}/catalogue/{catAlias}/{subCatAlias}/{itemId}",
+     *     name="app_index_catalogue",
      *     defaults={"subCatAlias" = null, "itemId" = null}
      *     )
      *
      * @param Request $request
      * @return Response
      */
-    public function category(Request $request)
+    public function catalogue(Request $request)
     {
         $catRepo = $this->getDoctrine()->getRepository(Category::class);
         $productRepo = $this->getDoctrine()->getRepository(Product::class);
 
         if (null === $itemId = $request->get('itemId')) {
+
+            $alias = 'alias' . ucfirst($request->getLocale());
+
             if (null === $subCatAlias = $request->get('subCatAlias')) { //Main categories
 
                 /** @var Category $category */
-                $category = $catRepo->find($request->get('id'));
+                $category = $catRepo->findOneBy([$alias => $request->get('catAlias')]);
                 $catIds = CategoryRepository::getChildrenIds($category);
                 $products = $productRepo->fetchByCategories($catIds);
             } else {
-                $alias = 'alias' . ucfirst($request->getLocale());
+
                 $category = $catRepo->findOneBy([$alias => $subCatAlias]);
                 $products = $productRepo->findBy(['category' => $category]);
             }

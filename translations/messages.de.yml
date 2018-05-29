@@ -13,12 +13,36 @@ label:
     colors-set:
         white: Weiss
         black: Schwarz
+    submit: Senden
+    edit: Bearbeiten
+    delete: Löschen
+    back: Zurück
+    show: Anzeigen
+    cancel: Abrechen
+    confirm_delete: Löschen bestätigen?
+    search: Suche
+    logout: Abmelden
+
+
+user:
+    my_profile: Mein Profil
+    name: Vor- und Nachname
+    email: Email
+    address_shipping: Lieferadresse
+    address_billing: Rechnungadresse
+    password_edit: Passwort ändern
+    address_register: Addresse, Straße und Hausnummer
+    zip: Postleizahl
+    city: Stadt
+    country: Land
+    my_orderings: My transactions
 
 cart:
     to-cart: In den Warenkorb
     my-topnav: Mein Warenkorb:
     pay-now: Jetzt mit PayPal zahlen!
     continue-shopping: Weiter einkaufen
+    buyer: Käufer
 
 nav:
     main:

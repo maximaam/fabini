@@ -4,6 +4,9 @@ parameters:
     locale: 'de'
     supported_languages: de|en|fr
     product_images_dir: '%kernel.project_dir%/public/images/products'
+    app_secret: '%env(APP_SECRET)%'
+
+    mailer_user: 'mimoberlino@gmail.com'
 
     paypal:
         version: '74.0'

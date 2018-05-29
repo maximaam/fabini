@@ -75,12 +75,11 @@ class MenuBuilder
         /** @var Category $category */
         foreach ($categories as $category) {
             $menu->addChild($category->getName($locale), [
-                'route' => 'categories',
+                'route' => 'app_index_catalogue',
                 'attributes' => ['class' => 'nav-item'],
                 'linkAttributes' => ['class' => 'nav-link'],
                 'routeParameters' => [
-                    'id'    => $category->getId(),
-                    'alias' => $category->getAlias($locale)
+                    'catAlias' => $category->getAlias($locale)
                 ]
             ]);
         }
@@ -102,7 +101,7 @@ class MenuBuilder
         /** @var Category $currentCategory */
         $currentCategory = $this->em
             ->getRepository(Category::class)
-            ->find($this->request->getCurrentRequest()->get('id'));
+            ->findOneBy(['alias'.ucfirst($locale) => $this->request->getCurrentRequest()->get('catAlias')]);
 
         $subCategories = $this->em
             ->getRepository(Category::class)
@@ -113,12 +112,11 @@ class MenuBuilder
         /** @var Category $category */
         foreach ($subCategories as $category) {
             $menu->addChild($category->getName($locale), [
-                'route' => 'categories',
+                'route' => 'app_index_catalogue',
                 'attributes' => ['class' => ''],
                 'linkAttributes' => ['class' => ''],
                 'routeParameters' => [
-                    'id'    => $currentCategory->getId(),
-                    'alias' => $currentCategory->getAlias($locale),
+                    'catAlias' => $currentCategory->getAlias($locale),
                     'subCatAlias' => $category->getAlias($locale),
                 ]
             ]);
