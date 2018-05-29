@@ -3,8 +3,17 @@
 parameters:
     locale: 'de'
     supported_languages: de|en|fr
-    app.path.product_images: /images/uploads
-    product_images: '%kernel.project_dir%/public/images/products'
+    product_images_dir: '%kernel.project_dir%/public/images/products'
+
+    paypal:
+        version: '74.0'
+        currency_code: EUR
+        sandbox:
+            username: mimo.berlino-facilitator_api1.gmail.com
+            password: WQTYYURKZJ2VZZ8P
+            signature: AAIpGRmmcgCTmV.LsCEFZFtHFZvLACCzl1.GLXJTratF5TNZIMHLPsk1
+            endpoint_url: https://api-3T.sandbox.paypal.com/nvp
+            payment_url: https://www.sandbox.paypal.com/webscr?cmd=_express-checkout&useraction=commit&token=
 
 services:
     # default configuration for services in *this* file
@@ -30,8 +39,7 @@ services:
     # add more service definitions when explicit configuration is needed
     # please note that last definitions always *replace* previous ones
 
-    app.menu_builder:
-        class: App\Menu\MenuBuilder
+    App\Menu\MenuBuilder:
         arguments: ["@knp_menu.factory", "@request_stack", "@translator", "@doctrine.orm.entity_manager"]
         tags:
             - { name: knp_menu.menu_builder, method: createMainMenu, alias: main }
@@ -55,11 +63,11 @@ services:
 
     App\Service\FileUploader:
         arguments:
-            $targetDirectory: '%product_images%'
+            $targetDirectory: '%product_images_dir%'
 
-    App\EventListener\ImageUploadListener:
-        tags:
-            - { name: doctrine.event_listener, event: prePersist }
-            - { name: doctrine.event_listener, event: preUpdate }
+    #App\EventListener\ImageUploadListener:
+        #tags:
+            #- { name: doctrine.event_listener, event: prePersist }
+            #- { name: doctrine.event_listener, event: preUpdate }
             #- { name: doctrine.event_listener, event: postLoad }
 

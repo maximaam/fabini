@@ -37,7 +37,6 @@ use App\Entity\{
 };
 
 use Symfony\Component\Form\CallbackTransformer;
-use App\Form\ImagesType;
 use Symfony\Component\Form\FormEvent;
 use Symfony\Component\Form\FormEvents;
 
@@ -47,6 +46,9 @@ use Symfony\Component\Form\FormEvents;
  */
 class ProductAdmin extends AbstractAdmin
 {
+
+    protected static $colors = ['white', 'black', 'red', 'blue', 'green', 'yellow', 'pink', 'purple', 'brown', 'orange', 'grey'];
+
     /**
      * Form configure
      *
@@ -60,7 +62,7 @@ class ProductAdmin extends AbstractAdmin
 
         $formMapper
             ->add('category', EntityType::class, [
-                'placeholder'   => 'Select a category...',
+                'placeholder'   => 'Select category...',
                 'required'      => true,
                 'class'         => Category::class,
                 'choice_label'  => 'nameWithSubCat',
@@ -76,7 +78,20 @@ class ProductAdmin extends AbstractAdmin
             ->add('titleEn')
             ->add('descriptionDe')
             ->add('descriptionEn')
+
+            ->add('colors', ChoiceType::class, [
+                'choices' => array_combine(self::$colors, self::$colors),
+                'expanded'  => true,
+                'multiple'  => true
+            ])
+
+
             ->add('price')
+            ->add('topItem')
+
+
+
+
             ->add('images', HiddenType::class, [
                 'attr' => [
                     'class' => 'images-names-container',

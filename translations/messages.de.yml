@@ -7,6 +7,18 @@ label:
     top-products: Top Produkte
     details: Details anzeigen
     price: Preis
+    color: Farbe
+    colors: Farben
+    quantity: Menge
+    colors-set:
+        white: Weiss
+        black: Schwarz
+
+cart:
+    to-cart: In den Warenkorb
+    my-topnav: Mein Warenkorb:
+    pay-now: Jetzt mit PayPal zahlen!
+    continue-shopping: Weiter einkaufen
 
 nav:
     main:

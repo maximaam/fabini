@@ -1,0 +1,17 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+
+    <div class="alert alert-success">
+        {{ 'ordering.paid.msg'|trans }}
+    </div>
+
+    <div>
+        <p>{{ 'ordering.paid.goto'|trans }}</p>
+        <a class="btn btn-primary" href="{{ path('app_user_orderings') }}">
+            <i class="glyphicon glyphicon-shopping-cart"></i>
+            {{ 'user.my_orderings'|trans }}
+        </a>
+    </div>
+
+{% endblock %}

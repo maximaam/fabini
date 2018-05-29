@@ -90,6 +90,14 @@ class Product
     private $descriptionEn;
 
     /**
+     * @var array
+     *
+     * @Assert\NotBlank()
+     * @ORM\Column(type="simple_array")
+     */
+    private $colors;
+
+    /**
      * @var float
      *
      * @Assert\NotBlank()
@@ -308,6 +316,26 @@ class Product
         $key = __FUNCTION__.ucfirst($locale);
         return $this->$key();
     }
+
+    /**
+     * @return array
+     */
+    public function getColors(): ?array
+    {
+        return $this->colors;
+    }
+
+    /**
+     * @param array $colors
+     * @return $this
+     */
+    public function setColors(array $colors): self
+    {
+        $this->colors = $colors;
+        return $this;
+    }
+
+
 
     /**
      * @return float
