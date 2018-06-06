@@ -3,21 +3,18 @@
 
     <head>
         <meta charset="UTF-8">
+        <title>{% block title %}{{ app_name }}!{% endblock %}</title>
+
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
         <meta name="robots" content="index,follow">
         <meta name="author" content="{{ app_name }}">
 
-        <title>
-            {% block title %}
-                {{ app_name }}!
-            {% endblock %}
-        </title>
-
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
         <link href="https://fonts.googleapis.com/css?family=Titillium+Web" rel="stylesheet">
         <link rel="stylesheet" href="{{ asset('css/main.css') }}">
+        <link rel="icon" type="image/x-icon" href="{{ asset('images/favicon.png') }}" />
         {% block stylesheets %}{% endblock %}
 
         {% block js_head %}{% endblock %}
@@ -29,7 +26,7 @@
             <nav class="navbar fixed-top navbar-expand-lg navbar-dark">
                 <div class="container">
                     <a class="navbar-brand" href="/">
-                        <img src="{{ asset('/images/fabini-logo-small.jpg') }}" alt="Fabini Logo" width="100">
+                        <img src="{{ asset('images/fabini-logo-small.jpg') }}" alt="Fabini Logo" width="100">
                     </a>
 
                     <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
