@@ -3,12 +3,15 @@
 namespace App\Controller;
 
 use App\Entity\Category;
+use App\Entity\Page;
 use App\Entity\Product;
 use App\Repository\CategoryRepository;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
 /**
  * Class IndexController
@@ -21,7 +24,7 @@ class IndexController extends Controller
      */
     public function index()
     {
-        $leather = $this->getDoctrine()->getRepository(Product::class)->findBy([], [], 3);
+        $leather = $this->getDoctrine()->getRepository(Product::class)->findAll();
 
         return $this->render('app/index.html.twig', [
             'leather' => $leather
@@ -29,30 +32,60 @@ class IndexController extends Controller
     }
 
     /**
-     * @Route("/{_locale}/ueber-us", name="about-us_de")
-     * @Route("/{_locale}/about-us", name="about-us_en")
+     * @Route("/{_locale}/page/{slug}", name="app_index_page")
+     * @Method({"GET"})
+     *
+     * @param Request $request
+     * @return Response
      */
-    public function aboutUs()
+    public function page(Request $request)
     {
-        return $this->render('app/about-us.html.twig');
+        $slugKey = 'slug' . ucfirst($request->getLocale());
+        $slug = $request->get('slug');
+
+        $page = $this->getDoctrine()
+            ->getRepository(Page::class)
+            ->findOneBy([$slugKey => $slug]);
+
+        if (null === $page) {
+            throw $this->createNotFoundException(
+                'Page ' . $slug . ' does not exist'
+            );
+        }
+
+        return $this->render('app/page.html.twig', [
+            'page'  => $page
+        ]);
     }
 
     /**
-     * @Route("/{_locale}/impressum", name="imprint_de")
-     * @Route("/{_locale}/imprint", name="imprint_en")
+     * @Route("/{_locale}/search", name="app_index_search")
+     * @Method({"POST"})
+     *
+     * @param Request $request
+     * @return Response
      */
-    public function imprint()
+    public function search(Request $request)
     {
-        return $this->render('app/imprint.html.twig');
-    }
 
-    /**
-     * @Route("/{_locale}/kontakt", name="contact_de")
-     * @Route("/{_locale}/contact", name="contact_en")
-     */
-    public function contact()
-    {
-        return $this->render('app/contact.html.twig');
+        die('ok');
+
+        $slugKey = 'slug' . ucfirst($request->getLocale());
+        $slug = $request->get('slug');
+
+        $page = $this->getDoctrine()
+            ->getRepository(Page::class)
+            ->findOneBy([$slugKey => $slug]);
+
+        if (null === $page) {
+            throw $this->createNotFoundException(
+                'Page ' . $slug . ' does not exist'
+            );
+        }
+
+        return $this->render('app/page.html.twig', [
+            'page'  => $page
+        ]);
     }
 
     /**

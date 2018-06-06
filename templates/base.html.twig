@@ -3,6 +3,7 @@
 
     <head>
         <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
         <meta name="robots" content="index,follow">
         <meta name="author" content="{{ app_name }}">
@@ -13,65 +14,64 @@
             {% endblock %}
         </title>
 
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+        <link href="https://fonts.googleapis.com/css?family=Titillium+Web" rel="stylesheet">
         <link rel="stylesheet" href="{{ asset('css/main.css') }}">
         {% block stylesheets %}{% endblock %}
+
+        {% block js_head %}{% endblock %}
     </head>
 
     <body>
+
         <header class="main-header">
-            <nav class="navbar navbar-toggleable-md navbar-inverse fixed-top">
+            <nav class="navbar fixed-top navbar-expand-lg navbar-dark">
                 <div class="container">
+                    <a class="navbar-brand" href="/">
+                        <img src="{{ asset('/images/fabini-logo-small.jpg') }}" alt="Fabini Logo" width="100">
+                    </a>
 
-                <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
+                    <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
 
-                <a class="navbar-brand" href="/">
-                    <img src="{{ asset('images/fabini-logo-small.jpg') }}" alt="Fabini Logo" width="100">
-                </a>
+                    <div class="collapse navbar-collapse" id="navbarCollapse">
 
-                <div class="collapse navbar-collapse" id="navbarCollapse">
+                        {{ knp_menu_render('main') }}
 
-                    {{ knp_menu_render('main') }}
+                        <div class="user-cart form-inline mt-2 mt-md-0">
+                            {% set cartItems = app.session.get('cart')|length %}
 
-                    <div class="user-cart form-inline mt-2 mt-md-0">
-                        {% set cartItems = app.session.get('cart')|length %}
-
-                        <a href="{{ path('app_cart_index') }}" class="cart" title="{{ 'cart.my-topnav'|trans }} {{ cartItems }}">
-                            <span {{ cartItems > 0 ? 'class="active"'}}>{{ cartItems }}</span>
-                            <i class="fa fa-shopping-cart"></i>
-                        </a>
-
-                        {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
-                            <a href="{{ path('fos_user_profile_show') }}" title="{{ app.user.username }}" class="logged">
-                                <i class="fa fa-user-circle"></i>
+                            <a href="{{ path('app_cart_index') }}" class="cart" title="{{ 'cart.my-topnav'|trans }} {{ cartItems }}">
+                                <span {{ cartItems > 0 ? 'class="active"'}}>{{ cartItems }}</span>
+                                <i class="fa fa-shopping-cart"></i>
                             </a>
-                        {% else %}
-                            <a href="{{ path('fos_user_security_login') }}" title="{{ 'label.login'|trans }}">
-                                <i class="fa fa-user-circle"></i>
-                            </a>
-                        {% endif %}
 
-                        <ul class="languages">
-                            <li><a href="/de" class="{{ app.request.locale == 'de' ? 'current' }}">Deutsch</a></li>
-                            <li><a href="/en" class="{{ app.request.locale == 'en' ? 'current' }}">English</a></li>
-                        </ul>
+                            {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
+                                <a href="{{ path('fos_user_profile_show') }}" title="{{ app.user.username }}" class="logged">
+                                    <i class="fa fa-user-circle"></i>
+                                </a>
+                            {% else %}
+                                <a href="{{ path('fos_user_security_login') }}" title="{{ 'label.login'|trans }}">
+                                    <i class="fa fa-user-circle"></i>
+                                </a>
+                            {% endif %}
+
+                            <ul class="languages">
+                                <li><a href="/de" class="{{ app.request.locale == 'de' ? 'current' }}">Deutsch</a></li>
+                                <li><a href="/en" class="{{ app.request.locale == 'en' ? 'current' }}">English</a></li>
+                            </ul>
+                        </div>
+                        <!--
+                        <form class="form-inline mt-2 mt-md-0">
+                            <input class="form-control mr-sm-2" type="text" placeholder="Search">
+                            <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+                        </form>
+                        -->
                     </div>
-
-
-                    <!--
-                    <form class="form-inline mt-2 mt-md-0">
-                        <input class="form-control mr-sm-2" type="text" placeholder="Search">
-                        <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-                    </form>
-                    -->
                 </div>
-                </div>
-
             </nav>
-
         </header>
 
         <main>
@@ -87,10 +87,20 @@
                         {{ knp_menu_render('footer') }}
                     </div>
                     <div class="col-md-4">
-                        sfdsdf
+                        <!--
+                        <form id="search" name="search" action="{{ path('app_index_search') }}" method="post">
+                            <input type="text" name="query" id="query" placeholder="{{ 'label.search|trans' }}...">
+                            <button type="submit" class="btn btn-primary">OK</button>
+                        </form>
+                        -->
                     </div>
                     <div class="col-md-4">
-                        social
+                        <a href="https://www.facebook.com/Fabini-222633031878310/" target="_blank">
+                            <i class="fa fa-facebook-official" title="Fabini Facebook page"></i>
+                        </a>
+                        <a href="https://www.facebook.com/Fabini-222633031878310/" target="_blank">
+                            <i class="fa fa-twitter" title="Fabini Twitter page"></i>
+                        </a>
                     </div>
                 </div>
 

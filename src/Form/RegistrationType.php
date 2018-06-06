@@ -33,18 +33,34 @@ class RegistrationType extends AbstractType
             ->remove('username')
 
             ->add('ip', HiddenType::class)
-            ->add('name')
-            ->add('address')
-            ->add('zip')
-            ->add('city')
-            ->add('country', CountryType::class, [
-                'preferred_choices' => $preferred
+            ->add('name', null, [
+                'label' => 'user.name'
             ])
-            ->add('addressShipping')
-            ->add('zipShipping')
-            ->add('cityShipping')
+            ->add('address', null, [
+                'label' => 'user.address_register'
+            ])
+            ->add('zip', null, [
+                'label' => 'user.zip'
+            ])
+            ->add('city', null, [
+                'label' => 'user.city'
+            ])
+            ->add('country', CountryType::class, [
+                'preferred_choices' => $preferred,
+                'label' => 'user.country'
+            ])
+            ->add('addressShipping', null, [
+                'label' => 'user.address_register'
+            ])
+            ->add('zipShipping', null, [
+                'label' => 'user.zip'
+            ])
+            ->add('cityShipping', null, [
+                'label' => 'user.city'
+            ])
             ->add('countryShipping', CountryType::class, [
-                'preferred_choices' => $preferred
+                'preferred_choices' => $preferred,
+                'label' => 'user.country'
             ]);
     }
 

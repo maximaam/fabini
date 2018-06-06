@@ -1,5 +1,9 @@
 {% extends 'base.html.twig' %}
 
+{% block js_head %}
+    <script src="https://www.paypalobjects.com/api/checkout.js"></script>
+{% endblock %}
+
 {% block body %}
 
     {% if cart is defined and cart|length  %}
@@ -8,83 +12,153 @@
         {% set totals = cart.totals %}
 
         <div class="container">
+
+
             <div class="row">
                 <div class="table-responsive">
-                <table class="table table-stripped table-hover">
-                    <caption><h1 class="text-center">{{ 'cart.my-cart'|trans }}</h1></caption>
+                    <h1 class="text-center">{{ 'cart.my-cart'|trans }}</h1>
+                    <table class="table table-stripped table-hover">
+                        <thead>
+                            <tr>
+                                <th>{{ 'label.title'|trans }}</th>
+                                <th>{{ 'label.product-nummer'|trans }}</th>
+                                <th>{{ 'label.quantity'|trans }}</th>
+                                <th>{{ 'label.color'|trans }}</th>
+                                <th>{{ 'label.price-unit'|trans }}</th>
+                                <th>{{ 'label.price-total'|trans }}</th>
+                                <th></th>
+                            </tr>
+                        </thead>
 
-                    <thead>
-                    <tr>
-                        <th>{{ 'label.title'|trans }}</th>
-                        <th>{{ 'label.quantity'|trans }}</th>
-                        <th>{{ 'label.color'|trans }}</th>
-                        <th>{{ 'label.price-unit'|trans }}</th>
-                        <th>{{ 'label.price-total'|trans }}</th>
-                        <th></th>
-                    </tr>
-                    </thead>
+                        <tbody>
+                        {% for id, product in products %}
 
-                    <tbody>
-                    {% for id, product in products %}
+                            <tr>
+                                <td>{{ product.title }}</td>
+                                <td>{{ product.productNumber }}</td>
+                                <td>{{ product.quantity }}</td>
+                                <td>{{ product.color }}</td>
+                                <td>{{ product.price|number_format(2, ',', '.') }} <i class="fa fa-eur"></i></td>
+                                <td>{{ product.fullPrice|number_format(2, ',', '.') }} <i class="fa fa-eur"></i></td>
+                                <td>
+                                    <div class="pull-right">
 
-                        <tr>
-                            <td>{{ product.title }}</td>
-                            <td>{{ product.quantity }}</td>
-                            <td>{{ product.color }}</td>
-                            <td>{{ product.price|number_format(2, ',', '.') }} <i class="fa fa-eur"></i></td>
-                            <td>{{ product.fullPrice|number_format(2, ',', '.') }} <i class="fa fa-eur"></i></td>
-                            <td>
-                                <div class="pull-right">
+                                        <a href="{{ path('app_cart_remove', {'id': id}) }}" title="{{ 'form.delete'|trans }}" rel="nofollow" class="btn btn-danger">
+                                            <i class="fa fa-trash"></i>
+                                        </a>
+                                    </div>
+                                </td>
+                            </tr>
+                        {% endfor %}
+                        </tbody>
 
-                                    <a href="{{ path('app_cart_remove', {'id': id}) }}" title="{{ 'form.delete'|trans }}" rel="nofollow" class="btn btn-danger">
-                                        <i class="fa fa-trash"></i>
+                        <tfoot>
+                            <tr>
+                                <td colspan="5"></td>
+                                <td class="font-weight-bold">{{ 'label.total-excl-tax'|trans }}</td>
+                                <td>{{ totals.excl_tax|number_format(2, ',', '.') }} <i class="fa fa-eur"></i></td>
+                            </tr>
+                            <tr>
+                                <td colspan="5"></td>
+                                <td class="font-weight-bold">{{ 'label.vat'|trans }}</td>
+                                <td>{{ totals.vat|number_format(2, ',', '.') }} <i class="fa fa-eur"></i></td>
+                            </tr>
+                            <tr>
+                                <td colspan="5"></td>
+                                <td class="font-weight-bold">{{ 'label.total-incl-tax'|trans }}</td>
+                                <td>{{ totals.total|number_format(2, ',', '.') }} <i class="fa fa-eur"></i></td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <a href="#">
+                                        <i class="fa fa-tag"></i>
+                                        {{ 'cart.continue-shopping'|trans }}
                                     </a>
-                                </div>
-                            </td>
-                        </tr>
-                    {% endfor %}
-                    </tbody>
+                                </td>
+                                <td colspan="6" class="text-right">
 
-                    <tfoot>
-                    <tr>
-                        <td colspan="7">
-                            <dl class="dl-horizontal pull-right">
-                                <dt>Total HT</dt>
-                                <dd class="text-right">{{ totals.excl_tax|number_format(2, ',', '.') }} <i class="fa fa-eur"></i></dd>
-                                <dt>TVA</dt>
-                                <dd class="text-right">{{ totals.vat|number_format(2, ',', '.') }} <i class="fa fa-eur"></i></dd>
-                                <dt>Total TTC</dt>
-                                <dd class="text-right">{{ totals.total|number_format(2, ',', '.') }} <i class="fa fa-eur"></i></dd>
-                            </dl>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <a href="#">
-                                <i class="fa fa-tag"></i>
-                                {{ 'cart.continue-shopping'|trans }}
-                            </a>
-                        </td>
-                        <td colspan="6" class="text-right">
-                            <a href="{{ path('app_cart_initpayment') }}" class="btn btn-paypal">
-                                {{ 'cart.pay-now'|trans }}
-                            </a>
-                        </td>
-                    </tr>
-                    </tfoot>
+                                    <div id="paypal-button"></div>
 
-                </table>
+                                    <script>
+                                        /*paypal.Button.render({
+
+                                            env: 'sandbox', // sandbox | production
+
+                                            // PayPal Client IDs - replace with your own
+                                            // Create a PayPal app: https://developer.paypal.com/developer/applications/create
+                                            client: {
+                                                sandbox:'AU2UsWsDse07nxoHo2OVBBvBmliBIfqQHAW1C4Sn0BIkRp0OFUSSXWD7SArUDbMHkENr4SLPbgb2Z-B9',
+                                                production:'ASxd07fk5KrTp4W0PK0cWUMaD2_s2fvdfP5QBInepB7mjJUxWnwgfy3tNOIVwasFLVD8HIvtIvt-tEth'
+                                            },
+
+                                            // Show the buyer a 'Pay Now' button in the checkout flow
+                                            //commit: true,
+
+                                            style: {
+                                                color: 'gold',
+                                                size: 'large'
+                                            },
+
+                                            // payment() is called when the button is clicked
+                                            payment: function(data, actions) {
+
+                                                // Make a call to the REST api to create the payment
+                                                var SETEC_URL = "{{ path('app_cart_initpayment') }}";
+
+                                                return paypal.request.post(SETEC_URL).then(function(res) {
+                                                    alert(res);
+                                                    return;
+
+                                                    //return res.token;
+                                                });
+                                            },
+
+                                            // onAuthorize() is called when the buyer approves the payment
+                                            onAuthorize: function(data, actions) {
+                                                //return actions.redirect();
+
+                                                // Make a call to the REST api to execute the payment
+                                                return actions.payment.execute().then(function() {
+                                                    window.alert('Payment Complete!');
+                                                });
+                                            },
+                                            onCancel: function(data, actions) {
+                                                /!*
+                                                 * Buyer cancelled the payment
+                                                 *!/
+                                            },
+                                            onError: function(err) {
+                                                /!*
+                                                 * An error occurred during the transaction
+                                                 *!/
+                                            }
+
+                                        }, '#paypal-button');*/
+
+                                    </script>
+
+
+
+                                    <a href="{{ path('app_cart_initpayment') }}" class="btn btn-paypal">
+                                        {{ 'cart.pay-now'|trans }}
+                                    </a>
+
+
+
+                                </td>
+                            </tr>
+                        </tfoot>
+
+                    </table>
+                </div>
             </div>
-            </div>
-
-
         </div>
 
     {% else %}
 
         <div class="alert alert-warning">
             <span class="fa fa-flag"></span>
-            {{ 'product.cart_empty'|trans }}
+            {{ 'cart.empty'|trans }}
         </div>
 
     {% endif %}

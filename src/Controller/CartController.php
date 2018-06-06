@@ -8,8 +8,8 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Symfony\Component\HttpFoundation\Request;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
-//use Unirest;
 use App\Utils\ProductHelper;
+use App\Service\Paypal;
 
 use App\Entity\Product;
 
@@ -39,9 +39,14 @@ class CartController extends Controller
 
         $cart = $session->get('cart');
 
+        $quantity = (int) $request->request->get('quantity');
+        $color = $request->request->get('color');
+        $size = $request->request->get('size');
+
         $cart[$id] = [
-            'quantity'  => (int) $request->request->get('quantity'),
-            'color'      => $request->request->get('color'),
+            'quantity'  => $quantity,
+            'color'     => $color,
+            'size'      => $size
         ];
 
         $session->set('cart', $cart);
@@ -95,10 +100,11 @@ class CartController extends Controller
      *
      *
      * @param Request $request
+     * @param Paypal $paypal
      * @return \Symfony\Component\HttpFoundation\RedirectResponse
      * @throws \Exception
      */
-    public function initPayment(Request $request)
+    public function initPayment(Request $request, Paypal $paypal)
     {
         $products = $this->getProductsFromSession();
 
@@ -107,32 +113,13 @@ class CartController extends Controller
         }
 
         $products = ProductHelper::computeCard($products, $this->get('session')->get('cart'), $request->getLocale());
-
-        dump($products); die;
-
-        $params = [
-            'METHOD'    => 'SetExpressCheckout',
-            'VERSION'	=> $this->container->getParameter('paypal.version'),
-            'USER'		=> $this->container->getParameter('paypal.sandbox.username'),
-            'PWD'		=> $this->container->getParameter('paypal.sandbox.password'),
-            'SIGNATURE'	=> $this->container->getParameter('paypal.sandbox.signature'),
-            'RETURNURL'	=> $this->generateUrl('app_cart_confirmpayment', [], 0),
-            'CANCELURL'	=> $this->generateUrl('app_cart_index', [], 0),
-            'PAYMENTREQUEST_0_CURRENCYCODE' => $this->container->getParameter('paypal.currency_code'),
-            'PAYMENTREQUEST_0_AMT' => $products['totals']['total']
+        $options = [
+            'return_url'      => $this->generateUrl('app_cart_confirmpayment', [], 0),
+            'cancel_url'    => $this->generateUrl('app_cart_index', [], 0)
         ];
 
-        $params = http_build_query($params);
-        $url = $this->container->getParameter('paypal.sandbox.endpoint_url') . '?' . $params;
-
-        $response = Unirest\Request::get($url);
-
-        $response = $response->body;
-        $response_params = [];
-        parse_str($response, $response_params);
-
-        if ($response_params['ACK'] == 'Success') {
-            return $this->redirect($this->container->getParameter('paypal.sandbox.payment_url') . $response_params['TOKEN']);
+        if ($checkoutUrl = $paypal->getExpressCheckoutUrl($products, $options, Paypal::ENV_SANDBOX)) {
+            return $this->redirect($checkoutUrl);
         }
 
         throw new \Exception('Error');
@@ -149,6 +136,9 @@ class CartController extends Controller
     {
         $token = $request->query->get('token');
         $payerId = $request->query->get('PayerID');
+
+
+        dump($token); die;
 
         if ($token && $payerId) {
             $products = $this->getProductsFromSession();

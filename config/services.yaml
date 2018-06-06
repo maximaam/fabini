@@ -8,16 +8,6 @@ parameters:
 
     mailer_user: 'mimoberlino@gmail.com'
 
-    paypal:
-        version: '74.0'
-        currency_code: EUR
-        sandbox:
-            username: mimo.berlino-facilitator_api1.gmail.com
-            password: WQTYYURKZJ2VZZ8P
-            signature: AAIpGRmmcgCTmV.LsCEFZFtHFZvLACCzl1.GLXJTratF5TNZIMHLPsk1
-            endpoint_url: https://api-3T.sandbox.paypal.com/nvp
-            payment_url: https://www.sandbox.paypal.com/webscr?cmd=_express-checkout&useraction=commit&token=
-
 services:
     # default configuration for services in *this* file
     _defaults:
@@ -60,6 +50,12 @@ services:
         arguments: [~, App\Entity\Product, App\Controller\AdminController]
         tags:
             - { name: sonata.admin, manager_type: orm, label: 'Products' }
+        public: true
+
+    App\Admin\PageAdmin:
+        arguments: [~, App\Entity\Page, ~]
+        tags:
+            - { name: sonata.admin, manager_type: orm, label: 'Pages' }
         public: true
 
 

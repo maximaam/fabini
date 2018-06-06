@@ -35,6 +35,7 @@ class ProductHelper
 
             $raw = [
                 'title'     => $product->getTitle($locale),
+                'productNumber'     => $product->getProductNumber(),
                 //'slug'      => $product->getSlugFr(),
                 'quantity'  => $cart[$product->getId()]['quantity'],
                 //'size'      => $cart[$product->getId()]['size'],

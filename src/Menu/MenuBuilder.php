@@ -9,6 +9,7 @@
 namespace App\Menu;
 
 use App\Entity\Category;
+use App\Entity\Page;
 use App\Repository\CategoryRepository;
 use Knp\Menu\FactoryInterface;
 use Symfony\Component\HttpFoundation\RequestStack;
@@ -136,21 +137,18 @@ class MenuBuilder
 
         $locale = $this->request->getCurrentRequest()->getLocale();
 
-        $items = [
-            'de' => [
-                ['label' => 'Über uns', 'route' => 'about-us_de'],
-                ['label' => 'Impressum', 'route' => 'imprint_de'],
-                ['label' => 'Contact', 'route' => 'contact_de'],
-            ],
-            'en' => [
-                ['label' => 'About us', 'route' => 'about-us_en'],
-                ['label' => 'Imprint', 'route' => 'imprint_en'],
-                ['label' => 'Contact', 'route' => 'contact_en'],
-            ]
-        ];
+        $pages = $this->em->getRepository(Page::class)->findAll();
 
-        foreach ($items[$locale] as $key => $val) {
-            $menu->addChild($val['label'], ['route' => $val['route']]);
+        /** @var Page $page */
+        foreach ($pages as $page) {
+            $menu->addChild($page->getTitle($locale), [
+                'route' => 'app_index_page',
+                'attributes' => ['class' => ''],
+                'linkAttributes' => ['class' => ''],
+                'routeParameters' => [
+                    'slug' => $page->getSlug($locale),
+                ]
+            ]);
         }
 
         return $menu;

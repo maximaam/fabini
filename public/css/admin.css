@@ -39,6 +39,11 @@ body {
     top: 0;
 }
 
+ul[id$="_colors"] li {
+    min-width: 160px;
+    white-space: nowrap;
+}
+
 div[id$="_imagesList"] {
     background: #eee;
     padding: 10px;

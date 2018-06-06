@@ -47,7 +47,18 @@ use Symfony\Component\Form\FormEvents;
 class ProductAdmin extends AbstractAdmin
 {
 
-    protected static $colors = ['white', 'black', 'red', 'blue', 'green', 'yellow', 'pink', 'purple', 'brown', 'orange', 'grey'];
+    protected static $colors = [
+        'beige', 'white', 'black', 'gray', 'lightgray', 'darkgray', 'silver',
+        'red', 'tomato', 'orange', 'pink', 'rose',
+        'blue', 'darkblue',  'purple', 'violet',
+        'green', 'yellow', 'pink', 'purple',
+        'brown', 'nature brown', 'darkbrown',
+        'cognac', 'bordeaux', 'gold', 'champagne'
+    ];
+
+
+    protected static $sizes = ['XS', 'S', 'M', 'L', 'XL', 'XXL'];
+
 
     /**
      * Form configure
@@ -58,7 +69,7 @@ class ProductAdmin extends AbstractAdmin
     {
         /** @var Product $product */
         $product = $this->getSubject();
-
+        $colors = self::$colors;
 
         $formMapper
             ->add('category', EntityType::class, [
@@ -82,15 +93,30 @@ class ProductAdmin extends AbstractAdmin
             ->add('colors', ChoiceType::class, [
                 'choices' => array_combine(self::$colors, self::$colors),
                 'expanded'  => true,
-                'multiple'  => true
+                'multiple'  => true,
+                'choice_translation_domain' => 'messages',
+                'attr'  => [
+                    'class' => 'list-inline',
+                ],
+                'choice_attr' => function($choiceValue, $key, $value) {
+                    return [
+                        'title' => strtoupper($value),
+                        'data-color' => strtolower($key),
+                        ];
+                },
             ])
 
+            ->add('sizes', ChoiceType::class, [
+                'choices' => array_combine(self::$sizes, self::$sizes),
+                'expanded'  => true,
+                'multiple'  => true,
+                'attr'  => [
+                    'class' => 'list-inline',
+                ],
+            ])
 
             ->add('price')
             ->add('topItem')
-
-
-
 
             ->add('images', HiddenType::class, [
                 'attr' => [
@@ -127,24 +153,6 @@ class ProductAdmin extends AbstractAdmin
         ;
 
     }
-
-
-    /**
-     * @param Product $product
-     * @return string
-     */
-
-    /*
-    private function getImages(Product $product)
-    {
-        $ret = '';
-        foreach ($product->getImages() as $image) {
-            $ret .= $image->getImage() . '-';
-        }
-        return trim($ret, '-');
-    }
-    */
-
 
 
     /**
@@ -185,9 +193,7 @@ class ProductAdmin extends AbstractAdmin
                 'label' => 'Category'
             ])
             ->add('titleDe')
-            ->add('titleen')
-            //->add('title')
-            //->add('description')
+            ->add('titleEn')
             ->add('price')
 
             ->add('_action', null, [

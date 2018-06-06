@@ -19,9 +19,25 @@ label:
     back: Zurück
     show: Anzeigen
     cancel: Abrechen
-    confirm_delete: Löschen bestätigen?
     search: Suche
     logout: Abmelden
+    login: Anmelden
+    title: Titel
+    price-unit: Preis
+    price-total: Gesamtpreis
+    total-excl-tax: Summe
+    total-incl-tax: Zwischensumme (inlc. MwSt.)
+    vat: MwSt.
+    product-nummer: Produkt-Nummer
+
+Red: Rot
+
+
+routes:
+    about-us: ueber-uns
+
+msg:
+    confirm_delete: Löschen bestätigen?
 
 
 user:
@@ -39,10 +55,10 @@ user:
 
 cart:
     to-cart: In den Warenkorb
-    my-topnav: Mein Warenkorb:
+    my-cart: Mein Warenkorb
     pay-now: Jetzt mit PayPal zahlen!
     continue-shopping: Weiter einkaufen
-    buyer: Käufer
+    empty: Ihr Warenkorb ist leer
 
 nav:
     main:

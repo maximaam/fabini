@@ -8,14 +8,18 @@
 
 namespace App\Utils;
 
-
+/**
+ * Class StringHelper
+ * @package App\Utils
+ */
 class StringHelper
 {
+
     /**
      * @param $string
-     * @return mixed|string
+     * @return string
      */
-    public static function createSlug($string)
+    public static function createSlug($string): string
     {
         $string = str_replace(
             ['ß', 'ä', 'Ä', 'ü', 'Ü', 'ö', 'Ö', 'à', 'á', 'é', 'ô', 'ù', 'ú'],
@@ -24,6 +28,7 @@ class StringHelper
         $string = strtolower($string);
         $string = preg_replace("#[ \-\/\\\+\&]+#"," ",preg_replace("#[^ \-\/\+\\\&a-z0-9]#","",$string));
         $string = str_replace(" ","-", trim($string));
+
         if ('' === $string) {
             $string = '--';
         }

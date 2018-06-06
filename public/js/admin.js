@@ -145,6 +145,19 @@ appManager.imageUpload.deleteOrphans = function($context) {
     })
 };
 
+appManager.colorsList = function($context){
+    let $list = $("ul[id$='_colors']").find('li');
+
+    $list.each(function (index, item) {
+
+        let $item = $(item),
+            color = $item.find('input').data('color');
+        $item.css('border-left', '10px solid ' + color);
+    });
+
+
+};
+
 
 
 let helpers = {
@@ -169,7 +182,8 @@ $(document).ready(function() {
 
         appManager.imageUpload.upload($context);
         appManager.imageUpload.showOnUpdate($('.' + config.images.classes.names_input));
-        appManager.imageUpload.delete($context)
+        appManager.imageUpload.delete($context);
+        appManager.colorsList($context);
     };
 
     appManager.run();

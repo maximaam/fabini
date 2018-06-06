@@ -5,21 +5,18 @@ namespace App\Entity;
 use Doctrine\ORM\Mapping as ORM;
 use Doctrine\ORM\Mapping\Index;
 use Symfony\Component\Validator\Constraints as Assert;
+use App\Utils\StringHelper;
 
 /**
- * @ORM\Table(indexes={@Index(name="idx_product_name", columns={"product_name"})})
- * @ORM\Entity(repositoryClass="App\Repository\ProductRepository")
+ * @ORM\Table(indexes={
+ *     @Index(name="idx_slug_de", columns={"slug_de"}),
+ *     @Index(name="idx_slug_en", columns={"slug_en"}),
+ * })
+ * @ORM\Entity(repositoryClass="App\Repository\PageRepository")
  * @ORM\HasLifecycleCallbacks
- *
  */
-class Product
+class Page
 {
-    /**
-     * Images stored as string, separated with -
-     */
-    const IMG_SEPARATOR = '-';
-
-
     /**
      * @ORM\Id
      * @ORM\GeneratedValue
@@ -45,23 +42,7 @@ class Product
      * @var string
      *
      * @Assert\NotBlank()
-     * @ORM\Column(length=128)
-     */
-    private $productNumber;
-
-    /**
-     * @var string
-     *
-     * @Assert\NotBlank()
-     * @ORM\Column(length=128)
-     */
-    private $productName;
-
-    /**
-     * @var string
-     *
-     * @Assert\NotBlank()
-     * @ORM\Column(type="string", length=255)
+     * @ORM\Column(type="string", length=32, unique=true)
      */
     private $titleDe;
 
@@ -69,7 +50,7 @@ class Product
      * @var string
      *
      * @Assert\NotBlank()
-     * @ORM\Column(type="string", length=255)
+     * @ORM\Column(type="string", length=32, unique=true)
      */
     private $titleEn;
 
@@ -90,49 +71,18 @@ class Product
     private $descriptionEn;
 
     /**
-     * @var array
+     * @var string
      *
-     * @Assert\NotBlank()
-     * @ORM\Column(type="simple_array")
+     * @ORM\Column(type="string", length=255)
      */
-    private $colors;
-
-    /**
-     * @var array
-     *
-     * @Assert\NotBlank()
-     * @ORM\Column(type="simple_array", nullable=true)
-     */
-    private $sizes;
-
-    /**
-     * @var float
-     *
-     * @Assert\NotBlank()
-     * @ORM\Column(type="decimal", scale=2)
-     */
-    private $price;
-
-    /**
-     * @var boolean
-     *
-     * @ORM\Column(type="boolean")
-     */
-    private $topItem;
-
-    /**
-     * @ORM\ManyToOne(targetEntity="Category", inversedBy="products")
-     * @ORM\JoinColumn(nullable=false)
-     */
-    private $category;
+    private $slugDe;
 
     /**
      * @var string
      *
-     * @Assert\NotBlank()
-     * @ORM\Column(type="text")
+     * @ORM\Column(type="string", length=255)
      */
-    private $images;
+    private $slugEn;
 
     /**
      * Product constructor
@@ -193,42 +143,6 @@ class Product
     public function setUpdatedAt(\DateTimeInterface $updatedAt): self
     {
         $this->updatedAt = $updatedAt;
-        return $this;
-    }
-
-    /**
-     * @return string
-     */
-    public function getProductNumber(): ?string
-    {
-        return $this->productNumber;
-    }
-
-    /**
-     * @param string $product
-     * @return $this
-     */
-    public function setProductNumber(string $product): self
-    {
-        $this->productNumber = $product;
-        return $this;
-    }
-
-    /**
-     * @return string
-     */
-    public function getProductName(): ?string
-    {
-        return $this->productName;
-    }
-
-    /**
-     * @param string $product
-     * @return $this
-     */
-    public function setProductName(string $product): self
-    {
-        $this->productName = $product;
         return $this;
     }
 
@@ -306,135 +220,72 @@ class Product
     }
 
     /**
-     * @param $locale
+     * @param string $locale
      * @return null|string
      */
-    public function getTitle($locale): ?string
+    public function getTitle(string $locale): ?string
     {
         $key = __FUNCTION__.ucfirst($locale);
         return $this->$key();
     }
 
     /**
-     * @param $locale
+     * @param string $locale
      * @return null|string
      */
-    public function getDescription($locale): ?string
+    public function getDescription(string $locale): ?string
     {
         $key = __FUNCTION__.ucfirst($locale);
         return $this->$key();
     }
 
     /**
-     * @return array
+     * @return string
      */
-    public function getColors(): ?array
+    public function getSlugDe(): string
     {
-        return $this->colors;
+        return $this->slugDe;
     }
-
     /**
-     * @param array $colors
-     * @return $this
+     * @ORM\PrePersist
+     * @return Page
      */
-    public function setColors(array $colors): self
+    public function setSlugDe(): self
     {
-        $this->colors = $colors;
-        return $this;
-    }
-
-    /**
-     * @return array
-     */
-    public function getSizes(): ?array
-    {
-        return $this->sizes;
-    }
-
-    /**
-     * @param array $sizes
-     * @return $this
-     */
-    public function setSizes(array $sizes): self
-    {
-        $this->sizes = $sizes;
-        return $this;
-    }
-
-
-
-    /**
-     * @return float
-     */
-    public function getPrice(): ?float
-    {
-        return $this->price;
-    }
-
-    /**
-     * @param float $price
-     * @return $this
-     */
-    public function setPrice(float $price): self
-    {
-        $this->price = $price;
-        return $this;
-    }
-
-    /**
-     * @return Category
-     */
-    public function getCategory(): ?Category
-    {
-        return $this->category;
-    }
-
-    /**
-     * @param Category $category
-     * @return $this
-     */
-    public function setCategory(Category $category): self
-    {
-        $this->category = $category;
+        $this->slugDe = StringHelper::createSlug($this->getTitleDe());
         return $this;
     }
 
     /**
      * @return string
      */
-    public function getImages(): ?string
+    public function getSlugEn(): string
     {
-        return $this->images;
+        return $this->slugEn;
     }
 
+
     /**
-     * @param string $images
-     * @return $this
+     * @ORM\PrePersist
+     * @return Page
      */
-    public function setImages(string $images): self
+    public function setSlugEn(): self
     {
-        $this->images = $images;
+        $this->slugEn = StringHelper::createSlug($this->getTitleEn());
         return $this;
     }
 
     /**
-     * @return bool
+     * @param string $locale
+     * @return string
      */
-    public function isTopItem(): ?bool
+    public function getSlug(string $locale): string
     {
-        return $this->topItem;
+        $key = __FUNCTION__.ucfirst($locale);
+        return $this->$key();
     }
 
-    /**
-     * @param bool $topItem
-     * @return $this
-     *
-     */
-    public function setTopItem(bool $topItem): self
-    {
-        $this->topItem = $topItem;
-        return $this;
-    }
+
 
 
 }

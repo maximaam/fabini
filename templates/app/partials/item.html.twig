@@ -6,14 +6,18 @@
 }) %}
 
 <div class="col-6 col-lg-4">
-    <div class="single-item">
-        <h2>{{ product.title(app.request.locale) }}</h2>
+    <div class="card single-item">
         {% set imgSeparator = constant('App\\Entity\\Product::IMG_SEPARATOR') %}
+        <img class="card-img-top" src="{{ asset('/images/products/' ~ product.images|trim(imgSeparator)|split(imgSeparator)|first ) }}">
 
-        <img src="{{ asset('/images/products/' ~ product.images|trim(imgSeparator)|split(imgSeparator)|first ) }}">
-
-        <p>{{ 'label.price'|trans }}: {{ product.price }} €</p>
-        <a href="{{ itemUrl }}" class="btn btn-primary">{{ 'label.details'|trans }}</a>
+        <div class="card-body">
+            <h2>{{ product.title(app.request.locale) }}</h2>
+            <p class="card-text">
+                {{ 'label.price'|trans }}: {{ product.price }} €
+            </p>
+            <p class="card-text">
+                <a href="{{ itemUrl }}" class="btn btn-primary">{{ 'label.more'|trans }}</a>
+            </p>
+        </div>
     </div>
-
 </div>
