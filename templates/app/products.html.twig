@@ -7,7 +7,7 @@
                     {{ knp_menu_render('subCategory') }}
 
                     <p>
-                        {{ category.description(app.request.locale) }}
+                        {{ category.description(app.request.locale)|raw }}
                     </p>
                 </div>
 
