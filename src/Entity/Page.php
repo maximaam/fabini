@@ -8,10 +8,6 @@ use Symfony\Component\Validator\Constraints as Assert;
 use App\Utils\StringHelper;
 
 /**
- * @ORM\Table(indexes={
- *     @Index(name="idx_slug_de", columns={"slug_de"}),
- *     @Index(name="idx_slug_en", columns={"slug_en"}),
- * })
  * @ORM\Entity(repositoryClass="App\Repository\PageRepository")
  * @ORM\HasLifecycleCallbacks
  */
