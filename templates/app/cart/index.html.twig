@@ -21,9 +21,10 @@
                         <thead>
                             <tr>
                                 <th>{{ 'label.title'|trans }}</th>
-                                <th>{{ 'label.product-nummer'|trans }}</th>
-                                <th>{{ 'label.quantity'|trans }}</th>
+                                <th>{{ 'label.product-number'|trans }}</th>
                                 <th>{{ 'label.color'|trans }}</th>
+                                <th>{{ 'label.size'|trans }}</th>
+                                <th>{{ 'label.quantity'|trans }}</th>
                                 <th>{{ 'label.price-unit'|trans }}</th>
                                 <th>{{ 'label.price-total'|trans }}</th>
                                 <th></th>
@@ -36,8 +37,9 @@
                             <tr>
                                 <td>{{ product.title }}</td>
                                 <td>{{ product.productNumber }}</td>
+                                <td>{{ product.color|trans }}</td>
+                                <td>{{ product.size }}</td>
                                 <td>{{ product.quantity }}</td>
-                                <td>{{ product.color }}</td>
                                 <td>{{ product.price|number_format(2, ',', '.') }} <i class="fa fa-eur"></i></td>
                                 <td>{{ product.fullPrice|number_format(2, ',', '.') }} <i class="fa fa-eur"></i></td>
                                 <td>
@@ -80,36 +82,44 @@
                                     <div id="paypal-button"></div>
 
                                     <script>
-                                        /*paypal.Button.render({
+                                        paypal.Button.render({
 
                                             env: 'sandbox', // sandbox | production
 
                                             // PayPal Client IDs - replace with your own
                                             // Create a PayPal app: https://developer.paypal.com/developer/applications/create
                                             client: {
-                                                sandbox:'AU2UsWsDse07nxoHo2OVBBvBmliBIfqQHAW1C4Sn0BIkRp0OFUSSXWD7SArUDbMHkENr4SLPbgb2Z-B9',
-                                                production:'ASxd07fk5KrTp4W0PK0cWUMaD2_s2fvdfP5QBInepB7mjJUxWnwgfy3tNOIVwasFLVD8HIvtIvt-tEth'
+                                                sandbox:'Ac0fAc4OEB3v6EBakEo6KQcFoIhmJwsrnvCDFuydXCzQZoDQPVEkaFvxwxJ_fWo6ABTHt0UY370CXPs6',
+                                                production:'Ad6WCjJRMUK7XMKUO4VUWKWbJKlZCHI_XwSqpgGYmJlizc2X9l-vsKaZ-aIE4deyPT88nLiZngHZmApE'
                                             },
 
                                             // Show the buyer a 'Pay Now' button in the checkout flow
                                             //commit: true,
 
+                                            locale: '{{ app.request.locale == 'de'  ? 'de_DE' }}',
+
                                             style: {
                                                 color: 'gold',
-                                                size: 'large'
+                                                size: 'responsive',
+                                                locale: 'de_DE'
                                             },
 
                                             // payment() is called when the button is clicked
                                             payment: function(data, actions) {
 
                                                 // Make a call to the REST api to create the payment
-                                                var SETEC_URL = "{{ path('app_cart_initpayment') }}";
-
-                                                return paypal.request.post(SETEC_URL).then(function(res) {
-                                                    alert(res);
-                                                    return;
-
-                                                    //return res.token;
+                                                return actions.payment.create({
+                                                    payment: {
+                                                        transactions: [
+                                                            {
+                                                                amount: { total: '{{ totals.total }}', currency: 'EUR' }
+                                                            }
+                                                        ],
+                                                        redirect_urls: {
+                                                            return_url: '{{ path("app_cart_confirm-payment") }}',
+                                                            cancel_url: '{{ path("app_cart_cancel-payment") }}'
+                                                        }
+                                                    }
                                                 });
                                             },
 
@@ -117,31 +127,30 @@
                                             onAuthorize: function(data, actions) {
                                                 //return actions.redirect();
 
-                                                // Make a call to the REST api to execute the payment
-                                                return actions.payment.execute().then(function() {
-                                                    window.alert('Payment Complete!');
+                                                return actions.payment.get().then(function(paymentDetails) {
+
+                                                    $.post('{{ path("app_cart_create-payment") }}', {paymentDetails: paymentDetails})
+                                                        .done(function( status ) {
+                                                            return actions.payment.execute().then(function() {
+                                                                actions.redirect();
+                                                            });
+                                                        });
                                                 });
                                             },
+
                                             onCancel: function(data, actions) {
-                                                /!*
-                                                 * Buyer cancelled the payment
-                                                 *!/
+                                                actions.redirect();
                                             },
+
                                             onError: function(err) {
-                                                /!*
+                                                /*
                                                  * An error occurred during the transaction
-                                                 *!/
+                                                 */
                                             }
 
-                                        }, '#paypal-button');*/
+                                        }, '#paypal-button');
 
                                     </script>
-
-
-
-                                    <a href="{{ path('app_cart_initpayment') }}" class="btn btn-paypal">
-                                        {{ 'cart.pay-now'|trans }}
-                                    </a>
 
 
 

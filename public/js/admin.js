@@ -104,11 +104,21 @@ appManager.imageUpload.delete = function($context) {
         */
 
         let $this = $(this),
-            url = config.images.delete_uri + '?filename=' + $this.data('filename') + '&pk=' + $this.data('pk');
+            filename = $this.data('filename'),
+            url = config.images.delete_uri + '?filename=' + filename + '&pk=' + $this.data('pk');
 
         $.get(url, function(response) {
             if (response === 'success') {
                 $this.parent().fadeOut(function () {
+
+                    let $namesList = $('.' + config.images.classes.names_input),
+                        $tmpNamesList = $('.' + config.images.classes.tmp_names_input),
+                        namesListVal = $namesList.val(),
+                        tmpNamesListVal = $tmpNamesList.val();
+
+                    $namesList.val(namesListVal.replace(filename + config.images.names_separator, ''));
+                    $tmpNamesList.val(tmpNamesListVal.replace(filename + config.images.names_separator, ''));
+
                     $(this).remove();
                 });
 
@@ -140,9 +150,7 @@ appManager.imageUpload.deleteOrphans = function($context) {
         if (tmpNamesListVal.length > 0) {
 
         }
-
-
-    })
+    });
 };
 
 appManager.colorsList = function($context){
@@ -153,6 +161,14 @@ appManager.colorsList = function($context){
         let $item = $(item),
             color = $item.find('input').data('color');
         $item.css('border-left', '10px solid ' + color);
+    });
+};
+
+appManager.submitForm = function($context){
+    let $form = $context.find('form');
+
+    $form.on('submit', function () {
+       alert('ok');
     });
 
 

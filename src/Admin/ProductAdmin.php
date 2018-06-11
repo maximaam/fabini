@@ -27,7 +27,7 @@ use Doctrine\ORM\EntityManager;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType,
     Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\Form\Extension\Core\Type\{
-    HiddenType, UrlType, FileType, ChoiceType, EmailType, TextareaType, FormType, CollectionType
+    HiddenType, UrlType, FileType, ChoiceType, MoneyType, TextareaType, FormType, CollectionType
 };
 
 use Sonata\CoreBundle\Form\Type\CollectionType as SonataCollectionType;
@@ -46,17 +46,21 @@ use Symfony\Component\Form\FormEvents;
  */
 class ProductAdmin extends AbstractAdmin
 {
-
+    /**
+     * @var array
+     */
     protected static $colors = [
-        'beige', 'white', 'black', 'gray', 'lightgray', 'darkgray', 'silver',
-        'red', 'tomato', 'orange', 'pink', 'rose',
-        'blue', 'darkblue',  'purple', 'violet',
-        'green', 'yellow', 'pink', 'purple',
-        'brown', 'nature brown', 'darkbrown',
-        'cognac', 'bordeaux', 'gold', 'champagne'
+        'white', 'silver', 'gray', 'black',
+        'beige', 'yellow', 'gold', 'orange', 'red',
+        'pink', 'violet', 'fuchsia', 'purple',
+        'lightblue', 'blue', 'darkblue',
+        'green', 'lightgreen',
+        'burlywood', 'brown', 'maroon', 'darkred',
     ];
 
-
+    /**
+     * @var array
+     */
     protected static $sizes = ['XS', 'S', 'M', 'L', 'XL', 'XXL'];
 
 
@@ -77,6 +81,7 @@ class ProductAdmin extends AbstractAdmin
                 'required'      => true,
                 'class'         => Category::class,
                 'choice_label'  => 'nameWithSubCat',
+                'choice_translation_domain' => 'messages',
                 'query_builder' => function (CategoryRepository $category) {
                     return $category->fetchChildren();
                 },
@@ -108,6 +113,7 @@ class ProductAdmin extends AbstractAdmin
 
             ->add('sizes', ChoiceType::class, [
                 'choices' => array_combine(self::$sizes, self::$sizes),
+                'required'  => false,
                 'expanded'  => true,
                 'multiple'  => true,
                 'attr'  => [
@@ -115,7 +121,7 @@ class ProductAdmin extends AbstractAdmin
                 ],
             ])
 
-            ->add('price')
+            ->add('price', MoneyType::class)
             ->add('topItem')
 
             ->add('images', HiddenType::class, [
@@ -195,6 +201,7 @@ class ProductAdmin extends AbstractAdmin
             ->add('titleDe')
             ->add('titleEn')
             ->add('price')
+            ->add('topItem')
 
             ->add('_action', null, [
                 'actions' => [
@@ -217,9 +224,17 @@ class ProductAdmin extends AbstractAdmin
             ])
 
             ->add('titleDe')
+            ->add('titleEn')
             ->add('descriptionDe', null, [
-                'safe' => true
+                'safe' => true //Allow html
             ])
+            ->add('descriptionEn', null, [
+                'safe' => true //Allow html
+            ])
+            ->add('price', MoneyType::class)
+            //->add('colors')
+            //->add('sizes')
+            ->add('topItem')
         ;
     }
 

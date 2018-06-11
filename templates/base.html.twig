@@ -40,7 +40,7 @@
                         <div class="user-cart form-inline mt-2 mt-md-0">
                             {% set cartItems = app.session.get('cart')|length %}
 
-                            <a href="{{ path('app_cart_index') }}" class="cart" title="{{ 'cart.my-topnav'|trans }} {{ cartItems }}">
+                            <a href="{{ path('app_cart_index') }}" class="cart" title="{{ 'cart.my-cart'|trans }} {{ cartItems }}">
                                 <span {{ cartItems > 0 ? 'class="active"'}}>{{ cartItems }}</span>
                                 <i class="fa fa-shopping-cart"></i>
                             </a>

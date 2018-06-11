@@ -21,3 +21,4 @@
 ###< symfony/web-server-bundle ###
 
 dploy.yaml
+.idea

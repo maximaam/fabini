@@ -3,12 +3,14 @@ label:
     welcome:
         title: Willkommen bei FABINI
         sub-title: Leder aus Leidenschafft!
-        desc: Fabini ist ein Unternehmen mit sitzt in Berlin, was sich besonders in Leder spazielisiert hat. Ob Damenportemonnaies, Kellnerportemonnaies, Schlüsseltaschen...
+        desc: |
+            Fabini ist ein Unternehmen mit sitzt in Berlin, was sich besonders in Leder spazielisiert hat.
+            Ob Damenportemonnaies, Kellnerportemonnaies, Schlüsseltaschen...
     top-products: Top Produkte
     details: Details anzeigen
     price: Preis
     color: Farbe
-    colors: Farben
+    size: Größe
     quantity: Menge
     colors-set:
         white: Weiss
@@ -28,9 +30,35 @@ label:
     total-excl-tax: Summe
     total-incl-tax: Zwischensumme (inlc. MwSt.)
     vat: MwSt.
-    product-nummer: Produkt-Nummer
+    product-number: Produkt-Nummer
+    product-name: Produkt-Name
+    colors-available: Farben
+    sizes-available: Größen
 
-Red: Rot
+red: Rot
+white: Weiss
+yellow: Gelb
+gray: Grau
+silver: Silber
+
+burlywood: Naturbraun
+brown: Braun
+maroon: Cognac
+darkred: Bordeaux
+black: Schwarz
+green: Grün
+lightgreen: Hellgrün
+blue: Blau
+lightblue: Hellblau
+darkblue: Dunkelblau
+pink: Rose
+violet: Lila
+purple: Violett
+fuchsia: Fuchsia
+beige: Beige
+gold: Gold
+orange: Orange
+
 
 
 routes:
@@ -38,6 +66,8 @@ routes:
 
 msg:
     confirm_delete: Löschen bestätigen?
+    no_products_in_category: Zurzeit keine Ware in dieser Kategorie
+    thanks-for-order: Vielen Dank für Ihre Bestellung
 
 
 user:
@@ -59,6 +89,8 @@ cart:
     pay-now: Jetzt mit PayPal zahlen!
     continue-shopping: Weiter einkaufen
     empty: Ihr Warenkorb ist leer
+    order-overview: Bestellung Übersicht
+    paypal-shipping-address: PayPal Liferadresse
 
 nav:
     main:

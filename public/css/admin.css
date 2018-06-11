@@ -3,6 +3,10 @@ body {
     font-family: Arial, Helvetica, sans-serif;
 }
 
+textarea {
+    height: 200px !important;
+}
+
 .uploaded-images-container {
     overflow: hidden;
     margin-bottom: 20px;
@@ -58,4 +62,10 @@ div[id$="_imagesList"] input {
     margin-bottom: 20px;
     width: 100%;
     color: #333;
+}
+
+div[id^="sonata-ba-field-container-"] {
+    margin-bottom: 20px;
+    padding: 5px;
+    background: #eee;
 }

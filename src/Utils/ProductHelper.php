@@ -10,10 +10,18 @@ namespace App\Utils;
 
 use App\Entity\Product;
 
+
+/**
+ * Class ProductHelper
+ * @package App\Utils
+ */
 class ProductHelper
 {
 
-    const VAT = 20;
+    /**
+     * Tex
+     */
+    const VAT = 19;
 
 
     /**
@@ -21,6 +29,7 @@ class ProductHelper
      *
      * @param array $products
      * @param array $cart
+     * @param $locale
      * @return array
      */
     public static function computeCard(array $products, array $cart, $locale)
@@ -38,7 +47,7 @@ class ProductHelper
                 'productNumber'     => $product->getProductNumber(),
                 //'slug'      => $product->getSlugFr(),
                 'quantity'  => $cart[$product->getId()]['quantity'],
-                //'size'      => $cart[$product->getId()]['size'],
+                'size'      => $cart[$product->getId()]['size'],
                 'color'      => $cart[$product->getId()]['color'],
                 'price'     => $product->getPrice(),
                 'fullPrice' => $fullPrice

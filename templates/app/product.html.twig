@@ -49,10 +49,20 @@
                                     <h2>{{ 'label.product-name'|trans }}: {{ product.productName }}</h2>
                                 {% endif %}
                                 <p>{{ product.description(locale)}}</p>
-
+                                <hr>
                                 <ul>
                                     <li>{{ 'label.product-number'|trans }}: {{ product.productNumber }}</li>
-                                    <li>{{ 'label.price'|trans }}: {{ product.price }}</li>
+
+                                    <li>{{ 'label.colors-available'|trans }}:
+                                        {% for color in product.colors %}
+                                            {{ color|trans }} -
+                                        {% endfor %}
+                                    </li>
+
+                                    {% if  product.sizes|length > 0 %}
+                                        <li>{{ 'label.sizes-available'|trans }}: {{ product.sizes|join(', ') }}</li>
+                                    {% endif %}
+                                    <li>{{ 'label.price'|trans }}: {{ product.price }} EUR</li>
                                 </ul>
                             </div>
 
@@ -64,13 +74,27 @@
                                     <div class="form-group">
                                         <label for="product-color">
                                             <select id="product-color" name="color" size="1" class="form-control custom-select form-control-lg" required>
-                                                <option value="">--- {{ 'label.colors'|trans }} ---</option>
+                                                <option value="">--- {{ 'label.colors-available'|trans }} ---</option>
                                                 {% for color in product.colors %}
-                                                    <option value="{{ color }}">{{ ('label.colors-set.' ~ color)|trans }}</option>
+                                                    <option value="{{ color }}">{{ color|trans }}</option>
                                                 {% endfor %}
                                             </select>
                                         </label>
                                     </div>
+
+                                    {% if  product.sizes|length > 0 %}
+                                        <div class="form-group">
+                                            <label for="product-color">
+                                                <select id="product-size" name="size" size="1" class="form-control custom-select form-control-lg">
+                                                    <option value="">--- {{ 'label.sizes-available'|trans }} ---</option>
+                                                    {% for size in product.sizes %}
+                                                        <option value="{{ size }}">{{ size }}</option>
+                                                    {% endfor %}
+                                                </select>
+                                            </label>
+                                        </div>
+
+                                    {% endif %}
 
                                     <div class="form-group">
                                         <label for="product-quantity">

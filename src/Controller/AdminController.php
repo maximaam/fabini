@@ -41,7 +41,7 @@ class AdminController extends SonataCRUDController
 
             if (!empty($images)) {
                 foreach ($images as $image) {
-                    $file = $this->getParameter('product_images') . DIRECTORY_SEPARATOR . $image;
+                    $file = $this->getParameter('product_images_dir') . DIRECTORY_SEPARATOR . $image;
                     if (file_exists($file)) {
                         unlink($file);
                     }

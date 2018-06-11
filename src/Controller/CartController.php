@@ -3,13 +3,17 @@
 namespace App\Controller;
 
 
+use App\Entity\Payment;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
-use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\{Request, Response};
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 use App\Utils\ProductHelper;
 use App\Service\Paypal;
+use Symfony\Component\HttpKernel\Exception\BadRequestHttpException;
+use Doctrine\Common\Collections\ArrayCollection;
+use Symfony\Bundle\FrameworkBundle\Validator;
 
 use App\Entity\Product;
 
@@ -95,141 +99,74 @@ class CartController extends Controller
     }
 
     /**
-     * @Route("/init-payment")
-     * @Security("is_granted('IS_AUTHENTICATED_REMEMBERED')")
-     *
-     *
+     * @Route("/create-payment", name="app_cart_create-payment")
      * @param Request $request
-     * @param Paypal $paypal
-     * @return \Symfony\Component\HttpFoundation\RedirectResponse
-     * @throws \Exception
+     *
+     * @return \Symfony\Component\HttpFoundation\RedirectResponse|Response
      */
-    public function initPayment(Request $request, Paypal $paypal)
+    public function createPayment(Request $request): Response
     {
-        $products = $this->getProductsFromSession();
+        $paymentDetails = $request->request->get('paymentDetails');
 
-        if (empty($products)) {
-            return $this->redirectToRoute('app_index_index');
+        if (!$paymentDetails) {
+            $this->redirectToRoute('app_index_index');
         }
 
-        $products = ProductHelper::computeCard($products, $this->get('session')->get('cart'), $request->getLocale());
-        $options = [
-            'return_url'      => $this->generateUrl('app_cart_confirmpayment', [], 0),
-            'cancel_url'    => $this->generateUrl('app_cart_index', [], 0)
-        ];
+        $payment = new Payment();
+        $payment->setStatus(Payment::STATUS_INIT)
+            ->setPaymentId($paymentDetails['id'])
+            ->setPaypalPaymentDetails($paymentDetails)
+            ->setProductsIds($this->getProductsIds());
 
-        if ($checkoutUrl = $paypal->getExpressCheckoutUrl($products, $options, Paypal::ENV_SANDBOX)) {
-            return $this->redirect($checkoutUrl);
-        }
+        $em = $this->getDoctrine()->getManager();
 
-        throw new \Exception('Error');
+        $em->persist($payment);
+        $em->flush();
+
+        return new Response('success');
     }
 
     /**
-     * @Route("/confirm-payment")
-     *
+     * @Route("/confirm-payment", name="app_cart_confirm-payment")
      * @param Request $request
-     * @return \Symfony\Component\HttpFoundation\Response
-     * @throws \Exception
+     *
+     * @return Response
      */
     public function confirmPayment(Request $request)
     {
-        $token = $request->query->get('token');
-        $payerId = $request->query->get('PayerID');
+        $paymentId = $request->query->get('paymentId');
+        $cart = $this->get('session')->get('cart');
 
-
-        dump($token); die;
-
-        if ($token && $payerId) {
-            $products = $this->getProductsFromSession();
-            $cart = $this->get('session')->get('cart');
-            $productsData = ProductHelper::computeCard($products, $cart, $request->getLocale());
-
-            $params = [
-                'METHOD'	=> 'DoExpressCheckoutPayment',
-                'VERSION'	=> $this->container->getParameter('paypal.version'),
-                'PAYMENTACTION'					=> 'Sale',
-
-                'USER'		=> $this->container->getParameter('paypal.sandbox.username'),
-                'PWD'		=> $this->container->getParameter('paypal.sandbox.password'),
-                'SIGNATURE'	=> $this->container->getParameter('paypal.sandbox.signature'),
-
-                'PAYMENTREQUEST_0_CURRENCYCODE' => $this->container->getParameter('paypal.currency_code'),
-                'PAYMENTREQUEST_0_AMT' => $productsData['totals']['total'],
-
-                'TOKEN'							=> $token,
-                'PAYERID'						=> $payerId,
-            ];
-
-            $params = http_build_query($params);
-            $url = $this->container->getParameter('paypal.sandbox.endpoint_url') . '?' . $params;
-
-            $response = Unirest\Request::get($url);
-
-            $response = $response->body;
-            $response_params = [];
-            parse_str($response, $response_params);
-
-            if ($response_params['ACK'] == 'Success') {
-                $this->get('session')->set('cart', []); //Empty session cart
-
-                $em = $this->getDoctrine()->getManager();
-
-                $ordering = new Ordering;
-                $ordering->setUser($this->getUser());
-                $ordering->setTotals($productsData['totals']);
-                $ordering->setPaymentPayerId($payerId);
-                $ordering->setPaymentToken($token);
-                $ordering->setPaymentStatus($response_params['PAYMENTINFO_0_PAYMENTSTATUS']);
-                $ordering->setPaymentType($response_params['PAYMENTINFO_0_PAYMENTTYPE']);
-                $ordering->setPaymentTransactionId($response_params['PAYMENTINFO_0_TRANSACTIONID']);
-                $ordering->setPaymentTransactionType($response_params['PAYMENTINFO_0_TRANSACTIONTYPE']);
-                $ordering->setPaymentCorrelationId($response_params['CORRELATIONID']);
-                $ordering->setPaymentAmount($response_params['PAYMENTINFO_0_AMT']);
-                $ordering->setPaymentFee($response_params['PAYMENTINFO_0_FEEAMT']);
-                $ordering->setPaymentTax($response_params['PAYMENTINFO_0_TAXAMT']);
-                $ordering->setPaymentCurrencyCode($response_params['PAYMENTINFO_0_CURRENCYCODE']);
-
-                foreach ($products as $product) {
-                    $orderingProduct = new OrderingProduct;
-                    $orderingProduct->setProduct($product);
-                    $orderingProduct->setOrdering($ordering);
-
-                    unset($productsData[$product->getId()]['products']['slug']); //Not necessary
-                    $orderingProduct->setAttributes($productsData['products'][$product->getId()]);
-
-                    $ordering->addOrderingProduct($orderingProduct);
-                }
-
-                $em->persist($ordering);
-                $em->flush();
-
-                $orderingUrl = $this->generateUrl('app_user_orderings', [], 0);
-
-                $mailSubject = $this->get('translator')->trans('payment.mail.subject');
-                $mailBody = $this->get('translator')->trans('payment.mail.body', [
-                    '%ordering_url%' => '<a href="'.$orderingUrl.'">'.$orderingUrl.'</a>',
-                    '%buyer_name%' => $ordering->getUser()->getName(),
-                ]);
-
-                $message = \Swift_Message::newInstance($mailSubject)
-                    ->setFrom($this->container->getParameter('mailer_user'))
-                    ->setTo($ordering->getUser()->getEmail())
-                    ->setBody(nl2br($mailBody), 'text/html');
-
-                try {
-                    $this->get('mailer')->send($message);
-                } catch (\Exception $e) {
-                    //do nothing
-                }
-
-                return $this->render('cart/confirmPayment.html.twig', [
-                    'payment_url' => $this->container->getParameter('paypal.sandbox.payment_url') . $response_params['TOKEN']
-                ]);
-            }
-
-            throw new \Exception('PayPal Error');
+        if (!$paymentId || empty($cart)) {
+            return $this->redirectToRoute('app_index_index');
         }
+
+        /** @var Payment $payment */
+        $payment = $this->getDoctrine()->getRepository(Payment::class)
+            ->findOneBy(['paymentId' => $paymentId]);
+
+        $payment->setStatus(Payment::STATUS_CONFIRM);
+
+        $this->getDoctrine()->getManager()->flush();
+
+        $products = $this->getProductsFromSession();
+        $this->get('session')->set('cart', []); //Empty session cart
+
+        return $this->render('app/cart/confirmPayment.html.twig', [
+            'cart'  => ProductHelper::computeCard($products, $cart, $request->getLocale()),
+            'payment'   => $payment
+        ]);
+    }
+
+    /**
+     * @Route("/cancel-payment", name="app_cart_cancel-payment")
+     * @param Request $request
+     *
+     * @return \Symfony\Component\HttpFoundation\RedirectResponse|Response
+     */
+    public function cancelPayment(Request $request): Response
+    {
+        return new Response('success');
     }
 
 
@@ -237,6 +174,17 @@ class CartController extends Controller
      * @return Product[]
      */
     private function getProductsFromSession()
+    {
+        return $this->getDoctrine()
+            ->getManager()
+            ->getRepository(Product::class)
+            ->findByIds($this->getProductsIds());
+    }
+
+    /**
+     * @return array
+     */
+    private function getProductsIds()
     {
         $session = $this->get('session');
 
@@ -246,10 +194,7 @@ class CartController extends Controller
 
         $cart = $session->get('cart');
 
-        $em = $this->getDoctrine()->getManager();
-        $products = $em->getRepository(Product::class)->findByIds(array_keys($cart));
-
-        return $products;
+        return array_keys($cart);
     }
 
 }

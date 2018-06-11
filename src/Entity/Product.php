@@ -52,8 +52,7 @@ class Product
     /**
      * @var string
      *
-     * @Assert\NotBlank()
-     * @ORM\Column(length=128)
+     * @ORM\Column(length=128, nullable=true)
      */
     private $productName;
 
@@ -100,10 +99,10 @@ class Product
     /**
      * @var array
      *
-     * @Assert\NotBlank()
      * @ORM\Column(type="simple_array", nullable=true)
      */
     private $sizes;
+
 
     /**
      * @var float
@@ -344,7 +343,7 @@ class Product
     }
 
     /**
-     * @return array
+     * @return array|null
      */
     public function getSizes(): ?array
     {

@@ -5,7 +5,7 @@
         <div class="container">
             <h1 class="display-4">{{ 'label.welcome.title'|trans }}</h1>
             <h2>{{ 'label.welcome.sub-title'|trans }}</h2>
-            <p>{{ 'label.welcome.desc'|trans }}</p>
+            <p>{{ 'label.welcome.desc'|trans|nl2br }}</p>
             <p><a class="btn btn-primary btn-lg" href="{{ path('app_index_page', {slug: 'routes.about-us'|trans}) }}" role="button">{{ 'label.more'|trans }} »</a></p>
         </div>
     </div>
