@@ -178,7 +178,6 @@ class CartController extends Controller
         $payment->setStatus(Payment::STATUS_CONFIRM);
         $this->getDoctrine()->getManager()->flush();
 
-
         $productsDetails = ProductHelper::computeCard(
             $this->getProductsFromSession(),
             $cart,
@@ -192,11 +191,17 @@ class CartController extends Controller
         );
 
         $message = (new \Swift_Message($translator->trans('payment.email-subject')))
-            ->setFrom($this->container->getParameter('mailer_from'))
+            ->setFrom($this->container->getParameter('mailer_from'), 'FABINI-REZ.com')
+            ->setTo('mimoberlino@gmail.com')
+            ->setBody($body, 'text/html');
+
+        $messageAdmin = (new \Swift_Message('Verkauf bei FABINI-REZ.com - Kopie von EMail'))
+            ->setFrom($this->container->getParameter('mailer_from'), 'FABINI-REZ.com')
             ->setTo('mimoberlino@gmail.com')
             ->setBody($body, 'text/html');
 
         $mailer->send($message);
+        $mailer->send($messageAdmin);
 
         $this->get('session')->set('cart', []); //Empty session cart
 
