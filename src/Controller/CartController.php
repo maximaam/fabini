@@ -8,12 +8,9 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Symfony\Component\HttpFoundation\{Request, Response};
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 use App\Utils\ProductHelper;
-use App\Service\Paypal;
-use Symfony\Component\HttpKernel\Exception\BadRequestHttpException;
-use Doctrine\Common\Collections\ArrayCollection;
-use Symfony\Bundle\FrameworkBundle\Validator;
+use Symfony\Component\Translation\TranslatorInterface;
+use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
 
 use App\Entity\Product;
 
@@ -112,10 +109,42 @@ class CartController extends Controller
             $this->redirectToRoute('app_index_index');
         }
 
+        $amount = 0;
+        foreach ($paymentDetails['transactions'] as $transaction) {
+            $amount += $transaction['amount']['total'];
+        }
+
+        $address =
+            $paymentDetails['payer']['payer_info']['shipping_address']['line1'] . " <br> " .
+            $paymentDetails['payer']['payer_info']['shipping_address']['postal_code'] . ' ' . $paymentDetails['payer']['payer_info']['shipping_address']['city'] . " <br> " .
+            $paymentDetails['payer']['payer_info']['shipping_address']['country_code']
+            ;
+
+        $products = $this->getProductsFromSession();
+
+        $productsContent = '<ul>';
+        foreach ($products as $product) {
+            $url = $this->generateUrl('app_index_catalogue', [
+                'catAlias' => $product->getCategory()->getParent()->getAlias($request->getLocale()),
+                'subCatAlias' => $product->getCategory()->getAlias($request->getLocale()),
+                'itemId' => $product->getId()],
+                UrlGeneratorInterface::ABSOLUTE_URL
+            );
+            $productsContent .= '<li><a href="'.$url.'" target="_blank">'.$product->getTitle($request->getLocale()).'</a></li>';
+        }
+
+        $productsContent .= '</ul>';
+
+
         $payment = new Payment();
         $payment->setStatus(Payment::STATUS_INIT)
+            ->setBuyerName($paymentDetails['payer']['payer_info']['shipping_address']['recipient_name'])
+            ->setBuyerEmail($paymentDetails['payer']['payer_info']['email'])
+            ->setBuyerAddress($address)
             ->setPaymentId($paymentDetails['id'])
+            ->setAmount($amount)
             ->setPaypalPaymentDetails($paymentDetails)
+            ->setProductsContent($productsContent)
             ->setProductsIds($this->getProductsIds());
 
         $em = $this->getDoctrine()->getManager();
@@ -128,11 +157,13 @@ class CartController extends Controller
 
     /**
      * @Route("/confirm-payment", name="app_cart_confirm-payment")
-     * @param Request $request
      *
-     * @return Response
+     * @param Request $request
+     * @param \Swift_Mailer $mailer
+     * @param TranslatorInterface $translator
+     * @return \Symfony\Component\HttpFoundation\RedirectResponse|Response
      */
-    public function confirmPayment(Request $request)
+    public function confirmPayment(Request $request, \Swift_Mailer $mailer, TranslatorInterface $translator)
     {
         $paymentId = $request->query->get('paymentId');
         $cart = $this->get('session')->get('cart');
@@ -144,16 +175,33 @@ class CartController extends Controller
         /** @var Payment $payment */
         $payment = $this->getDoctrine()->getRepository(Payment::class)
             ->findOneBy(['paymentId' => $paymentId]);
-
         $payment->setStatus(Payment::STATUS_CONFIRM);
-
         $this->getDoctrine()->getManager()->flush();
 
-        $products = $this->getProductsFromSession();
+
+        $productsDetails = ProductHelper::computeCard(
+            $this->getProductsFromSession(),
+            $cart,
+            $request->getLocale());
+
+        //Create email
+        $body = $this->renderView('app/partials/email-buyer.html.twig', [
+            'cart' => $productsDetails,
+            'payment' => $payment
+            ]
+        );
+
+        $message = (new \Swift_Message($translator->trans('payment.email-subject')))
+            ->setFrom($this->container->getParameter('mailer_from'))
+            ->setTo('mimoberlino@gmail.com')
+            ->setBody($body, 'text/html');
+
+        $mailer->send($message);
+
         $this->get('session')->set('cart', []); //Empty session cart
 
         return $this->render('app/cart/confirmPayment.html.twig', [
-            'cart'  => ProductHelper::computeCard($products, $cart, $request->getLocale()),
+            'cart'      => $productsDetails,
             'payment'   => $payment
         ]);
     }
@@ -166,7 +214,7 @@ class CartController extends Controller
      */
     public function cancelPayment(Request $request): Response
     {
-        return new Response('success');
+        return $this->redirectToRoute('app_cart_index');
     }
 
 
@@ -198,61 +246,3 @@ class CartController extends Controller
     }
 
 }
-
-
-/*
- *
- * array(25) {
-  ["TOKEN"]=>
-  string(20) "EC-8DX31524G38521809"
-  ["SUCCESSPAGEREDIRECTREQUESTED"]=>
-  string(5) "false"
-  ["TIMESTAMP"]=>
-  string(20) "2017-05-10T14:23:22Z"
-  ["CORRELATIONID"]=>
-  string(12) "6bcee1d32242"
-  ["ACK"]=>
-  string(7) "Success"
-  ["VERSION"]=>
-  string(4) "74.0"
-  ["BUILD"]=>
-  string(8) "33490117"
-  ["INSURANCEOPTIONSELECTED"]=>
-  string(5) "false"
-  ["SHIPPINGOPTIONISDEFAULT"]=>
-  string(5) "false"
-  ["PAYMENTINFO_0_TRANSACTIONID"]=>
-  string(17) "4XR48274NH982190U"
-  ["PAYMENTINFO_0_TRANSACTIONTYPE"]=>
-  string(15) "expresscheckout"
-  ["PAYMENTINFO_0_PAYMENTTYPE"]=>
-  string(7) "instant"
-  ["PAYMENTINFO_0_ORDERTIME"]=>
-  string(20) "2017-05-10T14:23:21Z"
-  ["PAYMENTINFO_0_AMT"]=>
-  string(5) "85.00"
-  ["PAYMENTINFO_0_FEEAMT"]=>
-  string(4) "1.97"
-  ["PAYMENTINFO_0_TAXAMT"]=>
-  string(4) "0.00"
-  ["PAYMENTINFO_0_CURRENCYCODE"]=>
-  string(3) "EUR"
-  ["PAYMENTINFO_0_PAYMENTSTATUS"]=>
-  string(9) "Completed"
-  ["PAYMENTINFO_0_PENDINGREASON"]=>
-  string(4) "None"
-  ["PAYMENTINFO_0_REASONCODE"]=>
-  string(4) "None"
-  ["PAYMENTINFO_0_PROTECTIONELIGIBILITY"]=>
-  string(8) "Eligible"
-  ["PAYMENTINFO_0_PROTECTIONELIGIBILITYTYPE"]=>
-  string(51) "ItemNotReceivedEligible,UnauthorizedPaymentEligible"
-  ["PAYMENTINFO_0_SECUREMERCHANTACCOUNTID"]=>
-  string(13) "AYU5HA5V7X8XA"
-  ["PAYMENTINFO_0_ERRORCODE"]=>
-  string(1) "0"
-  ["PAYMENTINFO_0_ACK"]=>
-  string(7) "Success"
-}
- *
- */

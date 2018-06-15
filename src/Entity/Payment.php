@@ -42,11 +42,47 @@ class Payment
     private $status;
 
     /**
+     * @var boolean
+     *
+     * @ORM\Column(type="boolean")
+     */
+    private $delivered = false;
+
+    /**
      * @var string
      *
      * @ORM\Column(type="string")
      */
     private $paymentId;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(type="string")
+     */
+    private $buyerEmail;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(type="string")
+     */
+    private $buyerName;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(type="string")
+     */
+    private $amount;
+
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(type="string")
+     */
+    private $buyerAddress;
 
     /**
      * @var array
@@ -61,6 +97,15 @@ class Payment
      * @ORM\Column(type="simple_array")
      */
     private $productsIds;
+
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(type="text")
+     */
+    private $productsContent;
+
 
     /**
      * Product constructor
@@ -182,7 +227,7 @@ class Payment
      */
     public function getProductsIds(): array
     {
-        return $this->paypalPaymentDetails;
+        return $this->productsIds;
     }
     /**
      * @param array $ids
@@ -193,6 +238,121 @@ class Payment
         $this->productsIds = $ids;
         return $this;
     }
+
+    /**
+     * @return bool
+     */
+    public function isDelivered(): bool
+    {
+        return $this->delivered;
+    }
+
+    /**
+     * @param bool $delivered
+     * @return $this
+     */
+    public function setDelivered(bool $delivered): self
+    {
+        $this->delivered = $delivered;
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function getBuyerEmail(): string
+    {
+        return $this->buyerEmail;
+    }
+
+    /**
+     * @param string $buyerEmail
+     * @return $this
+     */
+    public function setBuyerEmail(string $buyerEmail): self
+    {
+        $this->buyerEmail = $buyerEmail;
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function getBuyerName(): string
+    {
+        return $this->buyerName;
+    }
+
+    /**
+     * @param string $buyerName
+     * @return $this
+     */
+    public function setBuyerName(string $buyerName): self
+    {
+        $this->buyerName = $buyerName;
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function getBuyerAddress(): string
+    {
+        return $this->buyerAddress;
+    }
+
+    /**
+     * @param string $buyerAddress
+     * @return $this
+     *
+     */
+    public function setBuyerAddress(string $buyerAddress): self
+    {
+        $this->buyerAddress = $buyerAddress;
+        return $this;
+    }
+
+
+    /**
+     * @return string
+     */
+    public function getAmount(): string
+    {
+        return $this->amount;
+    }
+
+    /**
+     * @param string $amount
+     * @return $this
+     *
+     */
+    public function setAmount(string $amount): self
+    {
+        $this->amount = $amount;
+        return $this;
+    }
+
+    /**
+     * @param string $name
+     * @return $this
+     */
+    public function setProductsContent(string $name): self
+    {
+        $this->productsContent = $name;
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function getProductsContent(): ?string
+    {
+        return $this->productsContent;
+    }
+
+
+
+
 
 
 }

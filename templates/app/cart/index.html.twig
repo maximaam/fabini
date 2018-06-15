@@ -129,6 +129,10 @@
 
                                                 return actions.payment.get().then(function(paymentDetails) {
 
+
+                                                    console.log(paymentDetails);
+
+
                                                     $.post('{{ path("app_cart_create-payment") }}', {paymentDetails: paymentDetails})
                                                         .done(function( status ) {
                                                             return actions.payment.execute().then(function() {

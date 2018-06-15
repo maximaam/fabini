@@ -16,9 +16,13 @@
                     <div class="alert alert-success">
                         {{ 'msg.thanks-for-order'|trans }}
                     </div>
+                    <p>
+                        {{ 'msg.email-sent'|trans({'%buyer_email%': payment.buyerEmail}) }}
+                    </p>
 
 
                     <h1 class="text-center">{{ 'cart.order-overview'|trans }}</h1>
+                    <br>
 
                     <table class="table table-stripped table-hover">
                         <thead>
@@ -71,16 +75,13 @@
                                     <br>
                                     <address>
                                         {% set addr = payment.paypalPaymentDetails.payer.payer_info.shipping_address %}
-                                        <h3>{{ addr.recipient_name }}</h3>
+                                        <h3>{{ payment.buyerName }}</h3>
                                         <p>
                                             {{ addr.line1 }}<br>
                                             {{ addr.postal_code }} {{ addr.city }}<br>
                                             {{ addr.country_code }}<br>
                                         </p>
                                     </address>
-
-                                    <hr>
-                                    <p>{{ 'msg.thanks-for-order-desc'|trans }}</p>
                                 </td>
                             </tr>
                         </tfoot>

@@ -7,6 +7,7 @@ parameters:
     app_secret: '%env(APP_SECRET)%'
 
     mailer_user: 'mimoberlino@gmail.com'
+    mailer_from: 'no-reply@sparheld.de'
 
 services:
     # default configuration for services in *this* file
@@ -57,6 +58,12 @@ services:
         tags:
             - { name: sonata.admin, manager_type: orm, label: 'Pages' }
         public: true
+
+    App\Admin\PaymentAdmin:
+            arguments: [~, App\Entity\Payment, ~]
+            tags:
+                - { name: sonata.admin, manager_type: orm, label: 'Orders/Payments' }
+            public: true
 
 
 

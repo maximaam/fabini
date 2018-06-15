@@ -21,6 +21,8 @@ class IndexController extends Controller
 {
     /**
      * @Route("/", name="app_index_index")
+     *
+     * @return Response
      */
     public function index()
     {
