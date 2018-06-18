@@ -39,11 +39,13 @@
                 </div>
                 <input type="password" id="password" name="_password" class="form-control" value="{{ last_username }}" placeholder="{{ 'security.login.password'|trans }}" required="required">
             </div>
+            <!--
             <small class="pull-right">
                 <a href="{{ path('fos_user_resetting_request') }}">
                     {{ 'change_password.submit'|trans }}?
                 </a>
             </small>
+            -->
         </div>
 
         <!--
@@ -66,9 +68,11 @@
             </div>
 
             <div class="pull-left">
+                <!--
             <a href="{{ path('fos_user_registration_register') }}">
                 {{ 'registration.submit'|trans }}
             </a>
+            -->
             </div>
         </div>
 

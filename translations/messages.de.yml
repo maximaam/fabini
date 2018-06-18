@@ -46,7 +46,7 @@ gray: Grau
 silver: Silber
 burlywood: Naturbraun
 brown: Braun
-maroon: Cognac
+maroon: Dunkelbraun
 darkred: Bordeaux
 black: Schwarz
 green: Grün
@@ -108,3 +108,5 @@ payment:
     email-msg-part3: Bestellungsübersicht:
     email-msg-part4: Lieferadresse:
     email-msg-part5: Ihr FABINI-Team
+
+copyright: Copyright FABINI-REZ - Alle Rechte vorbehalten

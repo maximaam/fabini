@@ -86,6 +86,11 @@
                         {{ knp_menu_render('footer') }}
                     </div>
                     <div class="col-md-4">
+                        <p class="copyright">
+                            <small>
+                                &copy; {{ 'copyright'|trans }}
+                            </small>
+                        </p>
                         <!--
                         <form id="search" name="search" action="{{ path('app_index_search') }}" method="post">
                             <input type="text" name="query" id="query" placeholder="{{ 'label.search|trans' }}...">
@@ -93,7 +98,7 @@
                         </form>
                         -->
                     </div>
-                    <div class="col-md-4">
+                    <div class="col-md-4 socials">
                         <a href="https://www.facebook.com/Fabini-222633031878310/" target="_blank">
                             <i class="fa fa-facebook-official" title="Fabini Facebook page"></i>
                         </a>

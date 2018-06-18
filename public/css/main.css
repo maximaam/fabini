@@ -14,8 +14,12 @@ header.main-header {
     background: #333;
 }
 
+h1 {
+    font-size: 2rem;
+}
+
 footer.main-footer {
-    background: #641E16;
+    background: #284a49;
     padding: 15px 0;
 }
 .fa-facebook-official,
@@ -152,11 +156,12 @@ footer.main-footer {
 .single-item h2 {
     font-size: 1.2em;
     font-weight: 600;
+    min-height: 50px;
 }
 
 .card-img-top {
     width: 100%;
-    height: 160px;
+    height: 200px;
     margin-bottom: 10px;
 }
 
@@ -252,6 +257,51 @@ footer.main-footer {
         min-height: 300px;
     }
     */
+}
+@media only screen and (min-width : 320px) and (max-width : 1024px) {
+    .card-img-top {
+        height: auto;
+    }
+
+}
+
+/* Smartphones (portrait and landscape) ----------- */
+
+@media only screen and (min-width : 320px) and (max-width : 480px) {
+
+    .jumbotron h1 {
+        font-size: 2.5rem;
+    }
+    .navbar-nav a.nav-link {
+        background: transparent;
+        border-bottom: 1px solid #ccc;
+        border-radius: 0;
+    }
+
+    .fa-facebook-official, .fa-twitter {
+        float: none;
+    }
+    .copyright {
+        text-align: center;
+    }
+
+    .socials {
+        text-align: center;
+    }
+
+    .carousel-img {
+        width: 100%;
+    }
+
+}
+@media only screen and (min-width : 480px) and (max-width : 768px) {
+
+
+
+
+}
+@media only screen and (min-width : 768px) and (max-width : 1024px) {
+
 }
 
 /*b0b04d
