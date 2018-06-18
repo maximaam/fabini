@@ -7,7 +7,7 @@ body {
 main {
     min-height: 80rem;
     margin-top: 80px;
-    padding: 2rem;
+    padding: 20px 0;
 }
 
 header.main-header {
@@ -15,7 +15,7 @@ header.main-header {
 }
 
 h1 {
-    font-size: 2rem;
+    font-size: 1.7rem;
 }
 
 footer.main-footer {
@@ -38,6 +38,7 @@ footer.main-footer {
 
 .navbar {
     background: #333;
+    height: 80px;
 }
 
 .navbar-nav .nav-item {
@@ -52,11 +53,11 @@ footer.main-footer {
     -o-transition: all .2s ease-in-out;
     transition: all .2s ease-in-out;
     padding: .75rem 1.5rem;
-    background: rgba(255,195,0,.2);
+    background: rgba(105,164,163,.2);
 }
 .navbar-nav a.nav-link:hover,
 .nav-item.current a.nav-link {
-    background: rgba(255,195,0,.8);
+    background: rgba(105,164,163,.8);
 }
 .navbar .user-cart > a {
     margin-left: 10px;
@@ -116,15 +117,14 @@ footer.main-footer {
 
 
 .jumbotron {
-    border-top: 2px #fff dashed;
     background: url("../images/bg-multi.jpg");
     color: #fff;
     min-height: 300px;
     background-size: cover;
-    margin: -3.5rem -2rem 2rem -2rem; /* Padding main */
+    border-radius: 0;
+    margin-top: -20px !important;
 }
 .jumbotron h1 {
-
     text-shadow: 1px 1px 2px #333;
     font-family: 'Titillium Web', sans-serif;
     letter-spacing: 3px;
@@ -135,11 +135,11 @@ footer.main-footer {
 }
 
 .btn-primary {
-    background: #B48300;
+    background: #69A4A3;
     border: none;
 }
 .btn-primary:hover {
-    background: #CC9A00;
+    background: #93cfce;
 }
 
 
@@ -154,14 +154,14 @@ footer.main-footer {
 }
 
 .single-item h2 {
-    font-size: 1.2em;
+    font-size: 1rem;
     font-weight: 600;
     min-height: 50px;
 }
 
 .card-img-top {
     width: 100%;
-    height: 200px;
+    height: 160px;
     margin-bottom: 10px;
 }
 
@@ -185,7 +185,7 @@ footer.main-footer {
 .navbar-subcategory li a:hover,
 .navbar-subcategory li.current a {
     text-decoration: none;
-    color: #bd9e57;
+    color: #69A4A3;
 }
 
 .carousel-item {
@@ -197,6 +197,24 @@ footer.main-footer {
     width: 100%;
     height: 500px;
     */
+}
+
+#overlay {
+    background: rgba(0,0,0,.7);
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    z-index: 99999;
+    display: none;
+}
+
+#overlay img {
+    display: block;
+    margin: 100px auto;
 }
 
 .btn-paypal {

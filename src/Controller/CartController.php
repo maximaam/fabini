@@ -192,12 +192,12 @@ class CartController extends Controller
 
         $message = (new \Swift_Message($translator->trans('payment.email-subject')))
             ->setFrom($this->container->getParameter('mailer_from'), 'FABINI-REZ.com')
-            ->setTo('mimoberlino@gmail.com')
+            ->setTo($payment->getBuyerEmail())
             ->setBody($body, 'text/html');
 
         $messageAdmin = (new \Swift_Message('Verkauf bei FABINI-REZ.com - Kopie von EMail'))
             ->setFrom($this->container->getParameter('mailer_from'), 'FABINI-REZ.com')
-            ->setTo('mimoberlino@gmail.com')
+            ->setTo($this->container->getParameter('mailer_sold_item'))
             ->setBody($body, 'text/html');
 
         $mailer->send($message);

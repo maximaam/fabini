@@ -8,6 +8,7 @@ parameters:
 
     mailer_user: 'mimoberlino@gmail.com'
     mailer_from: 'no-reply@sparheld.de'
+    mailer_sold_item: 'mimoberlino@gmail.com'
 
 services:
     # default configuration for services in *this* file

@@ -100,8 +100,7 @@
 
                                             style: {
                                                 color: 'gold',
-                                                size: 'medium',
-                                                locale: 'de_DE'
+                                                size: 'medium'
                                             },
 
                                             // payment() is called when the button is clicked
@@ -130,6 +129,9 @@
                                                 return actions.payment.get().then(function(paymentDetails) {
                                                     $.post('{{ path("app_cart_create-payment") }}', {paymentDetails: paymentDetails})
                                                         .done(function( status ) {
+
+                                                            $('#overlay').show();
+
                                                             return actions.payment.execute().then(function() {
                                                                 actions.redirect();
                                                             });

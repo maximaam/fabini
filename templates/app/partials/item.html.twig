@@ -14,7 +14,7 @@
             <div class="card-body">
                 <h2>{{ product.title(app.request.locale) }}</h2>
                 <p class="card-text">
-                    {{ 'label.price'|trans }}: {{ product.price }} €
+                    {{ 'label.price'|trans }}: {{ product.price|number_format(2, ',', '.') }} €
                 </p>
                 <p class="card-text">
                     <span class="btn btn-primary">{{ 'label.more'|trans }}</span>
