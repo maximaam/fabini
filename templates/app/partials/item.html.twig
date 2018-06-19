@@ -1,11 +1,10 @@
 {% set itemUrl = path('app_index_catalogue', {
-    id: product.category.parent.id,
     catAlias: product.category.parent.alias(app.request.locale),
     subCatAlias: product.category.alias(app.request.locale),
     itemId: product.id
 }) %}
 
-<div class="col-md-4">
+<div class="col-lg-4">
     <a href="{{ itemUrl }}" class="a-single-item">
         <div class="card single-item">
             {% set imgSeparator = constant('App\\Entity\\Product::IMG_SEPARATOR') %}
@@ -14,7 +13,7 @@
             <div class="card-body">
                 <h2>{{ product.title(app.request.locale) }}</h2>
                 <p class="card-text">
-                    {{ 'label.price'|trans }}: {{ product.price|number_format(2, ',', '.') }} €
+                    {{ 'label.price'|trans }}: EUR {{ product.price|number_format(2, ',', '.') }}
                 </p>
                 <p class="card-text">
                     <span class="btn btn-primary">{{ 'label.more'|trans }}</span>

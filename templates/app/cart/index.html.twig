@@ -6,15 +6,14 @@
 
 {% block body %}
 
-    {% if cart is defined and cart|length  %}
+    <div class="container">
+        <div class="row">
 
-        {% set products = cart.products %}
-        {% set totals = cart.totals %}
+        {% if cart is defined and cart|length  %}
 
-        <div class="container">
+                {% set products = cart.products %}
+                {% set totals = cart.totals %}
 
-
-            <div class="row">
                 <div class="table-responsive">
                     <h1 class="text-center">{{ 'cart.my-cart'|trans }}</h1>
                     <table class="table table-stripped table-hover">
@@ -38,7 +37,7 @@
                                 <td>{{ product.title }}</td>
                                 <td>{{ product.productNumber }}</td>
                                 <td>{{ product.color|trans }}</td>
-                                <td>{{ product.size }}</td>
+                                <td>{{ product.size|length > 0 ? product.size : '-' }}</td>
                                 <td>{{ product.quantity }}</td>
                                 <td>{{ product.price|number_format(2, ',', '.') }} <i class="fa fa-eur"></i></td>
                                 <td>{{ product.fullPrice|number_format(2, ',', '.') }} <i class="fa fa-eur"></i></td>
@@ -161,16 +160,17 @@
 
                     </table>
                 </div>
-            </div>
+
+            {% else %}
+
+                <div class="alert alert-warning">
+                    <span class="fa fa-flag"></span>
+                    {{ 'cart.empty'|trans }}
+                </div>
+
+            {% endif %}
+
         </div>
-
-    {% else %}
-
-        <div class="alert alert-warning">
-            <span class="fa fa-flag"></span>
-            {{ 'cart.empty'|trans }}
-        </div>
-
-    {% endif %}
+    </div>
 
 {% endblock %}

@@ -11,6 +11,7 @@ use Symfony\Component\HttpFoundation\{Request, Response};
 use App\Utils\ProductHelper;
 use Symfony\Component\Translation\TranslatorInterface;
 use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
+use Symfony\Component\HttpFoundation\Session\SessionInterface;
 
 use App\Entity\Product;
 
@@ -28,12 +29,12 @@ class CartController extends Controller
      *
      * @param $id
      * @param Request $request
+     * @param SessionInterface $session
      * @return \Symfony\Component\HttpFoundation\RedirectResponse
+     * @throws \Exception
      */
-    public function add($id, Request $request)
+    public function add($id, Request $request, SessionInterface $session, TranslatorInterface $translator)
     {
-        $session = $this->get('session');
-
         if (!$session->has('cart')) {
             $session->set('cart', []);
         }
@@ -43,6 +44,23 @@ class CartController extends Controller
         $quantity = (int) $request->request->get('quantity');
         $color = $request->request->get('color');
         $size = $request->request->get('size');
+
+        if ($quantity <= 0 || !in_array($color, Product::getAvailableColors())) {
+
+            /** @var Product $product */
+            $product = $this->getDoctrine()->getRepository(Product::class)->find($id);
+
+            $this->addFlash(
+                'error',
+                $translator->trans('msg.error-to-cart-params')
+            );
+
+            return $this->redirectToRoute('app_index_catalogue', [
+                'catAlias'  => $product->getCategory()->getParent(),
+                'subCatAlias'   => $product->getCategory(),
+                'itemId'    => $product->getId()
+            ]);
+        }
 
         $cart[$id] = [
             'quantity'  => $quantity,
@@ -56,28 +74,31 @@ class CartController extends Controller
 
     /**
      * @Route("/remove/{id}")
+     * @Method("GET")
      *
      * @param $id
+     * @param SessionInterface $session
      * @return \Symfony\Component\HttpFoundation\Response
      */
-    public function remove($id)
+    public function remove($id, SessionInterface $session)
     {
-        $session = $this->get('session');
         $cart = $session->get('cart');
         unset($cart[$id]);
+
         $session->set('cart', $cart);
         return $this->redirectToRoute('app_cart_index');
     }
 
     /**
      * @Route("/", name="app_cart_index")
+     * @Method("GET")
+     *
      * @param Request $request
+     * @param SessionInterface $session
      * @return \Symfony\Component\HttpFoundation\Response
      */
-    public function index(Request $request)
+    public function index(Request $request, SessionInterface $session)
     {
-        $session = $this->get('session');
-
         if (!$session->has('cart') || empty($session->get('cart'))) {
             return $this->render('app/cart/index.html.twig', [
                 'cart'  => []
@@ -97,8 +118,9 @@ class CartController extends Controller
 
     /**
      * @Route("/create-payment", name="app_cart_create-payment")
-     * @param Request $request
+     * @Method("POST")
      *
+     * @param Request $request
      * @return \Symfony\Component\HttpFoundation\RedirectResponse|Response
      */
     public function createPayment(Request $request): Response
@@ -157,13 +179,15 @@ class CartController extends Controller
 
     /**
      * @Route("/confirm-payment", name="app_cart_confirm-payment")
+     * @Method("GET")
      *
      * @param Request $request
      * @param \Swift_Mailer $mailer
      * @param TranslatorInterface $translator
+     * @param SessionInterface $session
      * @return \Symfony\Component\HttpFoundation\RedirectResponse|Response
      */
-    public function confirmPayment(Request $request, \Swift_Mailer $mailer, TranslatorInterface $translator)
+    public function confirmPayment(Request $request, \Swift_Mailer $mailer, TranslatorInterface $translator, SessionInterface $session)
     {
         $paymentId = $request->query->get('paymentId');
         $cart = $this->get('session')->get('cart');
@@ -203,7 +227,7 @@ class CartController extends Controller
         $mailer->send($message);
         $mailer->send($messageAdmin);
 
-        $this->get('session')->set('cart', []); //Empty session cart
+        $session->set('cart', []); //Empty session cart
 
         return $this->render('app/cart/confirmPayment.html.twig', [
             'cart'      => $productsDetails,

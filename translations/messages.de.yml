@@ -72,6 +72,7 @@ msg:
     no_products_in_category: Zurzeit keine Ware in dieser Kategorie
     thanks-for-order: Vielen Dank für Ihre Bestellung
     email-sent: Eine Email wurde an %buyer_email% gesendet mit der Gesamten Übersicht.
+    error-to-cart-params: Fehler! Bitte korrigieren Sie Ihr Auswhal (Farbe, Größe, Menge...)
 
 
 user:
@@ -89,7 +90,7 @@ user:
 
 cart:
     to-cart: In den Warenkorb
-    my-cart: Mein Warenkorb
+    my-cart: Ihr Warenkorb
     pay-now: Jetzt mit PayPal zahlen!
     continue-shopping: Weiter einkaufen
     empty: Ihr Warenkorb ist leer

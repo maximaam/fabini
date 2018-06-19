@@ -19,6 +19,23 @@ class Product
      */
     const IMG_SEPARATOR = '-';
 
+    /**
+     * @var array
+     */
+    protected static $availColors = [
+        'white', 'silver', 'gray', 'black',
+        'beige', 'yellow', 'gold', 'orange', 'red',
+        'pink', 'violet', 'fuchsia', 'purple',
+        'lightblue', 'blue', 'darkblue',
+        'green', 'lightgreen',
+        'burlywood', 'brown', 'maroon', 'darkred',
+    ];
+
+    /**
+     * @var array
+     */
+    protected static $availSizes = ['XS', 'S', 'M', 'L', 'XL', 'XXL'];
+
 
     /**
      * @ORM\Id
@@ -433,6 +450,23 @@ class Product
     {
         $this->topItem = $topItem;
         return $this;
+    }
+
+
+    /**
+     * @return array
+     */
+    public static function getAvailableColors()
+    {
+        return self::$availColors;
+    }
+
+    /**
+     * @return array
+     */
+    public static function getAvailableSizes()
+    {
+        return self::$availSizes;
     }
 
 

@@ -47,24 +47,6 @@ use Symfony\Component\Form\FormEvents;
 class ProductAdmin extends AbstractAdmin
 {
     /**
-     * @var array
-     */
-    protected static $colors = [
-        'white', 'silver', 'gray', 'black',
-        'beige', 'yellow', 'gold', 'orange', 'red',
-        'pink', 'violet', 'fuchsia', 'purple',
-        'lightblue', 'blue', 'darkblue',
-        'green', 'lightgreen',
-        'burlywood', 'brown', 'maroon', 'darkred',
-    ];
-
-    /**
-     * @var array
-     */
-    protected static $sizes = ['XS', 'S', 'M', 'L', 'XL', 'XXL'];
-
-
-    /**
      * Form configure
      *
      * @param FormMapper $formMapper
@@ -73,7 +55,8 @@ class ProductAdmin extends AbstractAdmin
     {
         /** @var Product $product */
         $product = $this->getSubject();
-        $colors = self::$colors;
+        $colors = Product::getAvailableColors();
+        $sizes = Product::getAvailableSizes();
 
         $formMapper
             ->add('category', EntityType::class, [
@@ -96,7 +79,7 @@ class ProductAdmin extends AbstractAdmin
             ->add('descriptionEn')
 
             ->add('colors', ChoiceType::class, [
-                'choices' => array_combine(self::$colors, self::$colors),
+                'choices' => array_combine($colors, $colors),
                 'expanded'  => true,
                 'multiple'  => true,
                 'choice_translation_domain' => 'messages',
@@ -112,7 +95,7 @@ class ProductAdmin extends AbstractAdmin
             ])
 
             ->add('sizes', ChoiceType::class, [
-                'choices' => array_combine(self::$sizes, self::$sizes),
+                'choices' => array_combine($sizes, $sizes),
                 'required'  => false,
                 'expanded'  => true,
                 'multiple'  => true,

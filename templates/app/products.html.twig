@@ -12,9 +12,13 @@
 
                     {{ knp_menu_render('subCategory') }}
 
-                    <p>
-                        {{ category.description(app.request.locale)|raw }}
-                    </p>
+                    <blockquote class="cat-desc">
+                        <i class="fa fa-quote-right"></i>
+                        <p>
+                            {{ category.description(app.request.locale)|raw }}
+                        </p>
+
+                    </blockquote>
                 </div>
 
                 <div class="col-md-9">
