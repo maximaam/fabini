@@ -1,4 +1,5 @@
 const config = {
+    'form': 'form',
     'images': {
         'names_separator': '-',
         'upload_uri': '/ajx/upload-image',
@@ -12,6 +13,7 @@ const config = {
             'update_uploaded_images_container': 'uploaded-images-container',
             'delete': 'js_delete-image',
             'loading_img': 'loading-img',
+            'btn_submit': 'sonata-ba-form-actions button[type=submit]'
         }
     }
 };
@@ -153,7 +155,27 @@ appManager.imageUpload.deleteOrphans = function($context) {
     });
 };
 
-appManager.colorsList = function($context){
+/**
+ * Prevent from updating without a least one image
+ * @param $context
+ */
+appManager.imageUpload.validateOnUpdate = function($context) {
+    $context.on('click', '.' + config.images.classes.btn_submit, function() {
+
+        let $images = $('.' + config.images.classes.names_input);
+
+        if ($images.length > 0) {
+            let images = $images.val();
+
+            if (images.length < 1 && $images.data('pk') > 0) {
+                alert('Mindestens ein Bild pro Produkt!');
+                return false;
+            }
+        }
+    });
+};
+
+appManager.colorsList = function(){
     let $list = $("ul[id$='_colors']").find('li');
 
     $list.each(function (index, item) {
@@ -196,10 +218,14 @@ $(document).ready(function() {
             $context = $(document);
         }
 
+        let $images = $('.' + config.images.classes.names_input);
+
         appManager.imageUpload.upload($context);
-        appManager.imageUpload.showOnUpdate($('.' + config.images.classes.names_input));
+        appManager.imageUpload.showOnUpdate($images);
+        appManager.imageUpload.validateOnUpdate($context);
         appManager.imageUpload.delete($context);
-        appManager.colorsList($context);
+
+        appManager.colorsList();
     };
 
     appManager.run();

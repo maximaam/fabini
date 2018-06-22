@@ -127,7 +127,7 @@ class ProductAdmin extends AbstractAdmin
                 //'allow_add'     => true,
                 //'allow_delete'  => true,
                 'label' => 'Upload new images',
-                'required'      => $product->getId() === null,
+                'required'      => ($product->getId() === null || empty($product->getImages())),
                 'mapped'        => false,
                 'attr'  => [
                     'class' => 'js_upload-image',
