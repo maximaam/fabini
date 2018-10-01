@@ -8,7 +8,7 @@
     <a href="{{ itemUrl }}" class="a-single-item">
         <div class="card single-item">
             {% set imgSeparator = constant('App\\Entity\\Product::IMG_SEPARATOR') %}
-            <img class="card-img-top" src="{{ asset('/images/products/' ~ product.images|trim(imgSeparator)|split(imgSeparator)|first ) }}">
+            <img class="card-img-top{{ homepage is defined ? ' homepage' }}" src="{{ asset('/images/products/' ~ product.images|trim(imgSeparator)|split(imgSeparator)|first ) }}">
 
             <div class="card-body">
                 <h2>{{ product.title(app.request.locale) }}</h2>

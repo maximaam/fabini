@@ -22,16 +22,18 @@
                     {% endfor %}
 
 
-                    <div id="carousel-product" class="carousel slide" data-ride="carousel">
-                                {% set imgSeparator = constant('App\\Entity\\Product::IMG_SEPARATOR') %}
-                                {% set images = product.images|trim(imgSeparator)|split(imgSeparator) %}
+                    <div id="carousel-product" class="carousel slide product-slider" data-ride="carousel">
+                        {% set imgSeparator = constant('App\\Entity\\Product::IMG_SEPARATOR') %}
+                        {% set images = product.images|trim(imgSeparator)|split(imgSeparator) %}
 
-                                <!-- Indicators -->
-                                <ul class="carousel-indicators">
-                                    {% for key,image in images %}
-                                        <li data-target="#carousel-product" data-slide-to="{{ key }}" class="{% if loop.first %}active{% endif %}"></li>
-                                    {% endfor %}
-                                </ul>
+                        <!-- Indicators -->
+                        <!--
+                        <ul class="carousel-indicators">
+                            {% for key,image in images %}
+                                <li data-target="#carousel-product" data-slide-to="{{ key }}" class="{% if loop.first %}active{% endif %}"></li>
+                            {% endfor %}
+                        </ul>
+                        -->
 
                                 <div class="carousel-inner">
                                     {% for image in images %}

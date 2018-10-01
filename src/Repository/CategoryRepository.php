@@ -39,7 +39,7 @@ class CategoryRepository extends ServiceEntityRepository
                 ->setParameter('parentId', $category->getId());
         }
 
-        $qb->orderBy('c.id', 'ASC');
+        $qb->orderBy('c.position', 'ASC');
 
         return $qb;
     }

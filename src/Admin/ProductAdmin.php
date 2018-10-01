@@ -139,6 +139,10 @@ class ProductAdmin extends AbstractAdmin
                 ],
                 //'help'          => $product->getId() ? '<img src="/images/products/">' : '',
             ])
+
+            ->add('inactive', null, [
+                'label' => 'Deaktivieren'
+            ])
         ;
 
     }

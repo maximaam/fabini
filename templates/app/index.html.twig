@@ -14,7 +14,7 @@
         <div class="row">
 
             {% for item in leather %}
-                {% include 'app/partials/item.html.twig' with {product: item} %}
+                {% include 'app/partials/item.html.twig' with {product: item, homepage: true} %}
             {% endfor %}
 
         </div>

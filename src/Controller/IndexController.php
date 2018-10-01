@@ -26,7 +26,7 @@ class IndexController extends Controller
      */
     public function index()
     {
-        $leather = $this->getDoctrine()->getRepository(Product::class)->findBy(['topItem' => true]);
+        $leather = $this->getDoctrine()->getRepository(Product::class)->findBy(['topItem' => true, 'inactive' => false]);
 
         return $this->render('app/index.html.twig', [
             'leather' => $leather
@@ -117,7 +117,6 @@ class IndexController extends Controller
                 $catIds = CategoryRepository::getChildrenIds($category);
                 $products = $productRepo->fetchByCategories($catIds);
             } else {
-
                 $category = $catRepo->findOneBy([$alias => $subCatAlias]);
                 $products = $productRepo->findBy(['category' => $category]);
             }

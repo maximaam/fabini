@@ -137,6 +137,13 @@ class Product
     private $topItem;
 
     /**
+     * @var boolean
+     *
+     * @ORM\Column(type="boolean")
+     */
+    private $inactive;
+
+    /**
      * @ORM\ManyToOne(targetEntity="Category", inversedBy="products")
      * @ORM\JoinColumn(nullable=false)
      */
@@ -449,6 +456,25 @@ class Product
     public function setTopItem(bool $topItem): self
     {
         $this->topItem = $topItem;
+        return $this;
+    }
+
+    /**
+     * @return bool
+     */
+    public function isInactive(): ?bool
+    {
+        return $this->inactive;
+    }
+
+    /**
+     * @param bool $item
+     * @return $this
+     *
+     */
+    public function setInactive(bool $item): self
+    {
+        $this->inactive = $item;
         return $this;
     }
 

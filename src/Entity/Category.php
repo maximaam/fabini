@@ -13,6 +13,7 @@ use App\Utils\StringHelper;
  * @ORM\Table(indexes={
  *     @Index(name="idx_alias_de", columns={"alias_de"}),
  *     @Index(name="idx_alias_en", columns={"alias_en"}),
+ *     @Index(name="idx_position", columns={"position"}),
  * })
  * @ORM\Entity(repositoryClass="App\Repository\CategoryRepository")
  * @ORM\HasLifecycleCallbacks()
@@ -89,6 +90,13 @@ class Category
      * @ORM\Column(name="description_en", type="text")
      */
     private $descriptionEn;
+
+    /**
+     * @var int
+     *
+     * @ORM\Column(type="integer")
+     */
+    private $position;
 
     /**
      * @var category
@@ -293,6 +301,25 @@ class Category
     public function getDescriptionEn(): ?string
     {
         return $this->descriptionEn;
+    }
+
+    /**
+     * @return int
+     */
+    public function getPosition(): ?int
+    {
+        return $this->position;
+    }
+
+    /**
+     * @param int $order
+     * @return Category
+     */
+    public function setPosition(int $order): self
+    {
+        $this->position = $order;
+
+        return $this;
     }
 
     /**

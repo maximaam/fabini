@@ -27,8 +27,12 @@ class ProductRepository extends ServiceEntityRepository
 
         //$qb->where($qb->expr()->in('c.id', $categories));
 
-        $qb->where('c.id IN(:categories)')
-            ->setParameter('categories', $categories);
+        $qb
+            ->where('p.inactive = :inactive')
+            ->setParameter('inactive', false)
+            ->andWhere('c.id IN(:categories)')
+            ->setParameter('categories', $categories)
+            ;
 
         return $qb->getQuery()->getResult();
     }
